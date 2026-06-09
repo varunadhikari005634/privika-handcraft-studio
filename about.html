@@ -716,25 +716,6 @@ line-height:1.8;
 
 <div id="chatbot-container"></div>
 
-<script>
-
-fetch("/chatbot/chatbot.html")
-  .then(res => res.text())
-  .then(data => {
-
-    document.getElementById("chatbot-container").innerHTML = data;
-
-    const script = document.createElement("script");
-
-    script.src = "/chatbot/chatbot.js";
-
-    document.body.appendChild(script);
-
-  });
-
-</script>
-
-<link rel="stylesheet" href="/chatbot/chatbot.css">
 
 </section>
 
