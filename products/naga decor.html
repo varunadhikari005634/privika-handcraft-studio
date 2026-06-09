@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Naga Table</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Poppins&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../style.css">
+
+  <style>
+    /* 🔥 FIX PRODUCT PAGE LAYOUT */
+
+    .product-container {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 50px;
+      padding: 100px 40px;
+      flex-wrap: wrap;
+    }
+
+    .product-container img {
+      width: 400px;
+      max-width: 90%;
+      border-radius: 15px;
+
+      box-shadow:
+        0 0 20px rgba(255,215,0,0.2),
+        0 0 40px rgba(255,215,0,0.1);
+
+      transition: 0.4s;
+    }
+
+    .product-container img:hover {
+      transform: scale(1.05);
+    }
+
+    .product-info {
+      max-width: 400px;
+      background: rgba(0,0,0,0.6);
+      padding: 30px;
+      border-radius: 15px;
+
+      backdrop-filter: blur(10px);
+
+      box-shadow:
+        0 0 15px rgba(255,215,0,0.2);
+    }
+
+    .product-info h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 32px;
+      margin-bottom: 10px;
+      color: #ffd700;
+    }
+
+    .price {
+      font-size: 22px;
+      color: #d4af37;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .desc {
+      font-size: 15px;
+      line-height: 1.6;
+      color: #ddd;
+    }
+
+    /* PRODUCTS BUTTON FIX */
+.product-btn{
+    position:fixed;
+    top:15px;
+    left:15px;
+    z-index:1000;
+
+    background:rgba(0,0,0,.75);
+    color:#ffd700;
+
+    padding:12px 24px;
+    border-radius:50px;
+
+    font-family:'Cinzel',serif;
+    font-size:15px;
+    font-weight:600;
+
+    text-decoration:none;
+
+    border:1px solid rgba(255,215,0,.4);
+
+    backdrop-filter:blur(10px);
+
+    box-shadow:
+    0 0 15px rgba(255,215,0,.2);
+
+    transition:.3s ease;
+}
+
+.product-btn:hover{
+    background:#ffd700;
+    color:#000;
+
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 0 25px rgba(255,215,0,.5);
+}
+
+.product-header{
+    max-width:1000px;
+    margin:10px auto 40px;
+    text-align:center;
+    padding:0 20px;
+}
+
+.product-header h1{
+    font-family:'Cinzel',serif;
+    font-size:3rem;
+    color:#ffd700;
+    margin-bottom:25px;
+}
+
+.product-header .desc{
+    color:#ddd;
+    font-size:1.1rem;
+    line-height:1.9;
+}
+
+.gallery-section{
+    max-width:1400px;
+    margin:auto;
+    padding:20px;
+}
+
+.gallery-section h2{
+    text-align:center;
+    color:#ffd700;
+    font-family:'Cinzel',serif;
+    margin-bottom:40px;
+    font-size:2rem;
+}
+
+.gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:30px;
+}
+
+.gallery-grid img{
+    width:100%;
+    height:350px;
+    object-fit:cover;
+    border-radius:15px;
+    transition:.4s;
+    box-shadow:0 0 20px rgba(255,215,0,.15);
+}
+
+.gallery-grid img:hover{
+    transform:scale(1.03);
+    box-shadow:0 0 30px rgba(255,215,0,.3);
+}
+
+.gallery-card{
+    background:rgba(0,0,0,.5);
+    border-radius:18px;
+    overflow:hidden;
+    text-align:center;
+    border:1px solid rgba(255,215,0,.15);
+    transition:.4s;
+}
+
+.gallery-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 0 30px rgba(255,215,0,.25);
+}
+
+.gallery-card img{
+    width:100%;
+    height:350px;
+    object-fit:cover;
+    display:block;
+}
+
+.gallery-card h3{
+    padding:18px 12px;
+    font-family:'Cinzel',serif;
+    color:#ffd700;
+    font-size:1.2rem;
+    letter-spacing:1px;
+    margin:0;
+}
+
+@media (max-width:768px){
+
+    .product-header{
+        margin:10px auto 30px;
+    }
+
+    .product-header h1{
+        font-size:2rem;
+    }
+
+    .product-header .desc{
+        font-size:.95rem;
+        line-height:1.7;
+    }
+
+    .gallery-grid{
+        grid-template-columns:1fr;
+        gap:20px;
+    }
+
+    .gallery-card img{
+        height:280px;
+    }
+
+    .gallery-card h3{
+        font-size:1rem;
+    }
+
+    .product-btn{
+        top:10px;
+        left:10px;
+
+        padding:10px 18px;
+        font-size:13px;
+    }
+}
+  </style>
+</head>
+
+<body class="product-page">
+
+  <!-- HOME BUTTON -->
+<a href="../index.html#products" class="product-btn">
+    ← Back to Products
+</a>
+
+  <section class="product-header">
+
+    <h1>Naga Decor</h1>
+
+    <p class="desc">
+Inspired by the rich tribal heritage of Nagaland, our décor collection celebrates traditional craftsmanship, natural materials, and timeless design. Handcrafted by skilled artisans, each piece reflects the cultural spirit of the region while blending seamlessly with modern interiors. From statement furniture to decorative accents, every creation brings authenticity, warmth, and character to your space.
+
+    </p>
+
+</section>
+
+<section class="gallery-section">
+
+ <div class="gallery-grid">
+
+    <div class="gallery-card">
+        <img src="../images/painted panel/tiger color panel.jpg" alt="Tiger Panel">
+        <h3>Tiger Panel</h3>
+    </div>
+
+    <div class="gallery-card">
+       <img src="../images/naga panels/6 feet naga panel.jpeg" alt="6 Feet Naga Panel">
+        <h3>6 Feet Naga Panelh3>
+    </div>
+
+    <div class="gallery-card">
+        <img src="../images/naga panels/curve naga panel.jpeg" alt="Curve Naga Panel">
+        <h3>Curve Naga Table</h3>
+    </div>
+
+    <div class="gallery-card">
+        <img src="../images/naga panels/forest naga panel.jpeg" alt="Forest Naga Panel">
+        <h3>Forest Naga Table</h3>
+    </div>
+
+    <div class="gallery-card">
+        <img src="../images/naga panels/naga panel 1.jpeg" alt="Naga Panel 1">
+        <h3>Naga Panel 1</h3>
+    </div>
+
+    <div class="gallery-card">
+       <img src="../images/naga panels/naga panel 2.jpeg" alt="Naga Panel 2">
+        <h3>Naga Panel 2</h3>
+    </div>
+
+    <div class="gallery-card">
+        <img src="../images/naga panels/naga panel 3.jpeg" alt="Naga Panel 3">
+        <h3>Naga Panel 3</h3>
+    </div>
+
+    <div class="gallery-card">
+        <img src="../images/naga panels/naga panel 4.jpeg" alt="Naga Panel 4">
+        <h3>Naga Panel 4</h3>
+    </div>
+
+    <div class="gallery-card">
+        <img src="../images/naga panels/naga panel 5.jpeg" alt="Naga Panel 5">
+        <h3>Naga Panel 5</h3>
+    </div>
+
+    <div class="gallery-card">
+       <img src="../images/naga panels/naga panel 6.jpeg" alt="Naga Panel 6">
+        <h3>Naga Panel 6</h3>
+    </div>
+
+    <div class="gallery-card">
+        <img src="../images/naga panels/naga wooden panel.jpeg" alt="Naga Wooden Panel">
+        <h3>Naga Wooden Panel</h3>
+    </div>
+
+    <div class="gallery-card">
+        <img src="../images/naga panels/naga ancient panel.jpeg" alt="Naga Ancient Panel">
+        <h3>Naga Ancient Panel</h3>
+    </div>
+
+
+</div>
+
+</section>
+
+  </div>
+
+</body>
+</html>
