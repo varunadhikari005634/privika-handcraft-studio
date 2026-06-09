@@ -487,10 +487,9 @@ body{
 
 .contact-container{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-}
-.contact-card{
+    grid-template-columns:1fr;
+    gap:12px;
+}.contact-card{
     min-height:170px;
     padding:10px;
     display:flex;
@@ -508,23 +507,25 @@ body{
 
       .contact-card p{
 
-        font-size:14px;
+        font-size:11px;
       }
 
 .nav-center{
     width:100%;
-    border-radius:20px;
-    justify-content:center;
-    gap:4px;
+    display:flex;
+    flex-wrap:nowrap;
+    justify-content:space-between;
+    gap:2px;
+    padding:5px;
 }
 
 .nav-center a{
-    flex:1 1 40%;
+    flex:1;
     text-align:center;
-    padding:10px 6px;
-    font-size:12px;
-}    }
-
+    padding:8px 2px;
+    font-size:10px;
+    letter-spacing:0;
+}
   </style>
 
 </head>
