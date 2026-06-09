@@ -94,10 +94,26 @@
       scroll-behavior:smooth;
     }
 
-    html{
-      overflow-x:hidden;
-    }
+html{
+  overflow-x:hidden;
+}
 
+body{
+    font-family:'Poppins',sans-serif;
+    color:#fff;
+    overflow-x:hidden;
+
+    background:
+    linear-gradient(
+    rgba(0,0,0,0.72),
+    rgba(0,0,0,0.84)),
+    url("images/studio.png");
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+}
 }/* =====================================================
          PREMIUM FIXED BACKGROUND
       ===================================================== */
@@ -485,24 +501,20 @@ url("images/studio.png");
 
 .contact-container{
     display:grid;
-    grid-template-columns:1fr;
-    gap:4px;
-    align-items:stretch;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
 }
 .contact-card{
-    min-height:220px;
-    padding:15px;
+    min-height:170px;
+    padding:10px;
     display:flex;
     align-items:center;
     justify-content:center;
 }
-      .contact-icon-img{
-
-        width:72px;
-
-        height:72px;
-      }
-
+.contact-icon-img{
+    width:50px;
+    height:50px;
+}
       .contact-card h2{
 
         font-size:18px;
@@ -513,10 +525,19 @@ url("images/studio.png");
         font-size:14px;
       }
 
-      .nav-center{
-        border-radius:20px;
-      }
-    }
+.nav-center{
+    width:100%;
+    border-radius:20px;
+    justify-content:center;
+    gap:4px;
+}
+
+.nav-center a{
+    flex:1 1 40%;
+    text-align:center;
+    padding:10px 6px;
+    font-size:12px;
+}    }
 
   </style>
 
@@ -599,7 +620,7 @@ url("images/studio.png");
         <h2>Email</h2>
 
         <p>
-          privikahandraftstudio@gmail.com
+          privikahandcraftstudio@gmail.com
         </p>
 
       </a>
