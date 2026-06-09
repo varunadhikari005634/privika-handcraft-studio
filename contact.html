@@ -490,8 +490,8 @@ body{
     grid-template-columns:1fr;
     gap:12px;
 }.contact-card{
-    min-height:170px;
-    padding:10px;
+    min-height:140px;
+    padding:8px;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -505,27 +505,25 @@ body{
         font-size:18px;
       }
 
-      .contact-card p{
-
-        font-size:11px;
-      }
-
-.nav-center{
-    width:100%;
-    display:flex;
-    flex-wrap:nowrap;
-    justify-content:space-between;
-    gap:2px;
-    padding:5px;
-}
-
-.nav-center a{
-    flex:1;
-    text-align:center;
-    padding:8px 2px;
+.contact-card p{
     font-size:10px;
-    letter-spacing:0;
+    line-height:1.4;
+    word-break:break-word;
 }
+.nav-center{
+width:100%;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:4px;
+padding:4px;
+border-radius:15px;
+}
+.nav-center a{
+font-size:11px;
+padding:8px 0;
+text-align:center;
+letter-spacing:0;
+}}
   </style>
 
 </head>
