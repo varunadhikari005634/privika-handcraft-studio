@@ -1,123 +1,2570 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
+
+    <meta name="description" content="Privika Handicraft Studio
+
+offers handcrafted wooden decor, Naga Tables, Naga Panels, Painted
+
+Panels and unique artisan creations made with premium
+
+craftsmanship.">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Privika Handicraft Studio | Handmade Wooden Decor & Naga Art</title>
+
     <link rel="icon" type="image/png" href="logo.png">
+
+<link rel="shortcut icon" href="logo.png">
+
+<link rel="apple-touch-icon" href="logo.png">
+
+<link rel="icon" type="image/png" sizes="32x32" href="logo.png">
+
+<link rel="icon" type="image/png" sizes="192x192" href="logo.png">
+
+<link rel="icon" type="image/png" sizes="512x512" href="logo.png">
+
+
+    <meta name="keywords" content="handicrafts, premium decor,
+
+luxury antique lamp, vintage clay pot, tribal mask, naga panels, royal
+
+wooden horse, privika handcraft studio, heritage artifacts, bespoke home
+
+decor, artisan creations, traditional indian handicrafts">
+
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical" href="https://privikahandcraftstudio.com/">
+
+
+    <meta property="og:type" content="website">
+
+    <meta property="og:title" content="Privika Handcraft Studio | Premium Quality Luxury Handicrafts">
+
+
+    <meta property="og:description" content="Discover rare
+
+artisan-crafted luxury artifacts at honest prices. Explore our premium
+
+heirloom collections.">
+
+    <meta property="og:image" content="hero.jpg">
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+
+    <link
+
+href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+
+rel="stylesheet">
+
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 
     <style>
-        :root { --primary-black: #0d0d0d; --luxury-gold: #d4af37; --bright-gold: #ffd700; --dark-bg: #161616; --card-dark: #0f0f0f; --text-dark: #e0e0e0; --font-serif: 'Cinzel', serif; --font-sans: 'Montserrat', sans-serif; }
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        body { font-family: var(--font-sans); background-color: var(--dark-bg); color: var(--text-dark); line-height: 1.8; overflow-x: hidden; }
 
-        /* Header & Navigation */
-        header { background-color: var(--primary-black); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(212, 175, 55, 0.15); }
-        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 25px; }
-        .capsule-nav { background: rgba(0, 0, 0, 0.7); border: 1px solid rgba(212, 175, 55, 0.25); border-radius: 50px; padding: 6px 10px; display: flex; gap: 5px; }
-        .nav-link { font-family: var(--font-serif); color: rgba(255, 255, 255, 0.65); text-decoration: none; padding: 8px 16px; font-size: 0.75rem; text-transform: uppercase; border-radius: 40px; font-weight: 600; transition: 0.3s; }
-        .nav-link.active { color: var(--primary-black); background-color: var(--bright-gold); font-weight: 700; }
-        .search-box input { background: #050505; border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 30px; padding: 10px 15px 10px 42px; color: white; width: 240px; }
+        /* DESIGN SYSTEM: Deep Charcoal, Muted Ebony & Brilliant Gold Theme */
 
-        /* Hero Section */
-        .hero-banner { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 120px 20px 50px; }
-        .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; opacity: 0.5; }
-        .hero-card { position: relative; z-index: 2; width: 100%; max-width: 1200px; text-align: center; }
-        .studio-logo img { width: 140px; height: 140px; margin-bottom: 20px; filter: drop-shadow(0 0 10px rgba(200,107,133,.4)); }
-        h1 { font-family: var(--font-serif); color: #c86b85; font-size: clamp(2rem, 4vw, 3.5rem); margin-bottom: 10px; }
+        :root {
 
-        /* Side-by-side Hero Layout */
-        .info-notice-box { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px; align-items: stretch; }
-        .slider-box { position: relative; width: 100%; height: 400px; border-radius: 16px; overflow: hidden; background: #000; }
-        .slide-wrapper { position: absolute; inset: 0; opacity: 0; transition: 0.8s; }
-        .slide-wrapper.active { opacity: 1; }
-        .slide-wrapper img { width: 100%; height: 100%; object-fit: cover; }
-        .note-box { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); padding: 30px; border-radius: 16px; display: flex; flex-direction: column; justify-content: center; border: 1px solid rgba(212,175,55,0.2); text-align: left; }
-        
-        /* Floating Buttons */
-        .floating-apps-panel { position: fixed; right: 20px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 15px; z-index: 2000; }
-        .app-trigger { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
-        
-        /* Products Grid */
-        .section-wrapper { max-width: 1400px; margin: 0 auto; padding: 80px 25px; }
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .product-card { background: var(--card-dark); border-radius: 16px; overflow: hidden; border: 1px solid #333; transition: 0.3s; }
-        .product-image-container { height: 320px; overflow: hidden; }
-        .product-image-container img { width: 100%; height: 100%; object-fit: cover; }
-        .product-info { padding: 20px; text-align: center; }
-        .view-btn { display: block; border: 1px solid var(--luxury-gold); color: var(--bright-gold); padding: 10px; border-radius: 30px; text-decoration: none; margin-top: 15px; }
+            --primary-black: #0d0d0d;
 
-        @media (max-width: 768px) { .info-notice-box { grid-template-columns: 1fr; } }
+            --secondary-black: #1a1a1a;
+
+            --luxury-gold: #d4af37;
+
+            --bright-gold: #ffd700;
+
+            --dark-bg: #161616; 
+
+            --card-dark: #0f0f0f;
+
+            --text-dark: #e0e0e0;
+
+            --text-light: #ffffff;
+
+            --font-serif: 'Cinzel', serif;
+
+            --font-sans: 'Montserrat', sans-serif;
+
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+        }
+
+
+        /* RESET & BASE SETUP */
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+
+            scroll-behavior: smooth;
+
+        }
+
+
+        body {
+
+            font-family: var(--font-sans);
+
+            background-color: var(--dark-bg);
+
+            color: var(--text-dark);
+
+            line-height: 1.8;
+
+            overflow-x: hidden;
+
+        }
+
+
+        /* HEADER & FLOATING NAVIGATION CAPSULE */
+
+        header {
+
+            background-color: var(--primary-black);
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+
+            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+
+            box-shadow: 0 4px 30px rgba(0,0,0,0.6);
+
+        }
+
+
+        .nav-container {
+
+            max-width: 1400px;
+
+            margin: 0 auto;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 15px 25px;
+
+        }
+
+
+        .capsule-nav {
+
+            background: rgba(0, 0, 0, 0.7);
+
+            border: 1px solid rgba(212, 175, 55, 0.25);
+
+            border-radius: 50px;
+
+            padding: 6px 10px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 5px;
+
+        }
+
+
+        .nav-link {
+
+            font-family: var(--font-serif);
+
+            color: rgba(255, 255, 255, 0.65);
+
+            text-decoration: none;
+
+            padding: 8px 16px;
+
+            font-size: 0.75rem;
+
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+
+            border-radius: 40px;
+
+            font-weight: 600;
+
+            transition: var(--transition);
+
+        }
+
+
+        .nav-link.active, .nav-link:hover {
+
+            color: var(--primary-black);
+
+            background-color: var(--bright-gold);
+
+            font-weight: 700;
+
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+
+        }
+
+
+.nav-location{
+
+    background:#b8860b;
+
+    color:white !important;
+
+    padding:10px 18px;
+
+    border-radius:8px;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+
+.nav-location:hover{
+
+    background:#9c7209;
+
+}
+
+        .search-box {
+
+            position: relative;
+
+            display: flex;
+
+            align-items: center;
+
+        }
+
+
+        .search-box input {
+
+            background: #050505;
+
+            border: 1px solid rgba(212, 175, 55, 0.3);
+
+            border-radius: 30px;
+
+            padding: 10px 15px 10px 42px;
+
+            color: var(--text-light);
+
+            font-family: var(--font-sans);
+
+            font-size: 0.85rem;
+
+            outline: none;
+
+            width: 240px;
+
+            transition: var(--transition);
+
+        }
+
+
+        .search-box input:focus {
+
+            border-color: var(--bright-gold);
+
+            width: 220px;
+
+            box-shadow: 0 0 15px rgba(255,215,0,0.15);
+
+        }
+
+
+        .search-box i {
+
+            position: absolute;
+
+            left: 16px;
+
+            color: rgba(212, 175, 55, 0.5);
+
+            font-size: 0.9rem;
+
+        }
+
+
+.hero-banner{
+
+    position:relative;
+
+    min-height:auto;
+
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+
+    padding:120px 20px 50px;
+
+    overflow:hidden;
+
+}
+
+.hero-banner::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:rgba(0,0,0,0.10);
+
+    z-index:1;
+
+}
+
+
+.hero-video{
+
+    position:absolute;
+
+    inset:0;
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    object-position:center center;
+
+    z-index:0;
+
+    opacity:0.8;
+
+}
+
+
+.notice-header h2{
+
+    color:#b54f73;
+
+}
+
+.hero-card{
+
+    position:relative;
+
+    z-index:2;
+
+    width:100%;
+
+    max-width:1400px;
+
+    background:transparent;
+
+    border:none;
+
+    border-radius:0;
+
+    padding:40px 20px;
+
+    box-shadow:none;
+
+    backdrop-filter:none;
+
+    text-align:center;
+
+}
+
+
+.hero-header{
+
+display:flex;
+
+align-items:flex-start;
+
+justify-content:center;
+
+gap:15px;
+
+margin-bottom:0;
+
+}
+
+.hero-text{
+
+    text-align:center;
+
+    padding:25px 40px;
+
+
+    background:rgba(0,0,0,0.35);
+
+    backdrop-filter:blur(12px);
+
+    -webkit-backdrop-filter:blur(12px);
+
+
+    border:1px solid rgba(255,255,255,0.15);
+
+    border-radius:20px;
+
+
+    box-shadow:0 8px 30px rgba(0,0,0,0.25);
+
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+}
+
+.studio-logo{
+
+    margin-top:20px;
+
+    margin-bottom:20px;
+
+}
+
+
+.hero-card h1{
+
+    font-family:var(--font-serif);
+
+    color:#c86b85;
+
+    font-size:clamp(1.8rem,3.5vw,4rem);
+
+    font-weight:700;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    text-align:center;
+
+    width:100%;
+
+    margin:0 auto 0px;
+
+    line-height:1.2;
+
+
+    text-shadow:
+
+    0 0 10px rgba(200,107,133,.3),
+
+    0 0 20px rgba(200,107,133,.2),
+
+    0 4px 15px rgba(0,0,0,.2);
+
+}
+
+        .hero-card p{
+
+color:#ffffff;
+
+text-shadow:0 2px 10px rgba(0,0,0,0.8);
+
+    font-size:1.3rem;
+
+    font-style:italic;
+
+    text-align:center;
+
+    width:100%;
+
+    display:block;
+
+    margin:25px auto 5px;
+
+    letter-spacing:1px;
+
+    font-weight:500;
+
+}
+
+
+.hero-card{
+
+    text-align:center;
+
+}
+
+
+        /* CINEMATIC VIDEO BACKGROUND BOX */
+
+        .video-showcase-container {
+
+            width: 100%;
+
+            max-width: 980px;
+
+            margin: 40px auto 0 auto;
+
+            aspect-ratio: 16 / 9; 
+
+            border-radius: 16px;
+
+            overflow: hidden;
+
+            border: 1px solid rgba(212, 175, 55, 0.25);
+
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9);
+
+            background-color: #050505;
+
+        }
+
+.slider-box{
+
+    position:relative;
+
+    width:100%;
+
+    height:420px;
+
+    overflow:hidden;
+
+    border-radius:16px;
+
+    background:#e8ddd2;
+
+}
+
+
+.slide-wrapper{
+
+    position:absolute;
+
+    inset:0;
+
+    opacity:0;
+
+    transition:opacity .8s ease;
+
+}
+
+
+.slide-wrapper.active{
+
+    opacity:1;
+
+}
+
+
+.slide-bg{
+
+    position:absolute;
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    filter:blur(20px) brightness(.7);
+
+    transform:scale(1.15);
+
+}
+
+
+.slide{
+
+    position:absolute;
+
+    inset:0;
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:contain;
+
+    object-position:center;
+
+    padding:15px;
+
+    z-index:2;
+
+}      /* PREMIUM EDITORIAL TEXT NOTICE LAYOUT */
+
+     .info-notice-box{
+
+max-width:1100px;
+
+margin:20px auto 0;
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:20px;
+
+}
+
+.hero-banner{
+
+    min-height:100vh;
+
+}
+
+
+.hero-video{
+
+    width:100vw;
+
+    height:100vh;
+
+    object-fit:cover;
+
+    object-position:center;
+
+}
+
+.hero-card{
+
+padding-top:20px;
+
+}
+
+
+.note-box,
+
+.video-box{
+
+    background:rgba(255,255,255,.55);
+
+    border:1px solid rgba(200,107,133,.25);
+
+    border-radius:16px;
+
+    padding:25px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+
+}
+
+
+.video-box{
+
+    padding:0;
+
+    overflow:hidden;
+
+}
+
+
+.video-box video{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+}
+
+       /* UPDATED */
+
+.info-notice-box .notice-body-grid {
+
+    display: block;
+
+    width: 100%;
+
+}
+
+
+.info-notice-box .lang-block {
+
+    width: 100%;
+
+    max-width: 100%;
+
+}
+
+
+.info-notice-box .lang-block.english p {
+
+    font-family: var(--font-sans);
+
+    color: #5f4a4a;
+
+    font-size: 1.15rem;
+
+    font-weight: 600;
+
+    letter-spacing: 0.3px;
+
+    line-height: 1.9;
+
+    text-align: center;
+
+    max-width: 950px;
+
+    margin: 0 auto;
+
+}
+
+.info-notice-box .lang-block.hindi p {
+
+    display: none;
+
+}
+
+
+@media (max-width: 768px) {
+
+
+.info-notice-box{
+
+grid-template-columns:1fr;
+
+align-items:stretch;
+
+}
+
+.hero-banner{
+
+    min-height:auto;
+
+    height:auto;
+
+}
+
+
+.hero-card{
+
+    padding-top:20px;
+
+}
+
+
+.info-notice-box{
+
+    margin-top:30px;
+
+}
+
+
+.slider-box{
+
+    min-height:250px;
+
+}
+
+.hero-header{
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+
+.studio-logo{
+
+    margin-top:0;
+
+    margin-bottom:10px;
+
+}
+
+
+.studio-logo img{
+
+    width:110px;
+
+    height:110px;
+
+}
+
+
+.hero-card h1{
+
+    font-size:1.8rem;
+
+    line-height:1.2;
+
+}
+
+
+.hero-card p{
+
+    font-size:1rem;
+
+    margin-top:10px;
+
+}
+
+
+.hero-text{
+
+    text-align:center;
+
+}
+
+
+    .info-notice-box .notice-header{
+
+    display:flex;
+
+text-align:left;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border-bottom:1px solid rgba(212,175,55,0.15);
+
+    padding-bottom:12px;
+
+    text-align:center;
+
+}
+
+
+.info-notice-box .lang-block.english p{
+
+    text-align:left;
+
+    max-width:none;
+
+    margin:0;
+
+color:#5f4a4a;
+
+}
+
+}
+
+        /* MAIN CONTENT AND PRODUCT DISPLAY GRID */
+
+        .section-wrapper {
+
+            max-width: 1400px;
+
+            margin: 0 auto;
+
+            padding: 80px 25px;
+
+        }
+
+
+        .section-title {
+
+            text-align: center;
+
+            font-family: var(--font-serif);
+
+            color: var(--text-light);
+
+            font-size: 2.5rem;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 15px;
+
+            text-transform: uppercase;
+
+            position: relative;
+
+        }
+
+
+        .section-subtitle-seo {
+
+            text-align: center;
+
+            font-family: var(--font-sans);
+
+            color: #a0a0a0;
+
+            font-size: 0.95rem;
+
+            font-weight: 400;
+
+            letter-spacing: 1px;
+
+            max-width: 700px;
+
+            margin: 0 auto 50px auto;
+
+            text-transform: capitalize;
+
+        }
+
+
+        .section-title::after {
+
+            content: '';
+
+            display: block;
+
+            width: 70px;
+
+            height: 2px;
+
+            background-color: var(--luxury-gold);
+
+            margin: 15px auto 0;
+
+        }
+
+
+        .product-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+
+            gap: 30px;
+
+            padding-bottom: 20px;
+
+        }
+
+
+        .product-card {
+
+            background-color: var(--card-dark);
+
+            border-radius: 16px;
+
+            overflow: hidden;
+
+            border: 1px solid rgba(212, 175, 55, 0.12);
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: space-between;
+
+            transition: var(--transition);
+
+            box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+
+        }
+
+
+        .product-card:hover {
+
+            transform: translateY(-10px);
+
+            border-color: var(--bright-gold);
+
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.15);
+
+        }
+
+
+        /* 1:1 PERFECT SQUARE IMAGE CONTAINER */
+
+        .product-image-container {
+
+    width: 100%;
+
+    height: 420px;   /* increase image section */
+
+    overflow: hidden;
+
+    background-color: #121212;
+
+}
+
+
+        .product-image-container img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+}
+
+
+.product-info{
+
+    padding:0 20px 20px;
+
+    margin-top:-80px;
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+
+        .product-card:hover .product-image-container img {
+
+            transform: scale(1.08);
+
+        }
+
+
+        .product-info {
+
+            padding: 15px 20px;
+
+            text-align: center;
+
+            background: linear-gradient(180deg, #121212 0%, #050505 100%);
+
+        }
+
+
+        .product-title{
+
+    font-family:var(--font-serif);
+
+    color:var(--luxury-gold);
+
+    font-size:1.2rem;
+
+    letter-spacing:1.5px;
+
+    text-transform:uppercase;
+
+    margin-bottom:12px;
+
+    min-height:auto;
+
+    display:block;
+
+    font-weight:600;
+
+}
+
+
+        .product-price-tag {
+
+            background-color: var(--bright-gold);
+
+            color: var(--primary-black);
+
+            font-weight: 700;
+
+            padding: 8px 28px;
+
+            border-radius: 30px;
+
+            display: inline-block;
+
+            font-size: 1.05rem;
+
+            margin-bottom: 20px;
+
+            box-shadow: 0 4px 15px rgba(255,215,0,0.25);
+
+            font-family: var(--font-sans);
+
+        }
+
+
+        .view-btn {
+
+            display: block;
+
+            width: 100%;
+
+            background: transparent;
+
+            color: var(--bright-gold);
+
+            border: 1px solid rgba(212, 175, 55, 0.5);
+
+            padding: 12px 0;
+
+            border-radius: 30px;
+
+            font-family: var(--font-sans);
+
+            font-size: 0.8rem;
+
+            text-transform: uppercase;
+
+            letter-spacing: 2px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: var(--transition);
+
+            text-decoration: none;
+
+            text-align: center;
+
+        }
+
+
+        .view-btn:hover {
+
+            background-color: var(--bright-gold);
+
+            color: var(--primary-black);
+
+            border-color: var(--bright-gold);
+
+            box-shadow: 0 0 15px rgba(255,215,0,0.3);
+
+        }
+
+
+        .no-results {
+
+            grid-column: 1 / -1;
+
+            text-align: center;
+
+            color: #777;
+
+            font-size: 1.2rem;
+
+            padding: 60px 20px;
+
+            font-family: var(--font-sans);
+
+            display: none;
+
+        }
+
+
+        /* PERSISTENT FLOATING QUICK ACTION APP CONES */
+
+        .floating-apps-panel {
+
+            position: fixed;
+
+            right: 25px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 16px;
+
+            z-index: 2000;
+
+        }
+
+
+        .app-trigger {
+
+            width: 52px;
+
+            height: 52px;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: white;
+
+            font-size: 1.4rem;
+
+            text-decoration: none;
+
+            box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+
+            transition: var(--transition);
+
+        }
+
+
+        .app-trigger:hover { transform: scale(1.18) rotate(8deg); }
+
+        .app-whatsapp { background-color: #25D366; }
+
+
+        .app-instagram { background: linear-gradient(45deg, #f09433 0%,
+
+#e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+
+        .app-maps { background-color: #4285F4; }
+
+        .app-phone { background-color: #0088cc; }
+
+        .app-chat-bot { 
+
+            background-color: var(--bright-gold); 
+
+            color: var(--primary-black);
+
+            border: 2px solid var(--primary-black);
+
+        }
+
+
+        /* FOOTER MODULE */
+
+        footer {
+
+            background-color: var(--primary-black);
+
+            color: rgba(255,255,255,0.35);
+
+            padding: 50px 20px;
+
+            text-align: center;
+
+            border-top: 1px solid rgba(212, 175, 55, 0.15);
+
+            font-size: 0.85rem;
+
+            letter-spacing: 0.5px;
+
+        }
+
+
+        footer a { color: var(--luxury-gold); text-decoration: none; font-weight: 500; }
+
+
+        /* MULTI-TIER DESIGN RESPONSIVENESS MEDIA ENGINE */
+
+        @media (max-width: 1024px) {
+
+            .info-notice-box .notice-body-grid { grid-template-columns: 1fr; gap: 20px; }
+
+            .hero-card h1 { font-size: 3rem; }
+
+        }
+
+
+        @media (max-width: 768px) {
+
+            .nav-container { flex-direction: column; gap: 15px; padding: 15px; }
+
+            .search-box input { width: 100%; }
+
+            .search-box input:focus { width: 100%; }
+
+            .hero-card h1 { font-size: 2.4rem; letter-spacing: 1px; }
+
+            .hero-card p { font-size: 1.1rem; }
+
+            .section-title { font-size: 2rem; }
+
+            .info-notice-box { padding: 25px 25px; }
+
+        }
+
+@media(max-width:768px){
+
+
+    .hero-card h1{
+
+    font-size:1.8rem;
+
+    letter-spacing:1px;
+
+    white-space:normal;
+
+}
+
+
+}
+
+
+.studio-logo img{
+
+    width:140px;
+
+    height:140px;
+
+    object-fit:contain;
+
+
+    filter:
+
+        drop-shadow(0 0 10px rgba(200,107,133,.4));
+
+
+    border:none;
+
+    background:none;
+
+}
+
+
+        @media (max-width: 480px) {
+
+
+.capsule-nav{
+
+    width:100%;
+
+    display:flex;
+
+    flex-wrap:nowrap;
+
+    justify-content:space-between;
+
+    gap:2px;
+
+    padding:5px;
+
+    border-radius:18px;
+
+}
+
+
+.nav-link{
+
+    flex:1;
+
+    text-align:center;
+
+    padding:8px 2px;
+
+    font-size:10px;
+
+    letter-spacing:0;
+
+}.studio-logo{
+
+    margin-bottom:20px;
+
+}
+
+    .search-box{
+
+        width:100%;
+
+    }
+
+
+    .search-box input{
+
+        width:100%;
+
+    }
+
+
+.hero-card{
+
+    position:relative;
+
+    z-index:2;
+
+    width:100%;
+
+    max-width:1150px;
+
+    background:transparent;
+
+    border:none;
+
+    padding:20px;
+
+    box-shadow:none;
+
+}    .hero-card h1{
+
+        font-size:2rem;
+
+        line-height:1.2;
+
+    }
+
+
+    .hero-card p{
+
+        font-size:1rem;
+
+    }
+
+
+    .floating-apps-panel{
+
+        right:8px;
+
+        gap:10px;
+
+    }
+
+
+    .app-trigger{
+
+        width:42px;
+
+        height:42px;
+
+        font-size:1rem;
+
+    }
+
+.product-image-container{
+
+    height:280px;
+
+}
+
+}
+
+
+/* Footer Layout */
+
+.footer-container {
+
+    background: #000;
+
+    color: #fff;
+
+    padding: 60px 20px;
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+    gap: 40px;
+
+    border-top: 1px solid #333;
+
+}
+
+
+.footer-column h4 {
+
+    margin-bottom: 20px;
+
+    font-size: 1rem;
+
+    text-transform: uppercase;
+
+    letter-spacing: 2px;
+
+}
+
+
+.footer-column ul {
+
+    list-style: none;
+
+}
+
+
+.footer-column ul li {
+
+    margin-bottom: 12px;
+
+}
+
+
+.footer-column ul li a {
+
+    color: #ccc;
+
+    text-decoration: none;
+
+    font-size: 0.9rem;
+
+    transition: 0.3s;
+
+}
+
+
+.footer-column ul li a:hover {
+
+    ccolor: var(--luxury-gold);
+
+}
+
+
+.footer-column p {
+
+    font-size: 0.85rem;
+
+    color: #aaa;
+
+    line-height: 1.6;
+
+}
+
+
+#products{
+
+    scroll-margin-top:120px;
+
+}
+
+.slider-box{
+
+    position:relative;
+
+    height:100%;
+
+    min-height:420px;
+
+    overflow:hidden;
+
+    border-radius:16px;
+
+    background:#e8ddd2;
+
+}
+
+
+.slide-wrapper{
+
+    position:absolute;
+
+    inset:0;
+
+    opacity:0;
+
+    transition:opacity .8s ease;
+
+}
+
+
+.slide-wrapper.active{
+
+    opacity:1;
+
+}
+
+
+.slide-bg{
+
+    position:absolute;
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+
+    filter:blur(20px) brightness(.75);
+
+    transform:scale(1.15);
+
+}
+
+
+.slide{
+
+    position:relative;
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:contain;
+
+
+    z-index:2;
+
+}
+
+.prev,
+
+.next{
+
+    position:absolute;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    background:rgba(0,0,0,0.5);
+
+    color:white;
+
+    border:none;
+
+    padding:10px 15px;
+
+    cursor:pointer;
+
+    font-size:22px;
+
+    z-index:10;
+
+}
+
+
+.prev{
+
+    left:10px;
+
+}
+
+
+.next{
+
+    right:10px;
+
+}
+
+
+.prev:hover,
+
+.next:hover{
+
+    background:rgba(0,0,0,0.8);
+
+}
+
+
+.hero-banner{
+
+    min-height:100vh;
+
+    padding:100px 10px 30px;
+
+}
+
+
+.hero-video{
+
+    object-fit:cover;
+
+    object-position:center center;
+
+}
+
+
+.hero-card{
+
+    padding:10px;
+
+}
+
+
+.video-showcase-container,
+
+.slider-box{
+
+    min-height:220px;
+
+}
+
+
+.hero-text{
+
+    padding:15px;
+
+}
+
     </style>
+
+
+    <script type="application/ld+json">
+
+{
+
+ "@context":"https://schema.org",
+
+ "@type":"Organization",
+
+ "name":"Privika Handicraft Studio",
+
+ "url":"https://privikahandcraftstudio.com",
+
+ "logo":"https://privikahandcraftstudio.com/logo.png"
+
+}
+
+</script>
+
 </head>
+
 <body>
 
+
     <header>
-        <nav class="nav-container">
+
+        <nav class="nav-container" aria-label="Main Navigation">
+
             <div class="capsule-nav">
-                <a href="index.html" class="nav-link active">Home</a>
-                <a href="#products" class="nav-link">Product</a>
-            </div>
+
+    <a href="index.html" class="nav-link active" id="homeBtn">Home</a>
+
+    <a href="#products" class="nav-link" id="productBtn">Product</a>
+
+    <a href="about.html" class="nav-link">About</a>
+
+    <a href="contact.html" class="nav-link">Contact</a>
+
+</div>
+
+
             <div class="search-box">
-                <input type="text" id="productSearch" onkeyup="executeSearch()" placeholder="Search artifacts...">
+
+                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+
+
+                <input type="text" id="productSearch"
+
+onkeyup="executeSearch()" placeholder="Search luxury artifacts..."
+
+aria-label="Search through our luxury handcraft studio">
+
             </div>
+
         </nav>
+
     </header>
 
-    <div class="floating-apps-panel">
-        <a href="https://wa.me/919266821800" class="app-trigger" style="background:#25D366;"><i class="fa-brands fa-whatsapp"></i></a>
-        <a href="tel:+919266821800" class="app-trigger" style="background:#0088cc;"><i class="fa-solid fa-phone"></i></a>
-    </div>
+
+<div class="floating-apps-panel" aria-label="Quick Studio Contact Channels">
+
+
+    <a href="https://wa.me/919266821800"
+
+       target="_blank"
+
+       rel="noopener"
+
+       class="app-trigger app-whatsapp"
+
+       title="Chat on WhatsApp">
+
+        <i class="fa-brands fa-whatsapp"></i>
+
+    </a>
+
+
+    <a href="https://www.instagram.com/privika_handcraft_studio?igsh=cm83NHM2ZmxkcTNv"
+
+       target="_blank"
+
+       rel="noopener"
+
+       class="app-trigger app-instagram"
+
+       title="Follow on Instagram">
+
+        <i class="fa-brands fa-instagram"></i>
+
+    </a>
+
+
+
+    <a
+
+href="https://www.google.com/maps/search/?api=1&query=I-90,+Site+C+Rd,+Surajpur+Industrial+Area,+Block+I,+UPSIDC+Site+C,+Gulistanpur,+Greater+Noida,+Uttar+Pradesh+201306"
+
+       target="_blank"
+
+       rel="noopener noreferrer"
+
+       class="app-trigger app-maps"
+
+       title="Locate Our Showroom">
+
+        <i class="fa-solid fa-location-dot"></i>
+
+    </a>
+
+
+    <a href="tel:+919266821800"
+
+       class="app-trigger app-phone"
+
+       title="Call Customer Support">
+
+        <i class="fa-solid fa-phone"></i>
+
+    </a>
+
+
+    <button class="app-trigger app-chat-bot"
+
+            title="Launch AI Concierge"
+
+            onclick="alert('AI Assistant Initializing...')">
+
+        <i class="fa-solid fa-robot"></i>
+
+    </button>
+
+
+</div>
+
 
     <main>
-        <section class="hero-banner">
-            <video class="hero-video" autoplay muted loop playsinline><source src="images/background.mp4" type="video/mp4"></video>
-            <div class="hero-card">
-                <div class="studio-logo"><img src="logo.png" alt="Logo"></div>
-                <h1>PRIVIKA HANDCRAFT STUDIO</h1>
-                <p>"Premium Quality, Honest Prices"</p>
 
-                <div class="info-notice-box">
-                    <div class="slider-box" id="slider">
-                        <div class="slide-wrapper active"><img src="images/naga panels/6 feet naga panel.webp"></div>
-                        <div class="slide-wrapper"><img src="images/naga table/naga coffee table.png"></div>
-                    </div>
-                    <div class="note-box">
-                        <h2>Studio Note</h2>
-                        <p>Welcome to Privika Handcraft Studio. Explore our curated collection of handcrafted treasures. For custom orders, pricing, or assistance, kindly contact our team directly through the channels provided.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+<section class="hero-banner">
+
+
+    <video class="hero-video" autoplay muted loop playsinline>
+
+    <source src="images/background.mp4" type="video/mp4">
+
+</video>
+
+    <div class="hero-card">
+
+
+<div class="hero-header">
+
+
+    <div class="hero-text">
+
+
+        <div class="studio-logo">
+
+            <img src="logo.png" alt="Privika Handcraft Studio Logo">
+
+        </div>
+
+
+        <h1>PRIVIKA HANDCRAFT STUDIO</h1>
+
+
+        <p>"Premium Quality, Honest Prices"</p>
+
+
+    </div>
+
+
+</div>
+
+<div class="info-notice-box">
+
+
+<div class="slide-wrapper active">
+
+    <img src="images/studio.png" class="slide-bg">
+
+    <img src="images/studio.png" class="slide">
+
+</div>
+
+
+<!-- Naga Panels -->
+
+<div class="slide-wrapper">
+
+    <img src="images/naga panels/6 feet naga panel.webp" class="slide-bg">
+
+    <img src="images/naga panels/6 feet naga panel.webp" class="slide">
+
+</div>
+
+
+<div class="slide-wrapper">
+
+    <img src="images/naga panels/color naga panel.webp" class="slide-bg">
+
+    <img src="images/naga panels/color naga panel.webp" class="slide">
+
+</div>
+
+
+<div class="slide-wrapper">
+
+    <img src="images/naga panels/curve naga panel.webp" class="slide-bg">
+
+    <img src="images/naga panels/curve naga panel.webp" class="slide">
+
+</div>
+
+
+<div class="slide-wrapper">
+
+    <img src="images/naga panels/forest naga panel.webp" class="slide-bg">
+
+    <img src="images/naga panels/forest naga panel.webp" class="slide">
+
+</div>
+
+
+<div class="slide-wrapper">
+
+    <img src="images/naga panels/naga ancient panel.webp" class="slide-bg">
+
+    <img src="images/naga panels/naga ancient panel.webp" class="slide">
+
+</div>
+
+
+<div class="slide-wrapper">
+
+    <img src="images/naga panels/naga panel 1.webp" class="slide-bg">
+
+    <img src="images/naga panels/naga panel 1.webp" class="slide">
+
+</div>
+
+
+<div class="slide-wrapper">
+
+    <img src="images/naga panels/naga panel 2.webp" class="slide-bg">
+
+    <img src="images/naga panels/naga panel 2.webp" class="slide">
+
+</div>
+
+
+<div class="slide-wrapper">
+
+    <img src="images/naga panels/naga panel 3.webp" class="slide-bg">
+
+    <img src="images/naga panels/naga panel 3.webp" class="slide">
+
+</div>
+
+
+<div class="slide-wrapper">
+
+    <img src="images/naga panels/naga panel 4.webp" class="slide-bg">
+
+    <img src="images/naga panels/naga panel 4.webp" class="slide">
+
+</div>
+
+
+<div class="slide-wrapper">
+
+    <img src="images/naga panels/naga panel 5.webp" class="slide-bg">
+
+    <img src="images/naga panels/naga panel 5.webp" class="slide">
+
+</div>
+
+
+<div class="slide-wrapper">
+
+    <img src="images/naga panels/naga wooden panel.webp" class="slide-bg">
+
+    <img src="images/naga panels/naga wooden panel.webp" class="slide">
+
+</div>
+
+
+<div class="slide-wrapper">
+
+    <img src="images/naga panels/small naga panel.jpeg" class="slide-bg">
+
+    <img src="images/naga panels/small naga panel.jpeg" class="slide">
+
+</div>
+
+
+<!-- Naga Tables -->
+
+<div class="slide-wrapper">
+
+    <img src="images/naga table/naga big pointed table.png" class="slide-bg">
+
+    <img src="images/naga table/naga big pointed table.png" class="slide">
+
+</div>
+
+
+<div class="slide-wrapper">
+
+    <img src="images/naga table/naga circular table.webp" class="slide-bg">
+
+    <img src="images/naga table/naga circular table.webp" class="slide">
+
+</div>
+
+
+<div class="slide-wrapper">
+
+    <img src="images/naga table/naga coffee table.png" class="slide-bg">
+
+    <img src="images/naga table/naga coffee table.png" class="slide">
+
+</div>
+
+
+<div class="slide-wrapper">
+
+    <img src="images/naga table/naga dining table.png" class="slide-bg">
+
+    <img src="images/naga table/naga dining table.png" class="slide">
+
+</div>
+
+
+<div class="slide-wrapper">
+
+    <img src="images/naga table/naga pointed table.png" class="slide-bg">
+
+    <img src="images/naga table/naga pointed table.png" class="slide">
+
+</div>
+
+
+<div class="slide-wrapper">
+
+    <img src="images/naga table/naga table.png" class="slide-bg">
+
+    <img src="images/naga table/naga table.png" class="slide">
+
+</div>
+
+
+<div class="slide-wrapper">
+
+    <img src="images/naga table/small naga table.jpeg" class="slide-bg">
+
+    <img src="images/naga table/small naga table.jpeg" class="slide">
+
+</div>
+
+
+<!-- Painted Panels -->
+
+<div class="slide-wrapper">
+
+    <img src="images/painted panel/painted panel 25.webp" class="slide-bg">
+
+    <img src="images/painted panel/painted panel 25.webp" class="slide">
+
+</div>
+
+
+<!-- Statues -->
+
+<div class="slide-wrapper">
+
+    <img src="images/statues/naga statue 13.webp" class="slide-bg">
+
+    <img src="images/statues/naga statue 13.webp" class="slide">
+
+</div>
+
+
+<!-- Antique Furniture -->
+
+<div class="slide-wrapper">
+
+    <img src="images/images/antique furniture/smallitems.webp" class="slide-bg">
+
+    <img src="images/images/antique furniture/smallitems.webp" class="slide">
+
+</div>
+
+
+<div class="slide-wrapper">
+
+    <img src="images/images/antique furniture/nagamug.webp" class="slide-bg">
+
+    <img src="images/images/antique furniture/nagamug.webp" class="slide">
+
+</div>
+
+
+<button class="prev">&#10094;</button>
+
+<button class="next">&#10095;</button>
+
+
+</div>
+
+    <div class="note-box">
+
+
+        <div class="notice-header">
+
+            <h2>Studio Note</h2>
+
+        </div>
+
+
+        <div class="lang-block english">
+
+            <p>
+
+
+               Welcome to Privika Handcraft Studio. Explore our curated
+
+collection of handcrafted treasures that celebrate traditional
+
+craftsmanship and artistic excellence. Please note that this website is
+
+intended for informational and product showcase purposes only. For any
+
+product inquiries, custom orders, pricing details, bookings, or
+
+assistance, kindly contact us directly through the channels provided
+
+below, and our team will be happy to help you.
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+</section>
+
 
         <section id="products" class="section-wrapper">
-            <div class="product-grid">
+
+            <h2 class="section-title">Our Best Selling Handcraft Products</h2>
+
+
+            <p class="section-subtitle-seo">discover curated
+
+masterworks of artisan creation & rare heritage accents for your
+
+space</p>
+
+            
+
+            <div class="product-grid" id="featuredGrid">
+
+                
+
                 <article class="product-card">
-                    <div class="product-image-container"><img src="images/naga panels/small naga panel.jpeg" alt="Naga Panels"></div>
-                    <div class="product-info"><h3>Naga Panels</h3><a href="#" class="view-btn">View Details</a></div>
+
+                    <div class="product-image-container">
+
+                        <div class="product-image-container">
+
+                            <img src="images/naga panels/small naga panel.jpeg" alt="Mask"></div>
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <h3 class="product-title">Naga Panels</h3>
+
+                        <a href="products/naga panels.html" class="view-btn">View Details</a>
+
+                    </div>
+
                 </article>
+
+
+<article class="product-card">
+
+                    <div class="product-image-container">
+
+                        <div class="product-image-container">
+
+                    <img src="images/naga table/small naga table.jpeg" alt="Naga Table"></div>
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <h3 class="product-title">Naga Table</h3>
+
+                        <a href="products/naga table.html" class="view-btn">View Details</a>
+
+                    </div>
+
+                </article>
+
+
+<article class="product-card">
+
+                    <div class="product-image-container">
+
+                        <img src="painted panel/painted panel 25.webp" alt="Painted Naga Panel">
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <h3 class="product-title">Painted Panels</h3>
+
+                        <a href="products/painted naga panels.html" class="view-btn">View Details</a>
+
+                    </div>
+
+                </article>
+
+
+<article class="product-card">
+
+                    <div class="product-image-container"> 
+
+                        <img src="../git add naga-decor/various antiques.webp" alt="Various Antiques">
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <h3 class="product-title">Naga Decor</h3>
+
+                        <a href="products/naga decor.html" class="view-btn">View Details</a>
+
+                    </div>
+
+                </article>
+
+
+                <article class="product-card">
+
+                    <div class="product-image-container">
+
+                        <img src="images/images/antique furniture/smallitems.webp">
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <h3 class="product-title">Antique Furniture</h3>
+
+                        <a href="products/antique furniture.html" class="view-btn">View Details</a>
+
+                    </div>
+
+                </article>
+
+
+                <article class="product-card">
+
+                    <div class="product-image-container">
+
+                        <img src="../images/images/wallhorse.webp">
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <h3 class="product-title">Wall Decors</h3>
+
+                        <a href="products/wall decors.html" class="view-btn">View Details</a>
+
+                    </div>
+
+                </article>
+
+
+                <article class="product-card">
+
+                    <div class="product-image-container">
+
+                        <<img src="../images/images/nepali pot2.webp" alt="Nepali Pot">
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <h3 class="product-title">Pots</h3>
+
+                        <a href="products/pots.html" class="view-btn">View Details</a>
+
+                    </div>
+
+                </article>
+
+
+                <article class="product-card">
+
+                    <div class="product-image-container">
+
+                        <img src="../images/statues/naga statue 13.webp" alt="Naga Statue">
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <h3 class="product-title">Statues</h3>
+
+                        <a href="products/statues.html" class="view-btn">View Details</a>
+
+                    </div>
+
+                </article>
+
+
             </div>
+
+            
+
+            <div class="no-results" id="searchFallback">No unique artifacts match your curation request.</div>
+
         </section>
+
     </main>
 
+
+<footer class="footer-container">
+
+    <div class="footer-column">
+
+        <b style="color:var(--luxury-gold); font-size: 1.5rem;">
+
+PRIVIKA HANDCRAFT STUDIO</b>
+
+        <p style="margin-top: 20px;">CONNECT WITH US</p>
+
+        <ul style="margin-top: 10px;">
+
+
+            <li><a
+
+href="https://www.instagram.com/privika_handcraft_studio?igsh=dXh4bGQ2bXFucWJ0">Instagram</a></li>
+
+            <li><a href="tel:+918800210454">Contact number</a></li>
+
+        <li>
+
+    <a href="mailto:privikahandcraftstudio@gmail.com">
+
+        mail Us
+
+    </a>
+
+</li>
+
+        </ul>
+
+    </div>
+
+
+    <div class="footer-column">
+
+        <h4>Handmade Elegance for Every Space</h4>
+
+
+        <p>Address: I-90, Site C Rd, Surajpur Industrial Area,
+
+Block I, UPSIDC Site C, Gulistanpur, Greater Noida, Uttar Pradesh
+
+201306</p><br>
+
+<li>
+
+    <a class="nav-location" href="https://maps.app.goo.gl/3njdKnJGYAt7HLFAA" target="_blank" rel="noopener noreferrer">
+
+        📍 Our Location
+
+    </a>
+
+</li>
+
+    </div>
+
+
+    <div class="footer-column">
+
+        <h4>MAIN MENU</h4>
+
+        <ul>
+
+            <li><a href="index.html">Home</a></li>
+
+            <li><a href="product.html">Products</a></li>
+
+            <li><a href="about.html">About Us</a></li>
+
+        </ul>
+
+    </div>
+
+
+    <div class="footer-column">
+
+        <h4>HELP</h4>
+
+        <ul>
+
+
+            <li><a href="product-disclaimer.html">Product Disclaimer</a></li>
+
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+
+            <li><a href="shipping-policy.html">Shipping Policy</a></li>
+
+            <li><a href="return-policy.html">Return & Exchange Policy</a></li>
+
+        </ul>
+
+    </div>
+
+</footer>
+
+
     <script>
-        // Search functionality
-        function executeSearch() {
-            let query = document.getElementById("productSearch").value.toLowerCase();
-            document.querySelectorAll(".product-card").forEach(card => {
-                card.style.display = card.innerText.toLowerCase().includes(query) ? "block" : "none";
-            });
+
+function executeSearch() {
+
+    const query = document.getElementById("productSearch").value.toLowerCase().trim();
+
+    const cards = document.querySelectorAll(".product-card");
+
+    const fallback = document.getElementById("searchFallback");
+
+    let visibleCount = 0;
+
+
+    cards.forEach(card => {
+
+        const titleText = card.querySelector(".product-title").innerText.toLowerCase();
+
+
+        if (titleText.includes(query)) {
+
+            card.style.display = "flex";
+
+            visibleCount++;
+
+        } else {
+
+            card.style.display = "none";
+
         }
-        // Automatic Slider
-        let index = 0;
-        setInterval(() => {
-            let slides = document.querySelectorAll('.slide-wrapper');
-            slides[index].classList.remove('active');
-            index = (index + 1) % slides.length;
-            slides[index].classList.add('active');
-        }, 3000);
-    </script>
+
+    });
+
+
+    fallback.style.display = visibleCount === 0 ? "block" : "none";
+
+}
+
+
+window.addEventListener("scroll", () => {
+
+    const products = document.getElementById("products");
+
+    const productBtn = document.querySelector('a[href="#products"]');
+
+    const homeBtn = document.querySelector('a[href="index.html"]');
+
+
+    const rect = products.getBoundingClientRect();
+
+
+    if (rect.top <= 120 && rect.bottom >= 120) {
+
+        productBtn.classList.add("active");
+
+        homeBtn.classList.remove("active");
+
+    } else {
+
+        productBtn.classList.remove("active");
+
+        homeBtn.classList.add("active");
+
+    }
+
+});
+
+const slides = document.querySelectorAll(".slide-wrapper");
+
+const nextBtn = document.querySelector(".next");
+
+const prevBtn = document.querySelector(".prev");
+
+
+let current = 0;
+
+
+function showSlide(index){
+
+
+    slides.forEach(slide =>
+
+        slide.classList.remove("active")
+
+    );
+
+
+    slides[index].classList.add("active");
+
+}
+
+
+function nextSlide(){
+
+    current = (current + 1) % slides.length;
+
+    showSlide(current);
+
+}
+
+
+function prevSlide(){
+
+    current = (current - 1 + slides.length) % slides.length;
+
+    showSlide(current);
+
+}
+
+
+nextBtn.addEventListener("click", nextSlide);
+
+prevBtn.addEventListener("click", prevSlide);
+
+
+setInterval(nextSlide, 2500); // 4 sec
+
+const navLinks = document.querySelectorAll(".nav-link");
+
+
+navLinks.forEach(link => {
+
+    link.addEventListener("click", function () {
+
+
+        navLinks.forEach(item => {
+
+            item.classList.remove("active");
+
+        });
+
+
+        this.classList.add("active");
+
+    });
+
+});
+
+</script>
+
 </body>
-</html>
+
+</html> 
