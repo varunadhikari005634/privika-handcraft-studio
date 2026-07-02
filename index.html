@@ -836,6 +836,9 @@ header{
                     <h3 class="product-title">Statues</h3>
                     <a href="products/statues.html" class="view-btn">View Details</a>
                 </div>
+				<div id="searchFallback" style="display:none; text-align:center; margin-top:30px; color:#aaa;">
+    No products found.
+</div>
             </article>
 
 		</div>
@@ -901,15 +904,20 @@ function executeSearch() {
     let visibleCount = 0;
 
     cards.forEach(card => {
-        const titleText = card.querySelector(".product-title").innerText.toLowerCase();
+        const title = card.querySelector(".product-title").textContent.toLowerCase();
 
-        if (titleText.includes(query)) {
-            card.style.display = "flex";
+        if (title.includes(query)) {
+            card.style.display = "block";
             visibleCount++;
         } else {
             card.style.display = "none";
         }
     });
+
+    if (fallback) {
+        fallback.style.display = visibleCount === 0 ? "block" : "none";
+    }
+}
 
     fallback.style.display = visibleCount === 0 ? "block" : "none";
 }
