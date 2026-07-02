@@ -735,9 +735,7 @@ header{
                 </div>
             </article>
 
-        </div>
-        
-        <div class="no-results" id="searchFallback">No unique artifacts match your curation request.</div>
+		</div>
     </section>
 </main>
 
@@ -790,6 +788,9 @@ PRIVIKA HANDCRAFT STUDIO</b>
 
 </footer>
 
+<script>
+
+function executeSearch() {
 function executeSearch() {
     const query = document.getElementById("productSearch").value.toLowerCase().trim();
     const cards = document.querySelectorAll(".product-card");
@@ -869,4 +870,8 @@ navLinks.forEach(link => {
         this.classList.add("active");
     });
 });
+		</script>
+
+</body>
+</html>
 
