@@ -790,66 +790,83 @@ PRIVIKA HANDCRAFT STUDIO</b>
 
 </footer>
 
-<script>
+function executeSearch() {
+    const query = document.getElementById("productSearch").value.toLowerCase().trim();
+    const cards = document.querySelectorAll(".product-card");
+    const fallback = document.getElementById("searchFallback");
 
-function executeSearch() {const query = document.getElementById("productSearch").value.toLowerCase().trim();const cards = document.querySelectorAll(".product-card");const fallback = document.getElementById("searchFallback");let visibleCount = 0;
+    let visibleCount = 0;
 
-cards.forEach(card => {
-    const titleText = card.querySelector(".product-title").innerText.toLowerCase();
+    cards.forEach(card => {
+        const titleText = card.querySelector(".product-title").innerText.toLowerCase();
 
-    if (titleText.includes(query)) {
-        card.style.display = "flex";
-        visibleCount++;
+        if (titleText.includes(query)) {
+            card.style.display = "flex";
+            visibleCount++;
+        } else {
+            card.style.display = "none";
+        }
+    });
+
+    fallback.style.display = visibleCount === 0 ? "block" : "none";
+}
+
+// Active nav on scroll
+window.addEventListener("scroll", () => {
+    const products = document.getElementById("products");
+    const productBtn = document.querySelector('a[href="#products"]');
+    const homeBtn = document.querySelector('a[href="index.html"]');
+
+    const rect = products.getBoundingClientRect();
+
+    if (rect.top <= 120 && rect.bottom >= 120) {
+        productBtn.classList.add("active");
+        homeBtn.classList.remove("active");
     } else {
-        card.style.display = "none";
+        productBtn.classList.remove("active");
+        homeBtn.classList.add("active");
     }
 });
 
-fallback.style.display = visibleCount === 0 ? "block" : "none";
-
-}
-
-window.addEventListener("scroll", () => {const products = document.getElementById("products");const productBtn = document.querySelector('a[href="#products"]');const homeBtn = document.querySelector('a[href="index.html"]');
-
-const rect = products.getBoundingClientRect();
-
-if (rect.top <= 120 && rect.bottom >= 120) {
-    productBtn.classList.add("active");
-    homeBtn.classList.remove("active");
-} else {
-    productBtn.classList.remove("active");
-    homeBtn.classList.add("active");
-}
-
-});const slides = document.querySelectorAll(".slide-wrapper");const nextBtn = document.querySelector(".next");const prevBtn = document.querySelector(".prev");
+// Slider
+const slides = document.querySelectorAll(".slide-wrapper");
+const nextBtn = document.querySelector(".next");
+const prevBtn = document.querySelector(".prev");
 
 let current = 0;
 
-function showSlide(index){
-
-slides.forEach(slide =>
-    slide.classList.remove("active")
-);
-
-slides[index].classList.add("active");
-
-}
-
-function nextSlide(){current = (current + 1) % slides.length;showSlide(current);}
-
-function prevSlide(){current = (current - 1 + slides.length) % slides.length;showSlide(current);}
-
-nextBtn.addEventListener("click", nextSlide);prevBtn.addEventListener("click", prevSlide);
-
-setInterval(nextSlide, 2500); // 4 secconst navLinks = document.querySelectorAll(".nav-link");
-
-navLinks.forEach(link => {link.addEventListener("click", function () {
-
-    navLinks.forEach(item => {
-        item.classList.remove("active");
+function showSlide(index) {
+    slides.forEach(slide => {
+        slide.classList.remove("active");
     });
 
-    this.classList.add("active");
+    slides[index].classList.add("active");
+}
+
+function nextSlide() {
+    current = (current + 1) % slides.length;
+    showSlide(current);
+}
+
+function prevSlide() {
+    current = (current - 1 + slides.length) % slides.length;
+    showSlide(current);
+}
+
+if (nextBtn && prevBtn && slides.length > 0) {
+    nextBtn.addEventListener("click", nextSlide);
+    prevBtn.addEventListener("click", prevSlide);
+
+    setInterval(nextSlide, 2500);
+}
+
+// Nav click
+const navLinks = document.querySelectorAll(".nav-link");
+
+navLinks.forEach(link => {
+    link.addEventListener("click", function () {
+        navLinks.forEach(item => item.classList.remove("active"));
+        this.classList.add("active");
+    });
 });
 
-});
