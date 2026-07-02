@@ -150,27 +150,20 @@
     gap:30px;
 }
 
-.gallery-grid img{
-    width:100%;
-    height:350px;
-    object-fit:cover;
-    border-radius:15px;
-    transition:.4s;
-    box-shadow:0 0 20px rgba(255,215,0,.15);
-}
-
 .gallery-grid img:hover{
     transform:scale(1.03);
     box-shadow:0 0 30px rgba(255,215,0,.3);
 }
-
-.gallery-card{
+    .gallery-card{
     background:rgba(0,0,0,.5);
     border-radius:18px;
     overflow:hidden;
     text-align:center;
     border:1px solid rgba(255,215,0,.15);
     transition:.4s;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
 }
 
 .gallery-card:hover{
@@ -181,8 +174,18 @@
 .gallery-card img{
     width:100%;
     height:350px;
-    object-fit:cover;
+    object-fit:contain;
     display:block;
+    padding:12px;
+    background:#111;
+    border-radius:15px;
+}
+
+@media (max-width:768px){
+    .gallery-card img{
+        height:280px;
+        object-fit:contain;
+    }
 }
 
 .gallery-card h3{
@@ -214,6 +217,9 @@
         gap:20px;
     }
 
+  .gallery-section{
+    padding:15px;
+}
     .gallery-card img{
         height:280px;
     }
@@ -251,77 +257,99 @@ Discover a unique collection of handcrafted statues that blend tradition, artist
     </p>
 
 </section>
-
+  
 <section class="gallery-section">
 
- <div class="gallery-grid">
+<div class="gallery-grid">
 
     <div class="gallery-card">
-        <img src="../images/painted panel/tiger color panel.jpg" alt="Tiger Panel">
-        <h3>Tiger Panel</h3>
+        <img src="../images/statues/naga statue 1.webp" alt="Naga Statue 1">
+        <h3>Naga Statue 1</h3>
     </div>
 
     <div class="gallery-card">
-       <img src="../images/naga panels/6 feet naga panel.jpeg" alt="6 Feet Naga Panel">
-        <h3>6 Feet Naga Panelh3>
+        <img src="../images/statues/naga statue 2.webp" alt="Naga Statue 2">
+        <h3>Naga Statue 2</h3>
     </div>
 
     <div class="gallery-card">
-        <img src="../images/naga panels/curve naga panel.jpeg" alt="Curve Naga Panel">
-        <h3>Curve Naga Table</h3>
+        <img src="../images/statues/naga statue 3.webp" alt="Naga Statue 3">
+        <h3>Naga Statue 3</h3>
     </div>
 
     <div class="gallery-card">
-        <img src="../images/naga panels/forest naga panel.jpeg" alt="Forest Naga Panel">
-        <h3>Forest Naga Table</h3>
+        <img src="../images/statues/naga statue 4.webp" alt="Naga Statue 4">
+        <h3>Naga Statue 4</h3>
     </div>
 
     <div class="gallery-card">
-        <img src="../images/naga panels/naga panel 1.jpeg" alt="Naga Panel 1">
-        <h3>Naga Panel 1</h3>
+        <img src="../images/statues/naga statue 5.webp" alt="Naga Statue 5">
+        <h3>Naga Statue 5</h3>
     </div>
 
     <div class="gallery-card">
-       <img src="../images/naga panels/naga panel 2.jpeg" alt="Naga Panel 2">
-        <h3>Naga Panel 2</h3>
+        <img src="../images/statues/naga statue 6.webp" alt="Naga Statue 6">
+        <h3>Naga Statue 6</h3>
     </div>
 
     <div class="gallery-card">
-        <img src="../images/naga panels/naga panel 3.jpeg" alt="Naga Panel 3">
-        <h3>Naga Panel 3</h3>
+        <img src="../images/statues/naga statue 7.webp" alt="Naga Statue 7">
+        <h3>Naga Statue 7</h3>
     </div>
 
     <div class="gallery-card">
-        <img src="../images/naga panels/naga panel 4.jpeg" alt="Naga Panel 4">
-        <h3>Naga Panel 4</h3>
+        <img src="../images/statues/naga statue 8.webp" alt="Naga Statue 8">
+        <h3>Naga Statue 8</h3>
     </div>
 
     <div class="gallery-card">
-        <img src="../images/naga panels/naga panel 5.jpeg" alt="Naga Panel 5">
-        <h3>Naga Panel 5</h3>
+        <img src="../images/statues/naga statue 9.webp" alt="Naga Statue 9">
+        <h3>Naga Statue 9</h3>
     </div>
 
     <div class="gallery-card">
-       <img src="../images/naga panels/naga panel 6.jpeg" alt="Naga Panel 6">
-        <h3>Naga Panel 6</h3>
+        <img src="../images/statues/naga statue 10.webp" alt="Naga Statue 10">
+        <h3>Naga Statue 10</h3>
     </div>
 
     <div class="gallery-card">
-        <img src="../images/naga panels/naga wooden panel.jpeg" alt="Naga Wooden Panel">
-        <h3>Naga Wooden Panel</h3>
+        <img src="../images/statues/naga statue 11.webp" alt="Naga Statue 11">
+        <h3>Naga Statue 11</h3>
     </div>
 
     <div class="gallery-card">
-        <img src="../images/naga panels/naga ancient panel.jpeg" alt="Naga Ancient Panel">
-        <h3>Naga Ancient Panel</h3>
+        <img src="../images/statues/naga statue 12.webp" alt="Naga Statue 12">
+        <h3>Naga Statue 12</h3>
     </div>
 
+    <div class="gallery-card">
+        <img src="../images/statues/naga statue 13.webp" alt="Naga Statue 13">
+        <h3>Naga Statue 13</h3>
+    </div>
+
+    <div class="gallery-card">
+        <img src="../images/statues/naga statue 14.webp" alt="Naga Statue 14">
+        <h3>Naga Statue 14</h3>
+    </div>
+
+    <div class="gallery-card">
+        <img src="../images/statues/naga statue 15.webp" alt="Naga Statue 15">
+        <h3>Naga Statue 15</h3>
+    </div>
+
+    <div class="gallery-card">
+        <img src="../images/statues/naga statue 16.webp" alt="Naga Statue 16">
+        <h3>Naga Statue 16</h3>
+    </div>
+
+    <div class="gallery-card">
+        <img src="../images/statues/naga statue 17.webp" alt="Naga Statue 17">
+        <h3>Naga Statue 17</h3>
+    </div>
 
 </div>
 
 </section>
-
-  </div>
 
 </body>
 </html>
