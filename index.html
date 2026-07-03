@@ -602,10 +602,15 @@ header{
 
 </div>
 
-        <div class="search-box">
-            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-            <input type="text" id="productSearch" onkeyup="executeSearch()" placeholder="Search luxury artifacts..." aria-label="Search through our luxury handcraft studio">
-        </div>
+<div class="search-box">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input
+        type="text"
+        id="productSearch"
+        placeholder="Search luxury artifacts..."
+        aria-label="Search through our luxury handcraft studio"
+    >
+</div>
     </nav>
 </header>
 
@@ -1115,27 +1120,36 @@ function botReply(text){
     });
 
 };
-
 function executeSearch() {
-    const query = document.getElementById("productSearch").value.toLowerCase().trim();
+    const query = document
+        .getElementById("productSearch")
+        .value
+        .toLowerCase()
+        .trim();
+
     const cards = document.querySelectorAll(".product-card");
     const fallback = document.getElementById("searchFallback");
 
-    let visibleCount = 0;
+    let found = false;
 
     cards.forEach(card => {
-        const title = card.querySelector(".product-title").textContent.toLowerCase();
+        const titleEl = card.querySelector(".product-title");
 
-        if (title.includes(query)) {
-            card.style.display = "block";
-            visibleCount++;
+        if (!titleEl) return;
+
+        const title = titleEl.textContent.toLowerCase();
+
+        if (query === "" || title.includes(query)) {
+            card.style.display = "";
+            found = true;
         } else {
             card.style.display = "none";
         }
     });
 
     if (fallback) {
-        fallback.style.display = visibleCount === 0 ? "block" : "none";
+        fallback.style.display =
+            (!found && query !== "") ? "block" : "none";
     }
 }
 
@@ -1197,8 +1211,16 @@ navLinks.forEach(link => {
         this.classList.add("active");
     });
 });
-		</script>
 
+	document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById("productSearch");
+
+    if (searchInput) {
+        searchInput.addEventListener("input", executeSearch);
+    }
+});
+	
+</script>
 </body>
 </html>
 
