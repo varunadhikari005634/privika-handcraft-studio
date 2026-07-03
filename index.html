@@ -1020,24 +1020,69 @@ window.onload = function () {
         chatbotBox.style.display = "none";
     };
 
-    function botReply(text){
+function botReply(text){
 
-        text = text.toLowerCase();
+    text = text.toLowerCase();
 
-        if(text.includes("product"))
-            return "We offer Naga Panels, Naga Tables, Painted Panels, Antique Furniture, Pots, Wall Decor and Statues.";
-
-        if(text.includes("contact"))
-            return "Call us on +91 9266821800 or email privikahandcraftstudio@gmail.com.";
-
-        if(text.includes("location"))
-            return "We are located in Greater Noida, Uttar Pradesh.";
-
-        if(text.includes("custom"))
-            return "Yes, custom orders are available.";
-
-        return "Please contact our team for more details.";
+    if (
+        text.includes("hi") ||
+        text.includes("hello") ||
+        text.includes("hey")
+    ) {
+        return "Hello 👋 Welcome to Privika Handcraft Studio. How can I help you today?";
     }
+
+    if (
+        text.includes("product") ||
+        text.includes("products") ||
+        text.includes("sell")
+    ) {
+        return "We offer Naga Panels, Naga Tables, Painted Panels, Antique Furniture, Pots, Wall Decor and Statues.";
+    }
+
+    if (
+        text.includes("contact") ||
+        text.includes("phone") ||
+        text.includes("call")
+    ) {
+        return "Call us on +91 9266821800 or email us at privikahandcraftstudio@gmail.com.";
+    }
+
+    if (
+        text.includes("location") ||
+        text.includes("address") ||
+        text.includes("where") ||
+        text.includes("warehouse") ||
+        text.includes("store") ||
+        text.includes("showroom")
+    ) {
+        return "Our showroom is located at I-90, Site C Road, Surajpur Industrial Area, Greater Noida, Uttar Pradesh 201306.";
+    }
+
+    if (
+        text.includes("custom") ||
+        text.includes("custom order")
+    ) {
+        return "Yes, we also accept custom orders on selected products.";
+    }
+
+    if (
+        text.includes("delivery") ||
+        text.includes("shipping") ||
+        text.includes("ship")
+    ) {
+        return "We provide delivery services across India.";
+    }
+
+    if (
+        text.includes("email") ||
+        text.includes("mail")
+    ) {
+        return "You can email us at privikahandcraftstudio@gmail.com.";
+    }
+
+    return "I couldn't understand that. Please ask about our products, location, shipping or contact details.";
+}
 
     function sendMessage(){
 
