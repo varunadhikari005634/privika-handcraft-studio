@@ -427,6 +427,78 @@ header{
     color:#000;
 }
 
+	#chatbot-box{
+    position:fixed;
+    right:90px;
+    bottom:20px;
+    width:350px;
+    height:500px;
+    background:#111;
+    border-radius:20px;
+    display:none;
+    flex-direction:column;
+    overflow:hidden;
+    z-index:3000;
+    box-shadow:0 10px 30px rgba(0,0,0,.5);
+}
+
+.chat-header{
+    background:#ffd700;
+    color:#000;
+    padding:15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+#chat-close{
+    cursor:pointer;
+    font-size:22px;
+}
+
+#chat-messages{
+    flex:1;
+    overflow-y:auto;
+    padding:20px;
+}
+
+.bot-msg,
+.user-msg{
+    padding:12px;
+    border-radius:15px;
+    margin-bottom:12px;
+    max-width:80%;
+}
+
+.bot-msg{
+    background:#222;
+    color:#fff;
+}
+
+.user-msg{
+    background:#ffd700;
+    color:#000;
+    margin-left:auto;
+}
+
+.chat-input{
+    display:flex;
+}
+
+.chat-input input{
+    flex:1;
+    padding:15px;
+    background:#222;
+    border:none;
+    color:#fff;
+}
+
+.chat-input button{
+    width:60px;
+    border:none;
+    background:#ffd700;
+    cursor:pointer;
+}
 /* =========================
    FOOTER
 ========================= */
@@ -569,7 +641,7 @@ header{
 
 <button class="app-trigger app-chat-bot"
         title="Launch AI Concierge"
-        onclick="alert('AI Assistant Initializing...')">
+        id="chatbot-btn">
     <i class="fa-solid fa-robot"></i>
 </button>
 
@@ -896,6 +968,87 @@ PRIVIKA HANDCRAFT STUDIO</b>
 
 <script>
 
+	const chatbotBtn =
+document.getElementById("chatbot-btn");
+
+const chatbotBox =
+document.getElementById("chatbot-box");
+
+const chatClose =
+document.getElementById("chat-close");
+
+const chatInput =
+document.getElementById("chat-input");
+
+const chatSend =
+document.getElementById("chat-send");
+
+const chatMessages =
+document.getElementById("chat-messages");
+
+chatbotBtn.onclick = () => {
+    chatbotBox.style.display = "flex";
+};
+
+chatClose.onclick = () => {
+    chatbotBox.style.display = "none";
+};
+
+function botReply(text){
+
+    text = text.toLowerCase();
+
+    if(text.includes("product"))
+        return "We offer Naga Panels, Naga Tables, Painted Panels, Antique Furniture, Pots, Wall Decor and Statues.";
+
+    if(text.includes("contact"))
+        return "Call us on +91 9266821800 or email privikahandcraftstudio@gmail.com.";
+
+    if(text.includes("location"))
+        return "We are located in Greater Noida, Uttar Pradesh.";
+
+    if(text.includes("custom"))
+        return "Yes, custom orders are available.";
+
+    return "Please contact our team for more details.";
+}
+
+function sendMessage(){
+
+    const text = chatInput.value.trim();
+
+    if(!text) return;
+
+    chatMessages.innerHTML +=
+    `<div class="user-msg">${text}</div>`;
+
+    const reply = botReply(text);
+
+    setTimeout(() => {
+        chatMessages.innerHTML +=
+        `<div class="bot-msg">${reply}</div>`;
+
+        chatMessages.scrollTop =
+        chatMessages.scrollHeight;
+    },500);
+
+    chatInput.value = "";
+}
+
+chatSend.addEventListener(
+    "click",
+    sendMessage
+);
+
+chatInput.addEventListener(
+    "keypress",
+    function(e){
+        if(e.key==="Enter"){
+            sendMessage();
+        }
+    }
+);
+
 function executeSearch() {
     const query = document.getElementById("productSearch").value.toLowerCase().trim();
     const cards = document.querySelectorAll(".product-card");
@@ -978,6 +1131,31 @@ navLinks.forEach(link => {
     });
 });
 		</script>
+
+	<div id="chatbot-box">
+
+  <div class="chat-header">
+    <h3>Privika Assistant</h3>
+    <span id="chat-close">✕</span>
+  </div>
+
+  <div id="chat-messages">
+    <div class="bot-msg">
+      Hi 👋 Welcome to Privika Handcraft Studio.
+      Ask me anything about our products.
+    </div>
+  </div>
+
+  <div class="chat-input">
+    <input
+      type="text"
+      id="chat-input"
+      placeholder="Ask something..."
+    >
+    <button id="chat-send">➤</button>
+  </div>
+
+</div>
 
 </body>
 </html>
