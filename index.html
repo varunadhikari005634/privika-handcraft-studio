@@ -533,6 +533,8 @@ header{
     color:var(--gold);
 }
 
+	
+
 /* =========================
    MOBILE
 ========================= */
@@ -965,89 +967,109 @@ PRIVIKA HANDCRAFT STUDIO</b>
 </div>
 
 </footer>
+<div id="chatbot-box">
 
+  <div class="chat-header">
+    <h3>Privika Assistant</h3>
+    <span id="chat-close">✕</span>
+  </div>
+
+  <div id="chat-messages">
+    <div class="bot-msg">
+      Hi 👋 Welcome to Privika Handcraft Studio.
+      Ask me anything about our products.
+    </div>
+  </div>
+
+  <div class="chat-input">
+    <input
+      type="text"
+      id="chat-input"
+      placeholder="Ask something..."
+    >
+    <button id="chat-send">➤</button>
+  </div>
+
+</div>
 <script>
+window.onload = function () {
 
-	const chatbotBtn =
-document.getElementById("chatbot-btn");
+    const chatbotBtn =
+    document.getElementById("chatbot-btn");
 
-const chatbotBox =
-document.getElementById("chatbot-box");
+    const chatbotBox =
+    document.getElementById("chatbot-box");
 
-const chatClose =
-document.getElementById("chat-close");
+    const chatClose =
+    document.getElementById("chat-close");
 
-const chatInput =
-document.getElementById("chat-input");
+    const chatInput =
+    document.getElementById("chat-input");
 
-const chatSend =
-document.getElementById("chat-send");
+    const chatSend =
+    document.getElementById("chat-send");
 
-const chatMessages =
-document.getElementById("chat-messages");
+    const chatMessages =
+    document.getElementById("chat-messages");
 
-chatbotBtn.onclick = () => {
-    chatbotBox.style.display = "flex";
-};
+    chatbotBtn.onclick = () => {
+        chatbotBox.style.display = "flex";
+    };
 
-chatClose.onclick = () => {
-    chatbotBox.style.display = "none";
-};
+    chatClose.onclick = () => {
+        chatbotBox.style.display = "none";
+    };
 
-function botReply(text){
+    function botReply(text){
 
-    text = text.toLowerCase();
+        text = text.toLowerCase();
 
-    if(text.includes("product"))
-        return "We offer Naga Panels, Naga Tables, Painted Panels, Antique Furniture, Pots, Wall Decor and Statues.";
+        if(text.includes("product"))
+            return "We offer Naga Panels, Naga Tables, Painted Panels, Antique Furniture, Pots, Wall Decor and Statues.";
 
-    if(text.includes("contact"))
-        return "Call us on +91 9266821800 or email privikahandcraftstudio@gmail.com.";
+        if(text.includes("contact"))
+            return "Call us on +91 9266821800 or email privikahandcraftstudio@gmail.com.";
 
-    if(text.includes("location"))
-        return "We are located in Greater Noida, Uttar Pradesh.";
+        if(text.includes("location"))
+            return "We are located in Greater Noida, Uttar Pradesh.";
 
-    if(text.includes("custom"))
-        return "Yes, custom orders are available.";
+        if(text.includes("custom"))
+            return "Yes, custom orders are available.";
 
-    return "Please contact our team for more details.";
-}
+        return "Please contact our team for more details.";
+    }
 
-function sendMessage(){
+    function sendMessage(){
 
-    const text = chatInput.value.trim();
+        const text = chatInput.value.trim();
 
-    if(!text) return;
+        if(!text) return;
 
-    chatMessages.innerHTML +=
-    `<div class="user-msg">${text}</div>`;
-
-    const reply = botReply(text);
-
-    setTimeout(() => {
         chatMessages.innerHTML +=
-        `<div class="bot-msg">${reply}</div>`;
+        `<div class="user-msg">${text}</div>`;
 
-        chatMessages.scrollTop =
-        chatMessages.scrollHeight;
-    },500);
+        const reply = botReply(text);
 
-    chatInput.value = "";
-}
+        setTimeout(() => {
+            chatMessages.innerHTML +=
+            `<div class="bot-msg">${reply}</div>`;
 
-chatSend.addEventListener(
-    "click",
-    sendMessage
-);
+            chatMessages.scrollTop =
+            chatMessages.scrollHeight;
+        },500);
 
-chatInput.addEventListener(
-    "keypress",
-    function(e){
+        chatInput.value = "";
+    }
+
+    chatSend.addEventListener("click", sendMessage);
+
+    chatInput.addEventListener("keypress", function(e){
         if(e.key==="Enter"){
             sendMessage();
         }
-    }
-);
+    });
+
+};
 
 function executeSearch() {
     const query = document.getElementById("productSearch").value.toLowerCase().trim();
@@ -1131,31 +1153,6 @@ navLinks.forEach(link => {
     });
 });
 		</script>
-
-	<div id="chatbot-box">
-
-  <div class="chat-header">
-    <h3>Privika Assistant</h3>
-    <span id="chat-close">✕</span>
-  </div>
-
-  <div id="chat-messages">
-    <div class="bot-msg">
-      Hi 👋 Welcome to Privika Handcraft Studio.
-      Ask me anything about our products.
-    </div>
-  </div>
-
-  <div class="chat-input">
-    <input
-      type="text"
-      id="chat-input"
-      placeholder="Ask something..."
-    >
-    <button id="chat-send">➤</button>
-  </div>
-
-</div>
 
 </body>
 </html>
