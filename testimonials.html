@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta name="description" content="Privika Handicraft Studio offers handcrafted wooden decor, Naga Tables, Naga Panels, Painted Panels and unique artisan creations made with premium craftsmanship.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privika Handicraft Studio | Handmade Wooden Decor & Naga Art</title>
+	<link rel="icon" type="image/png" href="logo.png">
+<link rel="shortcut icon" href="logo.png">
+<link rel="apple-touch-icon" href="logo.png">
+<link rel="icon" type="image/png" sizes="32x32" href="logo.png">
+<link rel="icon" type="image/png" sizes="192x192" href="logo.png">
+<link rel="icon" type="image/png" sizes="512x512" href="logo.png">
+    <meta name="keywords" content="handicrafts, premium decor, luxury antique lamp, vintage clay pot, tribal mask, naga panels, royal wooden horse, privika handcraft studio, heritage artifacts, bespoke home decor, artisan creations, traditional indian handicrafts">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://privikahandcraftstudio.com/">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Privika Handcraft Studio | Premium Quality Luxury Handicrafts">
+<meta property="og:description" content="Discover rare artisan-crafted luxury artifacts at honest prices. Explore our premium heirloom collections.">
+<meta property="og:image" content="hero.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+    /* DESIGN SYSTEM: Deep Charcoal, Muted Ebony & Brilliant Gold Theme */
+/* =========================
+   RESET
+========================= */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Montserrat',sans-serif;
+    background:#111;
+    color:#fff;
+    overflow-x:hidden;
+}
+
+/* =========================
+   COLORS
+========================= */
+:root{
+    --black:#0d0d0d;
+    --dark:#161616;
+    --card:#0f0f0f;
+    --gold:#d4af37;
+    --bright-gold:#ffd700;
+    --pink:#c86b85;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    background:#000;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    border-bottom:1px solid rgba(212,175,55,.2);
+}
+
+.nav-container{
+    max-width:1400px;
+    margin:auto;
+    padding:15px 25px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.capsule-nav{
+    display:flex;
+    gap:5px;
+    background:rgba(0,0,0,.7);
+    border:1px solid rgba(212,175,55,.3);
+    border-radius:50px;
+    padding:6px 10px;
+}
+
+.nav-link{
+    text-decoration:none;
+    color:#aaa;
+    padding:10px 18px;
+    border-radius:30px;
+    font-size:.8rem;
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+.nav-link.active,
+.nav-link:hover{
+    background:var(--bright-gold);
+    color:#000;
+}
+
+/* =========================
+   HERO SECTION
+========================= */
+
+.hero-banner{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:120px 20px 50px;
+    overflow:hidden;
+}
+
+.hero-video{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:0;
+}
+
+.hero-card{
+    position:relative;
+    z-index:2;
+    width:100%;
+    max-width:1400px;
+}
+
+.hero-text{
+    text-align:center;
+    padding:30px;
+    background:rgba(0,0,0,.4);
+    border-radius:20px;
+    backdrop-filter:blur(10px);
+}
+
+.studio-logo{
+    margin-bottom:20px;
+}
+
+.studio-logo img{
+    width:140px;
+    height:140px;
+    object-fit:contain;
+}
+
+.hero-card h1{
+    font-size:3rem;
+    color:var(--pink);
+    margin-bottom:15px;
+}
+
+.hero-card p{
+    font-size:1.2rem;
+    color:#fff;
+}
+
+
+
+/* =========================
+   SLIDER + NOTE
+========================= */
+
+.info-notice-box{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+    margin-top:40px;
+}
+
+.slider-box{
+    position:relative;
+    min-height:420px;
+    border-radius:20px;
+    overflow:hidden;
+    background:#e8ddd2;
+}
+
+.slide-wrapper{
+    position:absolute;
+    inset:0;
+    opacity:0;
+    transition:.8s;
+}
+
+.slide-wrapper.active{
+    opacity:1;
+}
+
+.slide-bg{
+    position:absolute;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    filter:blur(20px) brightness(.7);
+    transform:scale(1.1);
+}
+
+.slide{
+    position:relative;
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    z-index:2;
+}
+
+.prev,
+.next{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    background:rgba(0,0,0,.7);
+    color:#fff;
+    border:none;
+    padding:12px 18px;
+    cursor:pointer;
+    font-size:22px;
+    z-index:5;
+}
+
+.prev{
+    left:10px;
+}
+
+.next{
+    right:10px;
+}
+
+/* =========================
+   STUDIO NOTE
+========================= */
+.note-box{
+    background:rgba(255,255,255,0.12);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,0.18);
+    border-radius:20px;
+    padding:30px;
+    color:#fff;
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+}
+
+.note-box h2{
+    color:#c86b85;
+    margin-bottom:20px;
+    font-size:2rem;
+}
+
+.note-box p{
+    color:#fff;
+    line-height:1.9;
+    font-size:1rem;
+}
+
+
+/* =========================
+   PRODUCTS
+========================= */
+
+.section-wrapper{
+    max-width:1400px;
+    margin:auto;
+    padding:80px 20px;
+}
+
+.section-title{
+    text-align:center;
+    font-size:2.5rem;
+    margin-bottom:20px;
+}
+
+.section-subtitle-seo{
+    text-align:center;
+    color:#aaa;
+    margin-bottom:50px;
+}
+
+.product-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:30px;
+    align-items:start;
+}
+
+.product-card{
+    background:#0f0f0f;
+    border-radius:20px;
+    overflow:hidden;
+    transition:.4s;
+}
+
+.product-card:hover{
+    transform:translateY(-10px);
+}
+
+.product-image-container{
+    width:100%;
+    height:320px;
+    overflow:hidden;
+    background:#111;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.product-image-container img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    object-position:center;
+    padding:15px;
+    transition:.2s;
+}
+
+.product-card:hover img{
+    transform:scale(1.08);
+}
+
+.product-info{
+    padding:20px;
+    text-align:center;
+}
+
+.product-title{
+    color:var(--gold);
+    margin-bottom:20px;
+    font-size:1.2rem;
+}
+
+.view-btn{
+    display:block;
+    text-decoration:none;
+    border:1px solid var(--gold);
+    color:var(--gold);
+    padding:12px;
+    border-radius:30px;
+}
+
+.view-btn:hover{
+    background:var(--gold);
+    color:#000;
+}
+
+/* =========================
+   FLOATING APPS
+========================= */
+
+.floating-apps-panel{
+    position:fixed;
+    right:20px;
+    top:50%;
+    transform:translateY(-50%);
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+    z-index:2000;
+}
+
+.app-trigger{
+    width:52px;
+    height:52px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-decoration:none;
+    color:#fff;
+}
+
+.app-whatsapp{
+    background:#25D366;
+}
+
+.app-instagram{
+    background:#E1306C;
+}
+
+.app-maps{
+    background:#4285F4;
+}
+
+.app-phone{
+    background:#0088cc;
+}
+
+.app-chat-bot{
+    background:var(--bright-gold);
+    color:#000;
+}
+
+	#chatbot-box{
+    position:fixed;
+    right:90px;
+    bottom:20px;
+    width:350px;
+    height:500px;
+    background:#111;
+    border-radius:20px;
+    display:none;
+    flex-direction:column;
+    overflow:hidden;
+    z-index:3000;
+    box-shadow:0 10px 30px rgba(0,0,0,.5);
+}
+
+.chat-header{
+    background:#ffd700;
+    color:#000;
+    padding:15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+#chat-close{
+    cursor:pointer;
+    font-size:22px;
+}
+
+#chat-messages{
+    flex:1;
+    overflow-y:auto;
+    padding:20px;
+}
+
+.bot-msg,
+.user-msg{
+    padding:12px;
+    border-radius:15px;
+    margin-bottom:12px;
+    max-width:80%;
+}
+
+.bot-msg{
+    background:#222;
+    color:#fff;
+}
+
+.user-msg{
+    background:#ffd700;
+    color:#000;
+    margin-left:auto;
+}
+
+.chat-input{
+    display:flex;
+}
+
+.chat-input input{
+    flex:1;
+    padding:15px;
+    background:#222;
+    border:none;
+    color:#fff;
+}
+
+.chat-input button{
+    width:60px;
+    border:none;
+    background:#ffd700;
+    cursor:pointer;
+}
+/* =========================
+   FOOTER
+========================= */
+
+.footer-container{
+    background:#000;
+    padding:60px 20px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:40px;
+}
+
+.footer-column h4{
+    margin-bottom:20px;
+    color:var(--gold);
+}
+
+.footer-column ul{
+    list-style:none;
+}
+
+.footer-column li{
+    margin-bottom:10px;
+}
+
+.footer-column a{
+    text-decoration:none;
+    color:#ccc;
+}
+
+.footer-column a:hover{
+    color:var(--gold);
+}
+
+.star{
+    font-size:34px;
+    color:#ffffff;
+    cursor:pointer;
+    user-select:none;
+    transition:all .25s ease;
+}
+
+.star.active{
+    color:#D4AF37;
+    text-shadow:0 0 10px rgba(212,175,55,.5);
+}
+
+.star:hover{
+    transform:scale(1.15);
+    color:#D4AF37;
+    text-shadow:0 0 10px rgba(212,175,55,.5);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:768px){
+
+    .nav-container{
+        flex-direction:column;
+        gap:20px;
+    }
+
+
+    .hero-card h1{
+        font-size:2rem;
+    }
+
+    .hero-card p{
+        font-size:1rem;
+    }
+
+    .info-notice-box{
+        grid-template-columns:1fr;
+    }
+
+    .slider-box{
+        min-height:280px;
+    }
+
+    .product-image-container{
+        height:280px;
+    }
+
+    .floating-apps-panel{
+        right:10px;
+    }
+
+    .app-trigger{
+        width:42px;
+        height:42px;
+    }
+}
+
+	@media (max-width: 750px) {
+
+    #chatbot-box{
+        width: calc(100vw - 20px);
+        height: 75vh;
+        right: 10px;
+        left: 10px;
+        bottom: 10px;
+        border-radius: 20px;
+    }
+
+    .chat-header{
+        padding: 14px;
+    }
+
+    .chat-header h3{
+        font-size: 18px;
+    }
+
+    #chat-messages{
+        padding: 15px;
+    }
+
+    .bot-msg,
+    .user-msg{
+        max-width: 90%;
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    .chat-input input{
+        padding: 14px;
+        font-size: 14px;
+    }
+
+    .chat-input button{
+        width: 55px;
+        font-size: 18px;
+    }
+
+    .floating-apps-panel{
+        right: 10px;
+        gap: 10px;
+    }
+
+    .app-trigger{
+        width: 45px;
+        height: 45px;
+    }
+}
+
+/*==============================
+TESTIMONIALS
+==============================*/
+
+.testimonials-hero{
+
+    padding:20px 20px 80px;
+
+    text-align:center;
+
+    background:#080808;
+
+    border-bottom:1px solid rgba(212,175,55,.15);
+
+}
+
+.hero-tag{
+
+    color:#d4af37;
+
+    letter-spacing:3px;
+
+    font-size:.85rem;
+
+}
+
+.testimonials-hero h1{
+
+    font-size:3rem;
+
+    color:#fff;
+
+    margin:20px 0;
+
+    line-height:1.2;
+
+}
+
+.testimonials-hero p{
+
+    color:#bdbdbd;
+
+    max-width:750px;
+
+    margin:auto;
+
+    line-height:1.8;
+
+}
+
+.testimonials-wrapper{
+
+    max-width:1400px;
+
+    margin:auto;
+
+    padding:80px 20px;
+
+    display:grid;
+
+    grid-template-columns:380px 1fr;
+
+    gap:40px;
+
+}
+/* ===========================
+   LUXURY REVIEW CARD
+=========================== */
+
+.testimonial-slider{
+    width:100%;
+    position:relative;
+}
+
+#reviewsContainer{
+    width:100%;
+    min-height:720px;
+}
+
+.review-card{
+    width:100%;
+    background:#161616;
+    border:1px solid rgba(214,175,52,.25);
+    border-radius:20px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    animation:fadeIn .6s ease;
+    box-shadow:0 12px 30px rgba(0,0,0,.35);
+}
+
+.review-photo{
+    width:100%;
+    height:420px;
+    object-fit:contain;
+    object-position:center;
+    background:#0f0f0f;
+    padding:20px;
+    display:block;
+}
+
+.review-content{
+    padding:28px;
+}
+
+.review-stars{
+    color:#d4af37;
+    font-size:24px;
+    margin-bottom:16px;
+}
+
+.review-text{
+    color:#d7d7d7;
+    font-size:17px;
+    line-height:1.8;
+    font-style:italic;
+    margin-bottom:24px;
+}
+
+.review-footer{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.review-name{
+    color:#fff;
+    font-size:26px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:2px;
+}
+
+.review-quote{
+    font-size:70px;
+    color:#d4af37;
+    opacity:.18;
+}
+
+.input-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    margin-bottom:22px;
+
+}
+
+.input-group label{
+
+    margin-bottom:8px;
+
+    color:#d4af37;
+
+}
+
+.input-group input,
+.input-group textarea{
+
+    background:#1b1b1b;
+
+    color:#fff;
+
+    border:1px solid rgba(212,175,55,.2);
+
+    border-radius:12px;
+
+    padding:14px;
+
+    outline:none;
+
+}
+
+.rating-stars{
+    display:flex;
+    gap:8px;
+}
+
+.review-box button{
+
+    width:100%;
+
+    padding:16px;
+
+    background:#d4af37;
+
+    color:#000;
+
+    border:none;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+}
+
+.review-box button:hover{
+
+    background:#f5d76e;
+
+}
+
+/* ===========================
+   TESTIMONIAL SLIDER
+=========================== */
+
+.testimonial-slider{
+    width:100%;
+    position:relative;
+}
+
+#reviewsContainer{
+    width:100%;
+}
+
+.review-card{
+
+    background:#161616;
+    border:1px solid rgba(214,175,52,.25);
+    border-radius:20px;
+
+    overflow:hidden;
+
+    animation:fadeIn .6s ease;
+    min-height:700px;
+
+display:flex;
+flex-direction:column;
+
+}
+
+.review-card img{
+
+    width:100%;
+    height:420px;
+
+    object-fit:contain;
+
+    object-position:center;
+
+    background:#0f0f0f;
+
+    padding:20px;
+
+    display:block;
+
+}
+
+.review-content{
+
+    padding:28px;
+
+    position:relative;
+
+}
+
+.review-stars{
+
+    color:#d4af37;
+
+    font-size:24px;
+
+    margin-bottom:14px;
+
+}
+
+.review-text{
+
+    color:#d8d8d8;
+
+    line-height:1.9;
+
+    font-size:17px;
+
+    font-style:italic;
+
+    margin-bottom:25px;
+
+}
+
+.review-name{
+
+    color:#fff;
+
+    font-size:28px;
+
+    font-weight:700;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+}
+
+.review-quote{
+
+    position:absolute;
+
+    right:30px;
+
+    bottom:20px;
+
+    font-size:72px;
+
+    color:#d4af37;
+
+    opacity:.18;
+
+    font-family:serif;
+
+}
+
+.testimonial-dots{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:10px;
+
+    margin-top:20px;
+
+}
+
+.testimonial-dots span{
+
+    width:10px;
+    height:10px;
+
+    border-radius:50%;
+
+    background:#555;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.testimonial-dots span.active{
+
+    background:#d4af37;
+    transform:scale(1.3);
+
+}
+
+@keyframes fadeIn{
+
+from{
+
+opacity:0;
+transform:translateY(20px);
+
+}
+
+to{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.review-card img{
+
+height:260px;
+
+}
+
+.review-content{
+
+padding:20px;
+
+}
+
+.review-name{
+
+font-size:22px;
+
+}
+
+.review-text{
+
+font-size:15px;
+
+}
+
+.review-quote{
+
+font-size:55px;
+
+}
+
+}
+
+@media(max-width:900px){
+
+.testimonials-wrapper{
+
+grid-template-columns:1fr;
+
+}
+
+
+
+}
+	</style>
+
+<script type="application/ld+json">
+
+{"@context":"https://schema.org","@type":"Organization","name":"Privika Handicraft Studio","url":"https://privikahandcraftstudio.com","logo":"https://privikahandcraftstudio.com/logo.png"}</script>
+
+</head>
+<body>
+
+<header>
+    <nav class="nav-container" aria-label="Main Navigation">
+        <div class="capsule-nav">
+<a href="index.html" class="nav-link" id="homeBtn">Home</a>
+<a href="#products" class="nav-link" id="productBtn">Product</a>
+<a href="about.html" class="nav-link">About</a>
+<a href="testimonials.html" class="nav-link active">Testimonials</a>
+<a href="contact.html" class="nav-link">Contact</a>
+</div>
+
+    </nav>
+</header>
+
+<div class="floating-apps-panel" aria-label="Quick Studio Contact Channels">
+
+<a href="https://wa.me/919266821800"
+   target="_blank"
+   rel="noopener"
+   class="app-trigger app-whatsapp"
+   title="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<a href="https://www.instagram.com/privika_handcraft_studio?igsh=cm83NHM2ZmxkcTNv"
+   target="_blank"
+   rel="noopener"
+   class="app-trigger app-instagram"
+   title="Follow on Instagram">
+    <i class="fa-brands fa-instagram"></i>
+</a>
+
+<a href="https://www.google.com/maps/search/?api=1&query=I-90,+Site+C+Rd,+Surajpur+Industrial+Area,+Block+I,+UPSIDC+Site+C,+Gulistanpur,+Greater+Noida,+Uttar+Pradesh+201306"
+   target="_blank"
+   rel="noopener noreferrer"
+   class="app-trigger app-maps"
+   title="Locate Our Showroom">
+    <i class="fa-solid fa-location-dot"></i>
+</a>
+
+<a href="tel:+919266821800"
+   class="app-trigger app-phone"
+   title="Call Customer Support">
+    <i class="fa-solid fa-phone"></i>
+</a>
+
+<button class="app-trigger app-chat-bot"
+        title="Launch AI Concierge"
+        id="chatbot-btn">
+    <i class="fa-solid fa-robot"></i>
+</button>
+
+</div>
+
+<main>
+
+<section class="testimonials-hero">
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+
+        <h1>
+            Every Handcrafted Piece <br>
+            Leaves a Lasting Impression
+        </h1>
+
+        <p>
+            We value every experience shared by our clients.
+            Read genuine reviews or share your own journey with
+            Privika Handcraft Studio.
+        </p>
+
+    </div>
+
+</section>
+
+
+<section class="testimonials-wrapper">
+
+    <!-- LEFT -->
+
+    <div class="review-box">
+
+        <h2>Share Your Story</h2>
+
+        <p>
+            Your words inspire us to continue creating timeless handcrafted masterpieces.
+        </p>
+
+        <form id="reviewForm">
+
+            <div class="input-group">
+
+                <label>Full Name</label>
+
+                <input
+                    type="text"
+                    id="reviewName"
+                    placeholder="Enter your name"
+                    required
+                >
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Rating</label>
+
+<div class="rating-stars" id="ratingStars">
+
+    <span class="star" data-value="1">&#9733;</span>
+    <span class="star" data-value="2">&#9733;</span>
+    <span class="star" data-value="3">&#9733;</span>
+    <span class="star" data-value="4">&#9733;</span>
+    <span class="star" data-value="5">&#9733;</span>
+
+</div>
+
+<input
+type="hidden"
+id="ratingValue"
+value="">
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Your Review</label>
+
+                <textarea
+                    id="reviewText"
+                    rows="6"
+                    placeholder="Write your experience..."
+                    required
+                ></textarea>
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Photo (Optional)</label>
+
+                <input
+                    type="file"
+                    id="reviewPhoto"
+                    accept="image/*"
+                >
+
+            </div>
+
+            <button type="submit">
+
+                Share Review
+
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- RIGHT -->
+
+    <div class="stories-box">
+
+        <h2>Client Stories</h2>
+
+        <p>
+            Experiences shared by our valued clients.
+        </p>
+
+<div class="testimonial-slider">
+
+    <div id="reviewsContainer">
+
+        <!-- Active testimonial -->
+
+    </div>
+
+    <div class="testimonial-dots" id="testimonialDots"></div>
+
+</div>
+
+    </div>
+
+</section>
+
+</main>
+
+<div id="chatbot-box">
+
+  <div class="chat-header">
+    <h3>Privika Assistant</h3>
+    <span id="chat-close">✕</span>
+  </div>
+
+  <div id="chat-messages">
+    <div class="bot-msg">
+      Hi 👋 Welcome to Privika Handcraft Studio.
+      Ask me anything about our products.
+    </div>
+  </div>
+
+  <div class="chat-input">
+    <input
+      type="text"
+      id="chat-input"
+      placeholder="Ask something..."
+    >
+    <button id="chat-send">➤</button>
+  </div>
+
+</div>
+<script>
+window.onload = function () {
+
+    const chatbotBtn =
+    document.getElementById("chatbot-btn");
+
+    const chatbotBox =
+    document.getElementById("chatbot-box");
+
+    const chatClose =
+    document.getElementById("chat-close");
+
+    const chatInput =
+    document.getElementById("chat-input");
+
+    const chatSend =
+    document.getElementById("chat-send");
+
+    const chatMessages =
+    document.getElementById("chat-messages");
+
+    chatbotBtn.onclick = () => {
+        chatbotBox.style.display = "flex";
+    };
+
+    chatClose.onclick = () => {
+        chatbotBox.style.display = "none";
+    };
+
+function botReply(text){
+
+    text = text.toLowerCase();
+
+    if (
+        text.includes("hi") ||
+        text.includes("hello") ||
+        text.includes("hey")
+    ) {
+        return "Hello 👋 Welcome to Privika Handcraft Studio. How can I help you today?";
+    }
+
+    if (
+        text.includes("product") ||
+        text.includes("products") ||
+        text.includes("sell")
+    ) {
+        return "We offer Naga Panels, Naga Tables, Painted Panels, Antique Furniture, Pots, Wall Decor and Statues.";
+    }
+
+    if (
+        text.includes("contact") ||
+        text.includes("phone") ||
+        text.includes("call")
+    ) {
+        return "Call us on +91 9266821800 or email us at privikahandcraftstudio@gmail.com.";
+    }
+
+    if (
+        text.includes("location") ||
+        text.includes("address") ||
+        text.includes("where") ||
+        text.includes("warehouse") ||
+        text.includes("store") ||
+        text.includes("showroom")
+    ) {
+        return "Our showroom is located at I-90, Site C Road, Surajpur Industrial Area, Greater Noida, Uttar Pradesh 201306.";
+    }
+
+    if (
+        text.includes("custom") ||
+        text.includes("custom order")
+    ) {
+        return "Yes, we also accept custom orders on selected products.";
+    }
+
+    if (
+        text.includes("delivery") ||
+        text.includes("shipping") ||
+        text.includes("ship")
+    ) {
+        return "We provide delivery services across India.";
+    }
+
+    if (
+        text.includes("email") ||
+        text.includes("mail")
+    ) {
+        return "You can email us at privikahandcraftstudio@gmail.com.";
+    }
+
+    return "I couldn't understand that. Please ask about our products, location, shipping or contact details.";
+}
+
+    function sendMessage(){
+
+        const text = chatInput.value.trim();
+
+        if(!text) return;
+
+        chatMessages.innerHTML +=
+        `<div class="user-msg">${text}</div>`;
+
+        const reply = botReply(text);
+
+        setTimeout(() => {
+            chatMessages.innerHTML +=
+            `<div class="bot-msg">${reply}</div>`;
+
+            chatMessages.scrollTop =
+            chatMessages.scrollHeight;
+        },500);
+
+        chatInput.value = "";
+    }
+
+    chatSend.addEventListener("click", sendMessage);
+
+    chatInput.addEventListener("keypress", function(e){
+        if(e.key==="Enter"){
+            sendMessage();
+        }
+    });
+
+};
+
+// Active nav on scroll
+window.addEventListener("scroll", () => {
+
+    const products = document.getElementById("products");
+
+    if (!products) return;
+
+    const productBtn = document.querySelector('a[href="#products"]');
+    const homeBtn = document.querySelector('a[href="index.html"]');
+
+    const rect = products.getBoundingClientRect();
+
+    if (rect.top <= 120 && rect.bottom >= 120) {
+        productBtn.classList.add("active");
+        homeBtn.classList.remove("active");
+    } else {
+        productBtn.classList.remove("active");
+        homeBtn.classList.add("active");
+    }
+
+});
+	
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="testimonial.js"></script>
+</body>
+</html>
+
