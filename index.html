@@ -539,100 +539,103 @@ header{
    MOBILE
 ========================= */
 
-@media(max-width:768px){
+@media (max-width:768px){
 
-    .nav-container{
-        flex-direction:column;
-        gap:20px;
-    }
-
-    .search-box{
-        width:100%;
-    }
-
-    .search-box input{
-        width:100%;
-    }
-
-    .hero-card h1{
-        font-size:2rem;
-    }
-
-    .hero-card p{
-        font-size:1rem;
-    }
-
-    .info-notice-box{
-        grid-template-columns:1fr;
-    }
-
-    .slider-box{
-        min-height:280px;
-    }
-
-    .product-image-container{
-        height:280px;
-    }
-
-    .floating-apps-panel{
-        right:10px;
-    }
-
-    .app-trigger{
-        width:42px;
-        height:42px;
-    }
+.nav-container{
+    padding:10px;
+    justify-content:center;
+    overflow-x:auto;
 }
 
-	@media (max-width: 750px) {
+.capsule-nav{
+    display:flex;
+    flex-wrap:nowrap;
+    overflow-x:auto;
+    scrollbar-width:none;
+    width:max-content;
+}
 
-    #chatbot-box{
-        width: calc(100vw - 20px);
-        height: 75vh;
-        right: 10px;
-        left: 10px;
-        bottom: 10px;
-        border-radius: 20px;
-    }
+.capsule-nav::-webkit-scrollbar{
+    display:none;
+}
 
-    .chat-header{
-        padding: 14px;
-    }
+.nav-link{
+    white-space:nowrap;
+    font-size:12px;
+    padding:10px 16px;
+}
 
-    .chat-header h3{
-        font-size: 18px;
-    }
+.search-box{
+    display:none;
+}
 
-    #chat-messages{
-        padding: 15px;
-    }
+.hero-banner{
+    min-height:auto;
+    padding:90px 15px 30px;
+}
 
-    .bot-msg,
-    .user-msg{
-        max-width: 90%;
-        font-size: 14px;
-        padding: 12px;
-    }
+.hero-card h1{
+    font-size:clamp(1.8rem,8vw,2.5rem);
+    line-height:1.2;
+}
 
-    .chat-input input{
-        padding: 14px;
-        font-size: 14px;
-    }
+.hero-card p{
+    font-size:15px;
+}
 
-    .chat-input button{
-        width: 55px;
-        font-size: 18px;
-    }
+.info-notice-box{
+    grid-template-columns:1fr;
+    gap:20px;
+}
 
-    .floating-apps-panel{
-        right: 10px;
-        gap: 10px;
-    }
+.slider-box{
+    min-height:340px;
+}
 
-    .app-trigger{
-        width: 45px;
-        height: 45px;
-    }
+.slide,
+.slide-bg{
+    object-fit:contain;
+}
+
+.note-box{
+    padding:20px;
+}
+
+.note-box h2{
+    font-size:1.6rem;
+}
+
+.product-grid{
+    grid-template-columns:1fr;
+}
+
+.product-image-container{
+    height:260px;
+}
+
+.footer-container{
+    grid-template-columns:1fr;
+}
+
+.floating-apps-panel{
+    right:10px;
+    bottom:20px;
+    top:auto;
+    transform:none;
+}
+
+.app-trigger{
+    width:44px;
+    height:44px;
+}
+
+#chatbot-box{
+    width:95%;
+    height:75vh;
+    right:2.5%;
+    bottom:10px;
+}
+
 }
 	</style>
 
