@@ -541,28 +541,33 @@ header{
 
 @media (max-width:768px){
 
+	header{
+    padding:10px 0;
+    background:rgba(0,0,0,.9);
+    backdrop-filter:blur(12px);
+}
+
 .nav-container{
-    padding:10px;
+    padding:8px 10px;
     justify-content:center;
-    overflow-x:auto;
 }
 
 .capsule-nav{
+    width:95%;
     display:flex;
-    flex-wrap:nowrap;
-    overflow-x:auto;
-    scrollbar-width:none;
-    width:max-content;
-}
-
-.capsule-nav::-webkit-scrollbar{
-    display:none;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:8px;
+    padding:8px;
+    border-radius:18px;
+    overflow:visible;
 }
 
 .nav-link{
     white-space:nowrap;
+    padding:10px 14px;
     font-size:12px;
-    padding:10px 16px;
+    flex:0 0 auto;
 }
 
 .search-box{
@@ -1065,23 +1070,12 @@ PRIVIKA HANDCRAFT STUDIO</b>
 <script>
 window.onload = function () {
 
-    const chatbotBtn =
-    document.getElementById("chatbot-btn");
-
-    const chatbotBox =
-    document.getElementById("chatbot-box");
-
-    const chatClose =
-    document.getElementById("chat-close");
-
-    const chatInput =
-    document.getElementById("chat-input");
-
-    const chatSend =
-    document.getElementById("chat-send");
-
-    const chatMessages =
-    document.getElementById("chat-messages");
+    const chatbotBtn = document.getElementById("chatbot-btn");
+    const chatbotBox = document.getElementById("chatbot-box");
+    const chatClose = document.getElementById("chat-close");
+    const chatInput = document.getElementById("chat-input");
+    const chatSend = document.getElementById("chat-send");
+    const chatMessages = document.getElementById("chat-messages");
 
     chatbotBtn.onclick = () => {
         chatbotBox.style.display = "flex";
@@ -1091,69 +1085,40 @@ window.onload = function () {
         chatbotBox.style.display = "none";
     };
 
-function botReply(text){
+    function botReply(text){
 
-    text = text.toLowerCase();
+        text = text.toLowerCase();
 
-    if (
-        text.includes("hi") ||
-        text.includes("hello") ||
-        text.includes("hey")
-    ) {
-        return "Hello 👋 Welcome to Privika Handcraft Studio. How can I help you today?";
+        if(text.includes("hi") || text.includes("hello") || text.includes("hey")){
+            return "Hello 👋 Welcome to Privika Handcraft Studio. How can I help you today?";
+        }
+
+        if(text.includes("product") || text.includes("products") || text.includes("sell")){
+            return "We offer Naga Panels, Naga Tables, Painted Panels, Antique Furniture, Pots, Wall Decor and Statues.";
+        }
+
+        if(text.includes("contact") || text.includes("phone") || text.includes("call")){
+            return "Call us on +91 9266821800 or email us at privikahandcraftstudio@gmail.com.";
+        }
+
+        if(text.includes("location") || text.includes("address") || text.includes("where") || text.includes("warehouse") || text.includes("store") || text.includes("showroom")){
+            return "Our showroom is located at I-90, Site C Road, Surajpur Industrial Area, Greater Noida, Uttar Pradesh 201306.";
+        }
+
+        if(text.includes("custom")){
+            return "Yes, we also accept custom orders on selected products.";
+        }
+
+        if(text.includes("delivery") || text.includes("shipping") || text.includes("ship")){
+            return "We provide delivery services across India.";
+        }
+
+        if(text.includes("email") || text.includes("mail")){
+            return "You can email us at privikahandcraftstudio@gmail.com.";
+        }
+
+        return "I couldn't understand that. Please ask about our products, location, shipping or contact details.";
     }
-
-    if (
-        text.includes("product") ||
-        text.includes("products") ||
-        text.includes("sell")
-    ) {
-        return "We offer Naga Panels, Naga Tables, Painted Panels, Antique Furniture, Pots, Wall Decor and Statues.";
-    }
-
-    if (
-        text.includes("contact") ||
-        text.includes("phone") ||
-        text.includes("call")
-    ) {
-        return "Call us on +91 9266821800 or email us at privikahandcraftstudio@gmail.com.";
-    }
-
-    if (
-        text.includes("location") ||
-        text.includes("address") ||
-        text.includes("where") ||
-        text.includes("warehouse") ||
-        text.includes("store") ||
-        text.includes("showroom")
-    ) {
-        return "Our showroom is located at I-90, Site C Road, Surajpur Industrial Area, Greater Noida, Uttar Pradesh 201306.";
-    }
-
-    if (
-        text.includes("custom") ||
-        text.includes("custom order")
-    ) {
-        return "Yes, we also accept custom orders on selected products.";
-    }
-
-    if (
-        text.includes("delivery") ||
-        text.includes("shipping") ||
-        text.includes("ship")
-    ) {
-        return "We provide delivery services across India.";
-    }
-
-    if (
-        text.includes("email") ||
-        text.includes("mail")
-    ) {
-        return "You can email us at privikahandcraftstudio@gmail.com.";
-    }
-
-    return "I couldn't understand that. Please ask about our products, location, shipping or contact details.";
-}
 
     function sendMessage(){
 
@@ -1161,32 +1126,40 @@ function botReply(text){
 
         if(!text) return;
 
-        chatMessages.innerHTML +=
-        `<div class="user-msg">${text}</div>`;
+        chatMessages.innerHTML += `<div class="user-msg">${text}</div>`;
 
         const reply = botReply(text);
 
         setTimeout(() => {
-            chatMessages.innerHTML +=
-            `<div class="bot-msg">${reply}</div>`;
 
-            chatMessages.scrollTop =
-            chatMessages.scrollHeight;
+            chatMessages.innerHTML += `<div class="bot-msg">${reply}</div>`;
+
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
         },500);
 
         chatInput.value = "";
+
     }
 
     chatSend.addEventListener("click", sendMessage);
 
     chatInput.addEventListener("keypress", function(e){
+
         if(e.key==="Enter"){
             sendMessage();
         }
+
     });
 
 };
+
+// ==============================
+// Product Search
+// ==============================
+
 function executeSearch() {
+
     const query = document
         .getElementById("productSearch")
         .value
@@ -1199,98 +1172,145 @@ function executeSearch() {
     let found = false;
 
     cards.forEach(card => {
+
         const titleEl = card.querySelector(".product-title");
 
-        if (!titleEl) return;
+        if(!titleEl) return;
 
         const title = titleEl.textContent.toLowerCase();
 
-        if (query === "" || title.includes(query)) {
+        if(query === "" || title.includes(query)){
+
             card.style.display = "";
             found = true;
-        } else {
+
+        }else{
+
             card.style.display = "none";
+
         }
+
     });
 
-    if (fallback) {
+    if(fallback){
+
         fallback.style.display =
-            (!found && query !== "") ? "block" : "none";
+        (!found && query !== "") ? "block" : "none";
+
     }
+
 }
 
-// Active nav on scroll
+document.addEventListener("DOMContentLoaded", function(){
+
+    const searchInput = document.getElementById("productSearch");
+
+    if(searchInput){
+        searchInput.addEventListener("input", executeSearch);
+    }
+
+});
+
+// ==============================
+// Active Navigation
+// ==============================
+
 window.addEventListener("scroll", () => {
+
     const products = document.getElementById("products");
+
+    if(!products) return;
+
     const productBtn = document.querySelector('a[href="#products"]');
     const homeBtn = document.querySelector('a[href="index.html"]');
 
     const rect = products.getBoundingClientRect();
 
-    if (rect.top <= 120 && rect.bottom >= 120) {
+    if(rect.top <= 120 && rect.bottom >= 120){
+
         productBtn.classList.add("active");
         homeBtn.classList.remove("active");
-    } else {
+
+    }else{
+
         productBtn.classList.remove("active");
         homeBtn.classList.add("active");
+
     }
+
 });
 
+// ==============================
 // Slider
+// ==============================
+
 const slides = document.querySelectorAll(".slide-wrapper");
 const nextBtn = document.querySelector(".next");
 const prevBtn = document.querySelector(".prev");
 
 let current = 0;
 
-function showSlide(index) {
-    slides.forEach(slide => {
+function showSlide(index){
+
+    slides.forEach(slide=>{
         slide.classList.remove("active");
     });
 
     slides[index].classList.add("active");
+
 }
 
-function nextSlide() {
+function nextSlide(){
+
     current = (current + 1) % slides.length;
     showSlide(current);
+
 }
 
-function prevSlide() {
+function prevSlide(){
+
     current = (current - 1 + slides.length) % slides.length;
     showSlide(current);
+
 }
 
-if (nextBtn && prevBtn && slides.length > 0) {
+if(nextBtn && prevBtn && slides.length){
+
     nextBtn.addEventListener("click", nextSlide);
     prevBtn.addEventListener("click", prevSlide);
 
-    setInterval(nextSlide, 2500);
+    setInterval(nextSlide,2500);
+
 }
 
-// Nav click
+// ==============================
+// Navigation Active Click
+// ==============================
+
 const navLinks = document.querySelectorAll(".nav-link");
 
-navLinks.forEach(link => {
-    link.addEventListener("click", function () {
-        navLinks.forEach(item => item.classList.remove("active"));
+navLinks.forEach(link=>{
+
+    link.addEventListener("click",function(){
+
+        navLinks.forEach(item=>item.classList.remove("active"));
+
         this.classList.add("active");
+
     });
+
 });
 
-	document.addEventListener("DOMContentLoaded", function () {
-    const searchInput = document.getElementById("productSearch");
-
-    if (searchInput) {
-        searchInput.addEventListener("input", executeSearch);
-    }
-});
-	<script>
+// ==============================
+// Responsive Hero Video
+// ==============================
 
 const heroVideo = document.getElementById("heroVideo");
 const heroSource = document.getElementById("heroVideoSource");
 
 function updateHeroVideo(){
+
+    if(!heroVideo || !heroSource) return;
 
     if(window.innerWidth <= 768){
 
