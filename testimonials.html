@@ -1020,6 +1020,90 @@ font-size:55px;
 
 }
 
+	/* ===========================
+   MOBILE FIX
+=========================== */
+
+@media (max-width:768px){
+
+    header{
+        position:sticky;
+        top:0;
+    }
+
+    .nav-container{
+        padding:10px;
+        overflow-x:auto;
+        justify-content:flex-start;
+    }
+
+    .capsule-nav{
+        flex-wrap:nowrap;
+        width:max-content;
+        padding:5px;
+    }
+
+    .nav-link{
+        font-size:12px;
+        padding:10px 16px;
+        white-space:nowrap;
+    }
+
+    .testimonials-hero{
+        padding:40px 18px;
+    }
+
+    .hero-content h1{
+        font-size:2.2rem;
+        line-height:1.2;
+        margin-bottom:18px;
+    }
+
+    .hero-content p{
+        font-size:15px;
+        line-height:1.8;
+    }
+
+    .testimonials-wrapper{
+        grid-template-columns:1fr;
+        gap:35px;
+        padding:40px 18px;
+    }
+
+    .review-box,
+    .stories-box{
+        width:100%;
+    }
+
+    .review-card{
+        min-height:auto;
+    }
+
+    .review-photo{
+        height:240px;
+        object-fit:contain;
+    }
+
+    .review-name{
+        font-size:20px;
+    }
+
+    .review-text{
+        font-size:15px;
+    }
+
+    .floating-apps-panel{
+        right:8px;
+        gap:10px;
+    }
+
+    .app-trigger{
+        width:46px;
+        height:46px;
+    }
+
+}
+
 @media(max-width:900px){
 
 .testimonials-wrapper{
