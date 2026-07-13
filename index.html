@@ -1312,17 +1312,20 @@ function updateHeroVideo(){
 
     if(!heroVideo || !heroSource) return;
 
-    if(window.innerWidth <= 768){
+    const video =
+    window.innerWidth <= 768
+    ? "images/naga.mp4"
+    : "images/background.mp4";
 
-        heroSource.src = "images/naga.mp4";
+    if(heroSource.getAttribute("src") !== video){
 
-    }else{
+        heroSource.setAttribute("src", video);
 
-        heroSource.src = "images/background.mp4";
+        heroVideo.load();
+
+        heroVideo.play().catch(()=>{});
 
     }
-
-    heroVideo.load();
 
 }
 
