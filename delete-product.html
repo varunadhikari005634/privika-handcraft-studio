@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Delete Product | Privika</title>
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Poppins:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- Delete Product CSS -->
+    <link rel="stylesheet" href="delete-product.css">
+
+</head>
+
+<body>
+
+    <!-- ==============================
+         BACK BUTTON
+    =============================== -->
+
+    <a href="seller-dashboard.html" class="back-btn">
+        <i class="fa-solid fa-arrow-left"></i>
+        Back to Dashboard
+    </a>
+
+
+    <!-- ==============================
+         MAIN CONTAINER
+    =============================== -->
+
+    <main class="delete-container">
+
+
+        <!-- ==============================
+             HEADER
+        =============================== -->
+
+        <div class="delete-header">
+
+            <div class="danger-icon">
+                <i class="fa-solid fa-trash-can"></i>
+            </div>
+
+            <h1>Delete Product</h1>
+
+            <p>
+                Enter a category to find its products.
+                Select the specific product you want to remove.
+            </p>
+
+        </div>
+
+
+        <!-- ==============================
+             CATEGORY SEARCH
+        =============================== -->
+
+        <div class="input-group">
+
+            <label for="category">
+                Category
+            </label>
+
+            <input
+                type="text"
+                id="category"
+                placeholder="Enter category name"
+                autocomplete="off"
+            >
+
+        </div>
+
+
+        <!-- SEARCH BUTTON -->
+
+        <button
+            type="button"
+            id="searchBtn"
+            class="search-btn"
+        >
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            Find Products
+
+        </button>
+
+
+        <!-- ==============================
+             PRODUCTS
+        ============================== -->
+
+        <div
+            id="productsList"
+            class="products-list"
+        ></div>
+
+
+        <!-- ==============================
+             DELETE BUTTON
+        ============================== -->
+
+        <button
+            type="button"
+            id="deleteBtn"
+            class="delete-btn"
+            disabled
+        >
+
+            <i class="fa-solid fa-trash"></i>
+
+            Delete Selected Product
+
+        </button>
+
+
+        <!-- ==============================
+             MESSAGE
+        ============================== -->
+
+        <div
+            id="message"
+            class="message"
+        ></div>
+
+    </main>
+
+
+    <!-- ==============================
+         PASSWORD VERIFICATION MODAL
+    ============================== -->
+
+    <div
+        id="authModal"
+        class="auth-modal"
+        aria-hidden="true"
+    >
+
+        <div class="auth-modal-content">
+
+
+            <!-- Close -->
+
+            <button
+                type="button"
+                id="closeAuthModal"
+                class="close-auth-modal"
+                aria-label="Close"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+
+            <!-- Icon -->
+
+            <div class="auth-icon">
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+            </div>
+
+
+            <h2>Security Verification</h2>
+
+            <p class="auth-description">
+
+                For security reasons, verify your seller
+                account before deleting this product.
+
+            </p>
+
+
+            <!-- EMAIL -->
+
+            <div class="input-group">
+
+                <label for="sellerEmail">
+                    Seller Email
+                </label>
+
+                <input
+                    type="email"
+                    id="sellerEmail"
+                    placeholder="Enter seller email"
+                    autocomplete="username"
+                >
+
+            </div>
+
+
+            <!-- PASSWORD -->
+
+            <div class="input-group password-group">
+
+                <label for="sellerPassword">
+                    Password
+                </label>
+
+                <div class="password-wrapper">
+
+                    <input
+                        type="password"
+                        id="sellerPassword"
+                        placeholder="Enter password"
+                        autocomplete="current-password"
+                    >
+
+                    <button
+                        type="button"
+                        id="togglePassword"
+                        class="toggle-password"
+                        aria-label="Show password"
+                    >
+                        <i class="fa-solid fa-eye"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- VERIFY DELETE -->
+
+            <button
+                type="button"
+                id="verifyDeleteBtn"
+                class="verify-delete-btn"
+            >
+
+                <i class="fa-solid fa-shield-check"></i>
+
+                Verify & Delete
+
+            </button>
+
+
+            <!-- AUTH MESSAGE -->
+
+            <div
+                id="authMessage"
+                class="auth-message"
+            ></div>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- ==============================
+         SUPABASE
+    ============================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="supabase.js"></script>
+
+<script src="delete-product.js"></script>
+
+</body>
+
+</html>

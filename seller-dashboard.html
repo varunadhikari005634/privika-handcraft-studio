@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Seller Dashboard | Privika Handcraft Studio</title>
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Dashboard CSS -->
+    <link rel="stylesheet" href="dashboard.css">
+
+</head>
+
+
+<body>
+
+    <!-- MOBILE MENU -->
+
+    <button class="menu-btn" id="menuBtn">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <p>Seller Panel</p>
+        </div>
+
+        <ul>
+
+            <li>
+                <a href="index.html#products">
+                    <i class="fa-solid fa-chart-line"></i>
+                    Products
+                </a>
+            </li>
+
+            <li>
+                <a href="add-product.html">
+                    <i class="fa-solid fa-plus"></i>
+                    Add Product
+                </a>
+            </li>
+
+            <li>
+                <a href="delete-product.html">
+                    <i class="fa-solid fa-trash"></i>
+                    Delete Product
+                </a>
+            </li>
+
+            <li>
+                <a href="#" id="logoutBtn">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    Logout
+                </a>
+            </li>
+
+            <li>
+                <a href="product-details.html">
+                    <i class="fa-solid fa-note-sticky"></i>
+                    Edit Details
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <h1>Seller Dashboard</h1>
+
+            <div class="profile">
+
+                <i class="fa-solid fa-user"></i>
+
+                <span>Privika Admin</span>
+
+            </div>
+
+        </header>
+
+
+        <!-- =========================
+             STATS
+        ========================== -->
+
+        <section class="stats">
+
+
+            <!-- TOTAL PRODUCTS -->
+
+            <div class="card">
+
+                <h3>
+                    Total Products
+                </h3>
+
+                <h2 id="totalProducts">
+                    0
+                </h2>
+
+                <p class="stat-description">
+                    Products currently in database
+                </p>
+
+            </div>
+
+
+            <!-- TOTAL VIEWS -->
+
+            <div class="card">
+
+                <h3>
+                    Total Views
+                </h3>
+
+                <h2 id="totalViews">
+                    0
+                </h2>
+
+                <p class="stat-description">
+                    Website visits
+                </p>
+
+            </div>
+
+
+            <!-- ORDERS -->
+
+            <div class="card">
+
+                <h3>
+                    Total Orders
+                </h3>
+
+                <h2 class="work-progress">
+                    WORK IN PROGRESS
+                </h2>
+
+            </div>
+
+
+            <!-- REVENUE -->
+
+            <div class="card">
+
+                <h3>
+                    Total Revenue
+                </h3>
+
+                <h2 class="work-progress">
+                    WORK IN PROGRESS
+                </h2>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CHARTS
+        ========================== -->
+
+        <section class="charts">
+
+
+            <!-- MONTHLY SALES -->
+
+            <div class="chart-card">
+
+                <h3>
+                    Monthly Sales
+                </h3>
+
+                <div class="work-progress-box">
+
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+
+                    <span>
+                        WORK IN PROGRESS
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT VIEWS -->
+
+            <div class="chart-card">
+
+                <h3>
+                    Product Views
+                </h3>
+
+                <div class="chart-wrapper">
+
+                    <canvas id="viewsChart"></canvas>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             INSIGHTS
+        ========================== -->
+
+        <section class="insights">
+
+
+            <!-- MOST VIEWED -->
+
+            <div class="info-card">
+
+                <h3>
+                    🔥 Most Viewed Product
+                </h3>
+
+                <p id="mostViewed">
+                    Loading...
+                </p>
+
+            </div>
+
+
+            <!-- BEST SELLING -->
+
+            <div class="info-card">
+
+                <h3>
+                    🏆 Best Selling Product
+                </h3>
+
+                <p class="work-progress-text">
+                    WORK IN PROGRESS
+                </p>
+
+            </div>
+
+
+            <!-- OUT OF STOCK -->
+
+            <div class="info-card">
+
+                <h3>
+                    ❌ Out Of Stock
+                </h3>
+
+                <div id="outOfStock">
+                    Loading...
+                </div>
+
+            </div>
+
+
+            <!-- LOW STOCK -->
+
+            <div class="info-card">
+
+                <h3>
+                    ⚠ Low Stock
+                </h3>
+
+                <div id="lowStock">
+                    Loading...
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+    <!-- SUPABASE -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="supabase.js"></script>
+
+    <script src="dashboard.js"></script>
+
+
+</body>
+
+</html>

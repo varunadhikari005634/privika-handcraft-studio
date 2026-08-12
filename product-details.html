@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Product Details | Privika Handcraft Studio</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Poppins:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <link rel="stylesheet" href="product-details.css">
+
+</head>
+
+<body>
+
+    <!-- BACK BUTTON -->
+
+    <a href="seller-dashboard.html" class="back-btn">
+        <i class="fa-solid fa-arrow-left"></i>
+        Back to Dashboard
+    </a>
+
+
+    <!-- MAIN -->
+
+    <main class="details-container">
+
+        <!-- HEADER -->
+
+        <section class="page-header">
+
+            <div class="header-icon">
+                <i class="fa-solid fa-note-sticky"></i>
+            </div>
+
+            <h1>Product Details</h1>
+
+            <p>
+                Select a category to view its products and edit
+                their information.
+            </p>
+
+        </section>
+
+
+        <!-- CATEGORY -->
+
+        <section class="category-section">
+
+            <label for="category">
+                <i class="fa-solid fa-layer-group"></i>
+                Select Category
+            </label>
+
+            <select id="category">
+
+                <option value="">
+                    Select a category
+                </option>
+
+                <option value="Naga Panels">
+                    Naga Panels
+                </option>
+
+                <option value="Naga Table">
+                    Naga Table
+                </option>
+
+                <option value="Painted Panels">
+                    Painted Panels
+                </option>
+
+                <option value="Naga Home Decor">
+                    Naga Home Decor
+                </option>
+
+                <option value="Antique Furniture">
+                    Antique Furniture
+                </option>
+
+                <option value="Wall Decors">
+                    Wall Decors
+                </option>
+
+                <option value="Pots">
+                    Pots
+                </option>
+
+                <option value="Naga Statues">
+                    Naga Statues
+                </option>
+
+                <option value="Home Decor">
+                    Home Decor
+                </option>
+
+                <option value="Naga Bench">
+                    Naga Bench
+                </option>
+
+                <option value="Naga Doors">
+                    Naga Doors
+                </option>
+
+                <option value="Naga Grinders">
+                    Naga Grinders
+                </option>
+
+                <option value="Naga Wooden Stools">
+                    Naga Wooden Stools
+                </option>
+
+                <option value="Naga Wooden Table">
+                    Naga Wooden Table
+                </option>
+
+                <option value="Nagaland Tribal Decor Pieces">
+                    Nagaland Tribal Decor Pieces
+                </option>
+
+                <option value="South Indian Wooden Panels">
+                    South Indian Wooden Panels
+                </option>
+
+                <option value="Wooden Candle Stand">
+                    Wooden Candle Stand
+                </option>
+
+            </select>
+
+        </section>
+
+
+        <!-- MESSAGE -->
+
+        <div id="message" class="message"></div>
+
+
+        <!-- PRODUCTS -->
+
+        <section class="products-section">
+
+            <div class="section-title">
+
+                <h2>
+                    <i class="fa-solid fa-box-open"></i>
+                    Products
+                </h2>
+
+                <span id="productCount">
+                    0 Products
+                </span>
+
+            </div>
+
+            <div
+                id="productsList"
+                class="products-list">
+            </div>
+
+        </section>
+
+
+        <!-- EDIT PANEL -->
+
+        <section
+            id="editPanel"
+            class="edit-panel">
+
+            <div class="edit-header">
+
+                <div>
+                    <h2>
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        Edit Product
+                    </h2>
+
+                    <p>
+                        Update product information below.
+                    </p>
+                </div>
+
+                <button
+                    type="button"
+                    id="closeEdit"
+                    class="close-edit">
+
+                    <i class="fa-solid fa-xmark"></i>
+
+                </button>
+
+            </div>
+
+
+            <form id="editForm">
+
+                <!-- Hidden Product ID -->
+
+                <input
+                    type="hidden"
+                    id="editId">
+
+
+                <!-- NAME -->
+
+                <div class="form-group">
+
+                    <label for="editName">
+                        Product Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editName"
+                        required>
+
+                </div>
+
+
+                <!-- CATEGORY -->
+
+                <div class="form-group">
+
+                    <label for="editCategory">
+                        Category
+                    </label>
+
+                    <select
+                        id="editCategory"
+                        required>
+
+                        <option value="Naga Panels">
+                            Naga Panels
+                        </option>
+
+                        <option value="Naga Table">
+                            Naga Table
+                        </option>
+
+                        <option value="Painted Panels">
+                            Painted Panels
+                        </option>
+
+                        <option value="Naga Home Decor">
+                            Naga Home Decor
+                        </option>
+
+                        <option value="Antique Furniture">
+                            Antique Furniture
+                        </option>
+
+                        <option value="Wall Decors">
+                            Wall Decors
+                        </option>
+
+                        <option value="Pots">
+                            Pots
+                        </option>
+
+                        <option value="Naga Statues">
+                            Naga Statues
+                        </option>
+
+                        <option value="Home Decor">
+                            Home Decor
+                        </option>
+
+                        <option value="Naga Bench">
+                            Naga Bench
+                        </option>
+
+                        <option value="Naga Doors">
+                            Naga Doors
+                        </option>
+
+                        <option value="Naga Grinders">
+                            Naga Grinders
+                        </option>
+
+                        <option value="Naga Wooden Stools">
+                            Naga Wooden Stools
+                        </option>
+
+                        <option value="Naga Wooden Table">
+                            Naga Wooden Table
+                        </option>
+
+                        <option value="Nagaland Tribal Decor Pieces">
+                            Nagaland Tribal Decor Pieces
+                        </option>
+
+                        <option value="South Indian Wooden Panels">
+                            South Indian Wooden Panels
+                        </option>
+
+                        <option value="Wooden Candle Stand">
+                            Wooden Candle Stand
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- DESCRIPTION -->
+
+                <div class="form-group">
+
+                    <label for="editDescription">
+                        Description
+                    </label>
+
+                    <textarea
+                        id="editDescription"
+                        rows="5"></textarea>
+
+                </div>
+
+
+                <!-- PRICE + STOCK -->
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="editPrice">
+                            Price
+                        </label>
+
+                        <input
+                            type="number"
+                            id="editPrice"
+                            min="0"
+                            placeholder="₹">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="editStock">
+                            Stock
+                        </label>
+
+                        <input
+                            type="number"
+                            id="editStock"
+                            min="0"
+                            placeholder="Quantity">
+
+                    </div>
+
+                </div>
+
+
+                <!-- MATERIAL + DIMENSIONS -->
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="editMaterial">
+                            Material
+                        </label>
+
+                        <input
+                            type="text"
+                            id="editMaterial"
+                            placeholder="Wood, Bamboo, Stone...">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="editDimensions">
+                            Dimensions
+                        </label>
+
+                        <input
+                            type="text"
+                            id="editDimensions"
+                            placeholder="12 x 8 x 4 inches">
+
+                    </div>
+
+                </div>
+
+
+                <!-- FEATURED -->
+
+                <div class="featured-option">
+
+                    <input
+                        type="checkbox"
+                        id="editFeatured">
+
+                    <label for="editFeatured">
+
+                        <i class="fa-solid fa-star"></i>
+
+                        Featured Product
+
+                    </label>
+
+                </div>
+                
+                <div class="sold-option">
+
+    <input
+        type="checkbox"
+        id="editSold">
+
+    <label for="editSold">
+
+        <i class="fa-solid fa-circle-xmark"></i>
+
+        Mark as Sold
+
+    </label>
+
+</div>
+
+
+                <!-- BUTTONS -->
+
+                <div class="edit-actions">
+
+                    <button
+                        type="button"
+                        id="cancelEdit"
+                        class="cancel-btn">
+
+                        Cancel
+
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="save-btn">
+
+                        <i class="fa-solid fa-floppy-disk"></i>
+
+                        Save Changes
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+
+    <!-- SUPABASE -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="supabase.js"></script>
+
+<script src="product-details.js"></script>
+
+</body>
+
+</html>

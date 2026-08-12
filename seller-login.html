@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Seller Login | Privika Handcraft Studio</title>
+
+<link rel="icon" href="logo.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+/* ==========================
+   RESET
+========================== */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'Montserrat',sans-serif;
+background:#0d0d0d;
+color:#fff;
+overflow-x:hidden;
+}
+
+/* ==========================
+   COLORS
+========================== */
+
+:root{
+--black:#0d0d0d;
+--dark:#161616;
+--card:rgba(20,20,20,.72);
+--gold:#d4af37;
+--bright:#ffd700;
+--pink:#c86b85;
+}
+
+/* ==========================
+   HEADER
+========================== */
+
+header{
+
+position:fixed;
+top:0;
+left:0;
+width:100%;
+z-index:999;
+background:rgba(0,0,0,.75);
+backdrop-filter:blur(12px);
+border-bottom:1px solid rgba(212,175,55,.2);
+
+}
+
+.nav-container{
+
+max-width:1400px;
+
+margin:auto;
+
+padding:15px 30px;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+}
+
+.logo{
+
+display:flex;
+align-items:center;
+gap:12px;
+
+text-decoration:none;
+color:white;
+
+font-family:'Cinzel',serif;
+font-size:20px;
+font-weight:700;
+
+}
+
+.logo img{
+
+width:60px;
+height:60px;
+object-fit:contain;
+
+}
+
+.nav-links{
+
+display:flex;
+
+gap:8px;
+
+padding:7px;
+
+background:rgba(0,0,0,.75);
+
+border:1px solid rgba(212,175,55,.35);
+
+border-radius:50px;
+
+backdrop-filter:blur(10px);
+
+}
+
+.nav-links a{
+
+text-decoration:none;
+
+padding:12px 24px;
+
+border-radius:30px;
+
+font-size:14px;
+
+font-weight:500;
+
+letter-spacing:1px;
+
+color:#bbb;
+
+transition:.35s;
+
+text-transform:uppercase;
+
+}
+
+.nav-links a:hover{
+
+background:#ffd700;
+
+color:#000;
+
+box-shadow:0 0 18px rgba(255,215,0,.35);
+
+}
+
+/* ==========================
+LOGIN SECTION
+========================== */
+
+.login-section{
+
+min-height:100vh;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+padding:120px 25px 60px;
+
+position:relative;
+
+background:
+
+linear-gradient(rgba(0,0,0,.82),rgba(0,0,0,.82)),
+url("images/background.jpg");
+
+background-size:cover;
+background-position:center;
+
+}
+
+.background-overlay{
+
+position:absolute;
+inset:0;
+
+backdrop-filter:blur(6px);
+
+}
+
+.login-container{
+
+width:100%;
+
+max-width:720px;
+
+margin:auto;
+
+display:flex;
+
+justify-content:center;
+align-items:center;
+
+}
+
+/* ==========================
+LEFT SIDE
+========================== */
+
+.brand-box{
+
+background:rgba(255,255,255,.06);
+
+border:1px solid rgba(212,175,55,.25);
+
+border-radius:25px;
+
+padding:45px;
+
+backdrop-filter:blur(20px);
+
+}
+
+.brand-box img{
+
+width:120px;
+margin-bottom:25px;
+
+}
+
+.brand-box h1{
+
+font-family:'Cinzel',serif;
+
+font-size:46px;
+
+color:var(--pink);
+
+margin-bottom:20px;
+
+}
+
+.brand-box p{
+
+line-height:1.9;
+color:#ddd;
+
+margin-bottom:30px;
+
+}
+
+.brand-box ul{
+
+list-style:none;
+
+}
+
+.brand-box li{
+
+margin-bottom:18px;
+font-size:17px;
+
+}
+
+.brand-box i{
+
+color:var(--gold);
+margin-right:12px;
+
+}
+
+/* ==========================
+RIGHT SIDE
+========================== */
+
+.login-card{
+
+width:700px;        /* Increase this to 750px or 800px if needed */
+max-width:90vw;     /* Mobile pe automatically adjust ho jayega */
+
+padding:55px 60px;
+
+background:rgba(22,22,22,.92);
+
+border:1px solid rgba(212,175,55,.28);
+
+border-radius:24px;
+
+backdrop-filter:blur(20px);
+
+box-shadow:0 20px 70px rgba(0,0,0,.55);
+
+}
+
+.login-card h2{
+
+font-family:'Cinzel',serif;
+
+font-size:36px;
+
+color:var(--gold);
+
+margin-bottom:10px;
+
+}
+
+.login-card p{
+
+color:#bbb;
+
+margin-bottom:35px;
+
+}
+
+.input-box{
+
+margin-bottom:22px;
+
+}
+
+.input-box label{
+
+display:block;
+
+margin-bottom:10px;
+
+font-weight:600;
+
+}
+
+.input-box input{
+
+width:100%;
+
+height:56px;
+
+padding:0 18px;
+
+font-size:16px;
+
+background:#121212;
+
+border:1px solid rgba(212,175,55,.22);
+
+border-radius:14px;
+
+color:white;
+
+transition:.3s;
+
+}
+
+.input-box input:focus{
+
+border-color:var(--gold);
+
+box-shadow:0 0 0 3px rgba(212,175,55,.15);
+
+}
+
+.remember-row{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+font-size:14px;
+
+margin-bottom:30px;
+
+}
+
+.remember-row a{
+
+color:var(--pink);
+
+text-decoration:none;
+
+}
+
+.login-btn{
+
+width:100%;
+
+padding:18px;
+
+background:linear-gradient(135deg,var(--gold),var(--bright));
+
+border:none;
+
+border-radius:14px;
+
+font-weight:700;
+
+font-size:17px;
+
+cursor:pointer;
+
+transition:.3s;
+
+color:#000;
+
+}
+
+.login-btn:hover{
+
+transform:translateY(-3px);
+
+}
+
+.divider{
+
+text-align:center;
+
+margin:28px 0;
+
+position:relative;
+
+}
+
+.divider span{
+
+background:#161616;
+
+padding:0 20px;
+
+position:relative;
+
+z-index:5;
+
+}
+
+.divider::before{
+
+content:"";
+
+position:absolute;
+
+left:0;
+
+top:50%;
+
+width:100%;
+
+height:1px;
+
+background:#444;
+
+}
+
+.google-btn{
+
+width:100%;
+
+padding:17px;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+gap:12px;
+
+background:white;
+
+color:#222;
+
+border:none;
+
+border-radius:14px;
+
+cursor:pointer;
+
+font-weight:600;
+
+font-size:16px;
+
+transition:.3s;
+
+}
+
+.google-btn:hover{
+
+transform:translateY(-3px);
+
+}
+
+#message{
+
+margin-top:20px;
+
+text-align:center;
+
+font-weight:600;
+
+word-break:break-word;
+
+overflow-wrap:anywhere;
+
+}
+
+/* ==========================
+MOBILE
+========================== */
+
+@media(max-width:768px){
+
+.nav-container{
+
+padding:15px;
+
+display:flex;
+flex-direction:column;
+
+gap:15px;
+
+}
+
+.nav-links{
+
+width:100%;
+
+justify-content:center;
+
+flex-wrap:wrap;
+
+gap:8px;
+
+border-radius:20px;
+
+}
+
+.nav-links a{
+
+padding:10px 16px;
+
+font-size:12px;
+
+}
+
+.login-section{
+
+padding:120px 15px 30px;
+
+}
+
+.login-container{
+
+max-width:100%;
+
+padding:0 15px;
+
+}
+
+.login-card{
+
+padding:28px;
+
+border-radius:18px;
+
+}
+
+.login-card h2{
+
+font-size:30px;
+
+text-align:center;
+
+}
+
+.login-card p{
+
+text-align:center;
+
+}
+
+.login-btn,
+.google-btn{
+
+padding:15px;
+
+font-size:15px;
+
+}
+
+.remember-row{
+
+display:flex;
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:12px;
+
+}
+
+}
+
+/* ==========================
+SMALL PHONES
+========================== */
+
+@media(max-width:480px){
+
+.login-card{
+
+padding:22px 18px;
+
+}
+
+.login-card h2{
+
+font-size:26px;
+
+}
+
+.input-box input{
+
+padding:14px;
+
+font-size:14px;
+
+}
+
+.google-btn{
+
+font-size:14px;
+
+}
+
+.nav-links{
+
+font-size:13px;
+
+gap:10px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<nav class="nav-container">
+
+<a href="index.html" class="logo">
+
+</a>
+
+<div class="nav-links">
+
+<a href="index.html">Home</a>
+
+<a href="index.html#products">Products</a>
+
+<a href="about.html">About</a>
+
+<a href="testimonials.html">Testimonials</a>
+
+<a href="contact.html">Contact</a>
+
+</div>
+
+</nav>
+
+</header>
+
+<section class="login-section">
+
+<div class="background-overlay"></div>
+
+<div class="login-container">
+
+<div class="login-right">
+
+<div class="login-card">
+
+<h2>Seller Login</h2>
+
+<p>
+
+Login to access your dashboard.
+
+</p>
+
+<form id="loginForm">
+
+<div class="input-box">
+
+<label>Email</label>
+
+<input
+type="email"
+id="email"
+placeholder="Enter your email"
+required>
+
+</div>
+
+<div class="input-box">
+
+<label>Password</label>
+
+<input
+type="password"
+id="password"
+placeholder="Enter your password"
+required>
+
+</div>
+
+<div class="remember-row">
+
+<label>
+
+<input type="checkbox">
+
+Remember Me
+
+</label>
+
+<a href="#">Forgot Password?</a>
+
+</div>
+
+<button
+
+type="submit"
+
+class="login-btn"
+
+>
+
+LOGIN
+
+</button>
+
+<div class="divider">
+
+<span>OR</span>
+
+</div>
+
+<button
+
+type="button"
+
+class="google-btn"
+
+id="googleLogin"
+
+>
+
+<img
+
+src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+
+width="20"
+
+>
+
+Continue with Google
+
+</button>
+
+<div id="message"></div>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
+<script src="seller-login.js"></script>
+
+</body>
+
+</html>
