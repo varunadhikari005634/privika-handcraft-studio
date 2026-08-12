@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Naga Decor</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Poppins&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../style.css">
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #000;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   BACK BUTTON
+========================================================= */
+
+.product-btn {
+    position: fixed;
+    top: 18px;
+    left: 18px;
+    z-index: 1000;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 11px 20px;
+
+    background: rgba(0, 0, 0, 0.92);
+    color: #ffd700;
+
+    border: 1px solid rgba(255, 215, 0, 0.45);
+    border-radius: 30px;
+
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: all 0.3s ease;
+}
+
+.product-btn:hover {
+    background: #ffd700;
+    color: #000;
+
+    border-color: #ffd700;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 25px rgba(255, 215, 0, 0.25);
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.product-header {
+    width: 100%;
+    max-width: 1100px;
+
+    margin: 105px auto 55px;
+
+    padding: 0 25px;
+
+    text-align: center;
+}
+
+.product-header h1 {
+    font-family: 'Cinzel', serif;
+
+    font-size:
+        clamp(2.4rem, 5vw, 4rem);
+
+    line-height: 1.2;
+
+    color: #ffd700;
+
+    margin-bottom: 25px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+.product-header .desc {
+    max-width: 900px;
+
+    margin: auto;
+
+    color: #d0d0d0;
+
+    font-size: 1rem;
+
+    line-height: 1.85;
+}
+
+
+/* =========================================================
+   GALLERY
+========================================================= */
+
+.gallery-section {
+    width: 100%;
+
+    max-width: 1500px;
+
+    margin: 0 auto;
+
+    padding: 0 40px 90px;
+}
+
+.gallery-grid {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 32px;
+
+    align-items: stretch;
+}
+
+
+/* =========================================================
+   PRODUCT CARD
+========================================================= */
+
+.gallery-card {
+    width: 100%;
+    min-width: 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            #171717 0%,
+            #090909 100%
+        );
+
+    border:
+        1px solid rgba(255, 215, 0, 0.28);
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.65);
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+}
+
+.gallery-card:hover {
+    transform: translateY(-8px);
+
+    border-color: #ffd700;
+
+    box-shadow:
+        0 20px 45px rgba(0, 0, 0, 0.8),
+        0 0 30px rgba(255, 215, 0, 0.12);
+}
+
+
+/* =========================================================
+   IMAGE WRAPPER
+========================================================= */
+
+.gallery-card .image-wrapper {
+    position: relative;
+
+    width: 100%;
+    height: 360px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #1c1c1c 0%,
+            #080808 78%
+        );
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    border-bottom:
+        1px solid rgba(255, 215, 0, 0.14);
+}
+
+
+/* =========================================================
+   PRODUCT IMAGE
+========================================================= */
+
+.gallery-card img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: contain;
+
+    cursor: zoom-in;
+
+    transition:
+        transform 0.5s ease,
+        filter 0.4s ease;
+}
+
+.gallery-card:hover img {
+    transform: scale(1.045);
+}
+
+
+/* =========================================================
+   SOLD OUT OVERLAY
+========================================================= */
+
+.gallery-card .sold-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 10;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 0, 0, 0.30),
+            rgba(0, 0, 0, 0.72)
+        );
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   SOLD OUT BADGE
+========================================================= */
+
+.gallery-card .sold-badge {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 14px 32px;
+
+    background:
+        rgba(0, 0, 0, 0.90);
+
+    color: #ffd700;
+
+    border:
+        2px solid #ffd700;
+
+    border-radius: 8px;
+
+    font-family: 'Cinzel', serif;
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    text-shadow:
+        0 0 12px rgba(255, 215, 0, 0.45);
+
+    box-shadow:
+        0 0 28px rgba(255, 215, 0, 0.28);
+
+    transform: rotate(-4deg);
+}
+
+
+/* =========================================================
+   SOLD PRODUCT IMAGE
+========================================================= */
+
+.gallery-card .image-wrapper.is-sold img {
+    filter:
+        grayscale(40%)
+        brightness(0.62);
+
+    transform: scale(1);
+}
+
+.gallery-card:hover
+.image-wrapper.is-sold img {
+    transform: scale(1);
+}
+
+
+/* =========================================================
+   SOLD CARD BORDER
+========================================================= */
+
+.gallery-card:has(.sold-overlay) {
+    border-color:
+        rgba(255, 215, 0, 0.45);
+}
+
+
+/* =========================================================
+   PRODUCT NAME
+========================================================= */
+
+.gallery-card h3 {
+    width: 100%;
+
+    min-height: 68px;
+
+    padding:
+        20px 20px 12px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    color: #ffd700;
+
+    background: #050505;
+
+    font-family: 'Cinzel', serif;
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+    line-height: 1.4;
+
+    letter-spacing: 0.7px;
+}
+
+
+/* =========================================================
+   PRODUCT INFORMATION
+========================================================= */
+
+.product-info {
+    margin:
+        0 20px 20px;
+
+    padding:
+        20px;
+
+    background:
+        rgba(255, 255, 255, 0.025);
+
+    border:
+        1px solid rgba(255, 215, 0, 0.15);
+
+    border-radius: 13px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 14px;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.product-description {
+    padding-bottom: 16px;
+
+    border-bottom:
+        1px solid rgba(255, 215, 0, 0.14);
+}
+
+.product-description .detail-label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #ffd700;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1.3px;
+}
+
+.product-description p {
+    margin: 0;
+
+    color: #d4d4d4;
+
+    font-size: 14px;
+
+    line-height: 1.75;
+
+    text-align: left;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   DETAIL ROWS
+========================================================= */
+
+.product-detail-row {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 7px;
+
+    padding-bottom: 10px;
+
+    font-size: 14px;
+
+    line-height: 1.55;
+}
+
+.product-detail-row:last-child {
+    padding-bottom: 0;
+}
+
+
+/* =========================================================
+   LABEL
+========================================================= */
+
+.detail-label {
+    color: #ffd700;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   VALUE
+========================================================= */
+
+.detail-value {
+    color: #e0e0e0;
+
+    font-weight: 400;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   PRICE
+========================================================= */
+
+.product-price {
+    margin:
+        0 20px 22px;
+
+    padding:
+        13px 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 215, 0, 0.08),
+            rgba(255, 215, 0, 0.025)
+        );
+
+    border:
+        1px solid rgba(255, 215, 0, 0.22);
+
+    border-radius: 10px;
+
+    color: #ffd700;
+
+    font-size: 18px;
+
+    font-weight: 600;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   COMING SOON
+========================================================= */
+
+.gallery-card .coming-soon {
+    margin:
+        0 20px 22px;
+
+    padding:
+        20px 18px;
+
+    min-height: 65px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 215, 0, 0.10),
+            rgba(255, 215, 0, 0.025)
+        );
+
+    border:
+        1px solid rgba(255, 215, 0, 0.35);
+
+    border-radius: 12px;
+
+    text-align: center;
+}
+
+
+/* Gold accent line */
+
+.gallery-card .coming-soon::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 4px;
+    height: 100%;
+
+    background: #ffd700;
+
+    box-shadow:
+        0 0 15px rgba(255, 215, 0, 0.7);
+}
+
+
+/* Coming Soon Text */
+
+.gallery-card .coming-soon span {
+    color: #ffd700;
+
+    font-family: 'Cinzel', serif;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    letter-spacing: 2.5px;
+
+    text-transform: uppercase;
+
+    text-shadow:
+        0 0 10px rgba(255, 215, 0, 0.35);
+}
+
+
+/* =========================================================
+   NO IMAGE
+========================================================= */
+
+.no-image {
+    width: 100%;
+
+    height: 360px;
+
+    background: #111;
+
+    color: #777;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   NO PRODUCTS
+========================================================= */
+
+.no-products {
+    grid-column: 1 / -1;
+
+    width: 100%;
+
+    padding:
+        80px 20px;
+
+    color: #999;
+
+    font-size: 16px;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   IMAGE VIEWER
+========================================================= */
+
+.image-viewer {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 99999;
+
+    background:
+        rgba(0, 0, 0, 0.97);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+
+    backdrop-filter: blur(10px);
+}
+
+.viewer-content {
+    width: 100%;
+
+    max-width: 1100px;
+
+    max-height: 92vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+}
+
+.viewer-content img {
+    max-width: 100%;
+
+    max-height: 80vh;
+
+    width: auto;
+    height: auto;
+
+    object-fit: contain;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 0 45px rgba(0, 0, 0, 0.9);
+}
+
+.viewer-content h2 {
+    margin-top: 17px;
+
+    color: #ffd700;
+
+    font-family: 'Cinzel', serif;
+
+    font-size: 23px;
+}
+
+
+/* =========================================================
+   CLOSE BUTTON
+========================================================= */
+
+.close-viewer {
+    position: absolute;
+
+    top: 20px;
+    right: 25px;
+
+    width: 48px;
+    height: 48px;
+
+    padding: 0;
+
+    border-radius: 50%;
+
+    border:
+        1px solid #ffd700;
+
+    background:
+        rgba(0, 0, 0, 0.85);
+
+    color: #ffd700;
+
+    font-size: 30px;
+
+    cursor: pointer;
+
+    transition:
+        all 0.3s ease;
+}
+
+.close-viewer:hover {
+    background: #ffd700;
+
+    color: #000;
+
+    transform: scale(1.05);
+
+    box-shadow:
+        0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .gallery-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 25px;
+    }
+
+    .gallery-card .image-wrapper,
+    .no-image {
+        height: 330px;
+    }
+
+    .gallery-card .sold-badge {
+        padding: 12px 26px;
+
+        font-size: 16px;
+    }
+}
+
+
+/* =========================================================
+   SMALL TABLET
+========================================================= */
+
+@media (max-width: 750px) {
+
+    .gallery-section {
+        padding:
+            0 20px 60px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+
+        max-width: 620px;
+
+        margin: auto;
+    }
+
+    .gallery-card .image-wrapper,
+    .no-image {
+        height: 380px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 550px) {
+
+    .product-btn {
+        top: 12px;
+
+        left: 12px;
+
+        padding:
+            9px 15px;
+
+        font-size: 11px;
+    }
+
+    .product-header {
+        margin-top: 82px;
+
+        margin-bottom: 40px;
+
+        padding:
+            0 16px;
+    }
+
+    .product-header h1 {
+        font-size: 2.15rem;
+
+        margin-bottom: 18px;
+    }
+
+    .product-header .desc {
+        font-size: 0.9rem;
+
+        line-height: 1.75;
+    }
+
+    .gallery-section {
+        padding:
+            0 14px 50px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+
+        gap: 22px;
+    }
+
+    .gallery-card {
+        border-radius: 17px;
+    }
+
+    .gallery-card .image-wrapper,
+    .no-image {
+        height: 330px;
+    }
+
+    .gallery-card h3 {
+        min-height: 62px;
+
+        padding:
+            18px 15px 10px;
+
+        font-size: 18px;
+    }
+
+    .product-info {
+        margin:
+            0 14px 17px;
+
+        padding:
+            16px 15px;
+
+        gap: 12px;
+    }
+
+    .product-description {
+        padding-bottom: 13px;
+    }
+
+    .product-description p {
+        font-size: 13px;
+
+        line-height: 1.7;
+    }
+
+    .product-detail-row {
+        font-size: 13px;
+
+        gap: 6px;
+    }
+
+    .product-price {
+        margin:
+            0 14px 17px;
+
+        padding:
+            11px 15px;
+
+        font-size: 16px;
+    }
+
+
+    /* SOLD OUT MOBILE */
+
+    .gallery-card .sold-badge {
+        padding:
+            11px 22px;
+
+        font-size: 14px;
+
+        letter-spacing: 2px;
+
+        transform: rotate(-3deg);
+    }
+
+
+    /* COMING SOON MOBILE */
+
+    .gallery-card .coming-soon {
+        margin:
+            0 14px 17px;
+
+        padding:
+            18px 12px;
+
+        min-height: 58px;
+    }
+
+    .gallery-card .coming-soon span {
+        font-size: 13px;
+
+        letter-spacing: 2px;
+    }
+
+
+    .viewer-content img {
+        max-width: 95vw;
+
+        max-height: 75vh;
+    }
+
+    .viewer-content h2 {
+        font-size: 17px;
+    }
+
+    .close-viewer {
+        top: 12px;
+
+        right: 12px;
+
+        width: 42px;
+
+        height: 42px;
+
+        font-size: 27px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .product-header h1 {
+        font-size: 1.85rem;
+    }
+
+    .gallery-card .image-wrapper,
+    .no-image {
+        height: 285px;
+    }
+
+    .product-info {
+        margin:
+            0 11px 15px;
+
+        padding:
+            14px 13px;
+    }
+
+    .product-detail-row {
+        flex-direction: column;
+
+        gap: 2px;
+    }
+
+    .detail-label {
+        white-space: normal;
+    }
+
+    .gallery-card .sold-badge {
+        padding:
+            10px 18px;
+
+        font-size: 12px;
+
+        letter-spacing: 1.5px;
+    }
+
+    .gallery-card .coming-soon {
+        margin:
+            0 11px 15px;
+    }
+
+    .gallery-card .coming-soon span {
+        font-size: 12px;
+
+        letter-spacing: 1.5px;
+    }
+}
+
+</style>
+</head>
+
+<body data-category="Naga Home Decor">
+
+<a href="../index.html#products" class="product-btn">
+    ← BACK TO PRODUCTS
+</a>
+
+    <section class="product-header">
+
+        <h1>Naga Decor</h1>
+
+        <p class="desc">
+            Inspired by the rich tribal heritage of Nagaland, our décor collection
+            celebrates traditional craftsmanship, natural materials, and timeless
+            design.
+
+            Handcrafted by skilled artisans, each piece reflects the cultural
+            spirit of the region while blending seamlessly with modern interiors.
+
+            From statement furniture to decorative accents, every creation brings
+            authenticity, warmth, and character to your space.
+        </p>
+
+    </section>
+
+
+    <section class="gallery-section">
+
+        <div id="products-container" class="gallery-grid"></div>
+
+    </section>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="../supabase.js"></script>
+
+<script src="load-products.js"></script>
+</body>
+</html>
