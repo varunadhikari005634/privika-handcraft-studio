@@ -314,11 +314,14 @@ header{
     margin-bottom:50px;
 }
 
-.product-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-    gap:30px;
-    align-items:start;
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px 30px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: start;
 }
 
 .product-card{
@@ -340,6 +343,287 @@ header{
     display:flex;
     justify-content:center;
     align-items:center;
+}
+
+/* ==========================================
+   CATEGORY IMAGE SLIDER
+========================================== */
+
+.category-slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #111;
+}
+
+
+/* ==========================================
+   SLIDES
+========================================== */
+
+.category-slides {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+.category-slide {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    opacity: 0;
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+
+    transform: scale(1.02);
+
+    pointer-events: none;
+}
+
+
+.category-slide.active {
+    opacity: 1;
+
+    transform: scale(1);
+
+    pointer-events: auto;
+}
+
+
+/* ==========================================
+   IMAGE
+========================================== */
+
+.category-slide img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    object-position: center;
+
+    padding: 15px;
+
+    display: block;
+
+    transition:
+        transform 0.5s ease;
+}
+
+
+.product-card:hover
+.category-slide.active img {
+
+    transform: scale(1.05);
+
+}
+
+
+/* ==========================================
+   PREVIOUS / NEXT BUTTON
+========================================== */
+
+.category-slider-prev,
+.category-slider-next {
+
+    position: absolute;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 38px;
+    height: 38px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(0,0,0,0.65);
+
+    color: #ffd700;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    z-index: 10;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    transition:
+        background 0.3s ease,
+        transform 0.3s ease;
+
+}
+
+
+.category-slider-prev {
+
+    left: 10px;
+
+}
+
+
+.category-slider-next {
+
+    right: 10px;
+
+}
+
+
+.category-slider-prev:hover,
+.category-slider-next:hover {
+
+    background: #ffd700;
+
+    color: #000;
+
+    transform:
+        translateY(-50%)
+        scale(1.08);
+
+}
+
+
+/* ==========================================
+   DOTS
+========================================== */
+
+.category-slider-dots {
+
+    position: absolute;
+
+    left: 50%;
+
+    bottom: 10px;
+
+    transform: translateX(-50%);
+
+    display: flex;
+
+    gap: 6px;
+
+    z-index: 20;
+
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    background: rgba(0,0,0,0.45);
+
+}
+
+
+.category-slider-dot {
+
+    width: 7px;
+    height: 7px;
+
+    padding: 0;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.45);
+
+    cursor: pointer;
+
+    transition:
+        all 0.3s ease;
+
+}
+
+
+.category-slider-dot.active {
+
+    width: 20px;
+
+    border-radius: 10px;
+
+    background: #ffd700;
+
+}
+
+
+/* ==========================================
+   NO IMAGE
+========================================== */
+
+.category-no-image {
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    color: #777;
+
+    font-size: 14px;
+
+}
+
+
+.category-no-image i {
+
+    font-size: 35px;
+
+    color: #555;
+
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width:768px) {
+
+    .product-image-container {
+
+        height: 260px;
+
+    }
+
+
+    .category-slider-prev,
+    .category-slider-next {
+
+        width: 32px;
+        height: 32px;
+
+        font-size: 16px;
+
+    }
+
+
+    .category-slide img {
+
+        padding: 10px;
+
+    }
+
 }
 
 .product-image-container img{
@@ -393,6 +677,36 @@ header{
     flex-direction:column;
     gap:15px;
     z-index:2000;
+}
+
+.seller-login-btn {
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #22c55e;
+    color: #fff;
+
+    border-radius: 50%;
+    border: none;
+
+    text-decoration: none;
+
+    font-size: 20px;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+
+    transition: all 0.3s ease;
+}
+
+.seller-login-btn:hover {
+    background: #16a34a;
+    color: #fff;
+
+    transform: scale(1.1);
 }
 
 .app-trigger{
@@ -712,6 +1026,10 @@ header{
     <i class="fa-solid fa-robot"></i>
 </button>
 
+<a href="seller-login.html" class="floating-btn seller-login-btn" title="Seller Login">
+    <i class="fas fa-user-shield"></i>
+</a>
+
 </div>
 
 <main>
@@ -751,136 +1069,12 @@ header{
 
 </div>
 <div class="info-notice-box">
-
 <div class="slider-box">
 
-<div class="slide-wrapper active">
-    <img src="images/studio.png" class="slide-bg">
-    <img src="images/studio.png" class="slide">
-</div>
+    <div id="slider-products"></div>
 
-<!-- Naga Panels -->
-<div class="slide-wrapper">
-    <img src="images/naga panels/6 feet naga panel.webp" class="slide-bg">
-    <img src="images/naga panels/6 feet naga panel.webp" class="slide">
-</div>
-
-<div class="slide-wrapper">
-    <img src="images/naga panels/color naga panel.webp" class="slide-bg">
-    <img src="images/naga panels/color naga panel.webp" class="slide">
-</div>
-
-<div class="slide-wrapper">
-    <img src="images/naga panels/curve naga panel.webp" class="slide-bg">
-    <img src="images/naga panels/curve naga panel.webp" class="slide">
-</div>
-
-<div class="slide-wrapper">
-    <img src="images/naga panels/forest naga panel.webp" class="slide-bg">
-    <img src="images/naga panels/forest naga panel.webp" class="slide">
-</div>
-
-<div class="slide-wrapper">
-    <img src="images/naga panels/naga ancient panel.webp" class="slide-bg">
-    <img src="images/naga panels/naga ancient panel.webp" class="slide">
-</div>
-
-<div class="slide-wrapper">
-    <img src="images/naga panels/naga panel 1.webp" class="slide-bg">
-    <img src="images/naga panels/naga panel 1.webp" class="slide">
-</div>
-
-<div class="slide-wrapper">
-    <img src="images/naga panels/naga panel 2.webp" class="slide-bg">
-    <img src="images/naga panels/naga panel 2.webp" class="slide">
-</div>
-
-<div class="slide-wrapper">
-    <img src="images/naga panels/naga panel 3.webp" class="slide-bg">
-    <img src="images/naga panels/naga panel 3.webp" class="slide">
-</div>
-
-<div class="slide-wrapper">
-    <img src="images/naga panels/naga panel 4.webp" class="slide-bg">
-    <img src="images/naga panels/naga panel 4.webp" class="slide">
-</div>
-
-<div class="slide-wrapper">
-    <img src="images/naga panels/naga panel 5.webp" class="slide-bg">
-    <img src="images/naga panels/naga panel 5.webp" class="slide">
-</div>
-
-<div class="slide-wrapper">
-    <img src="images/naga panels/naga wooden panel.webp" class="slide-bg">
-    <img src="images/naga panels/naga wooden panel.webp" class="slide">
-</div>
-
-<div class="slide-wrapper">
-    <img src="images/naga panels/small naga panel.jpeg" class="slide-bg">
-    <img src="images/naga panels/small naga panel.jpeg" class="slide">
-</div>
-
-<!-- Naga Tables -->
-<div class="slide-wrapper">
-    <img src="images/naga table/naga big pointed table.png" class="slide-bg">
-    <img src="images/naga table/naga big pointed table.png" class="slide">
-</div>
-
-<div class="slide-wrapper">
-    <img src="images/naga table/naga circular table.webp" class="slide-bg">
-    <img src="images/naga table/naga circular table.webp" class="slide">
-</div>
-
-<div class="slide-wrapper">
-    <img src="images/naga table/naga coffee table.png" class="slide-bg">
-    <img src="images/naga table/naga coffee table.png" class="slide">
-</div>
-
-<div class="slide-wrapper">
-    <img src="images/naga table/naga dining table.png" class="slide-bg">
-    <img src="images/naga table/naga dining table.png" class="slide">
-</div>
-
-<div class="slide-wrapper">
-    <img src="images/naga table/naga pointed table.png" class="slide-bg">
-    <img src="images/naga table/naga pointed table.png" class="slide">
-</div>
-
-<div class="slide-wrapper">
-    <img src="images/naga table/naga table.png" class="slide-bg">
-    <img src="images/naga table/naga table.png" class="slide">
-</div>
-
-<div class="slide-wrapper">
-    <img src="images/naga table/small naga table.jpeg" class="slide-bg">
-    <img src="images/naga table/small naga table.jpeg" class="slide">
-</div>
-
-<!-- Painted Panels -->
-<div class="slide-wrapper">
-    <img src="images/painted panel/painted panel 25.webp" class="slide-bg">
-    <img src="images/painted panel/painted panel 25.webp" class="slide">
-</div>
-
-<!-- Statues -->
-<div class="slide-wrapper">
-    <img src="images/statues/naga statue 13.webp" class="slide-bg">
-    <img src="images/statues/naga statue 13.webp" class="slide">
-</div>
-
-<!-- Antique Furniture -->
-<div class="slide-wrapper">
-    <img src="images/images/antique furniture/smallitems.webp" class="slide-bg">
-    <img src="images/images/antique furniture/smallitems.webp" class="slide">
-</div>
-
-<div class="slide-wrapper">
-    <img src="images/images/antique furniture/nagamug.webp" class="slide-bg">
-    <img src="images/images/antique furniture/nagamug.webp" class="slide">
-</div>
-
-<button class="prev">&#10094;</button>
-<button class="next">&#10095;</button>
+    <button class="prev">&#10094;</button>
+    <button class="next">&#10095;</button>
 
 </div>
     <div class="note-box">
@@ -902,97 +1096,320 @@ header{
 </div>
 </section>
 
-    <section id="products" class="section-wrapper">
-        <h2 class="section-title">Our Best Selling Handcraft Products</h2>
-        <p class="section-subtitle-seo">discover curated masterworks of artisan creation & rare heritage accents for your space</p>
-        
-        <div class="product-grid" id="featuredGrid">
-            
-            <article class="product-card">
+    <section id="products" class="products-section">
+
+    <div class="section-wrapper">
+
+        <h2 class="section-title">
+            Our Collections
+        </h2>
+
+        <p class="section-subtitle-seo">
+            Explore our handcrafted collection of traditional and premium
+            wooden décor, furniture, panels and artistic creations.
+        </p>
+
+        <div class="products-grid">
+
+            <!-- NAGA PANELS -->
+            <div class="product-card" data-category="Naga Panels">
+
                 <div class="product-image-container">
-						<img src="images/naga panels/small naga panel.jpeg" alt="Naga Panels">
+                    <!-- Image will be loaded from Supabase -->
                 </div>
+
                 <div class="product-info">
-                    <h3 class="product-title">Naga Panels</h3>
-                    <a href="products/naga panels.html" class="view-btn">View Details</a>
+
+                    <h3 class="product-title">
+                        Naga Panels
+                    </h3>
+
+                    <a href="products/naga panels.html"
+                       class="view-btn">
+                        View Details
+                    </a>
+
                 </div>
-            </article>
 
-<article class="product-card">
-                    <div class="product-image-container">
-					<img src="images/naga table/small naga table.jpeg" alt="Naga Table">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Naga Table</h3>
-                        <a href="products/naga table.html" class="view-btn">View Details</a>
-                    </div>
-                </article>
+            </div>
 
-<article class="product-card">
-                    <div class="product-image-container">
-                        <img src="images/painted panel/painted panel 25.webp">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Painted Panels</h3>
-                        <a href="products/painted naga panels.html" class="view-btn">View Details</a>
-                    </div>
-                </article>
 
-<article class="product-card">
-                    <div class="product-image-container"> 
-						<img src="../git add naga-decor/various antiques.webp" alt="Various Antiques">
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Naga Decor</h3>
-                        <a href="products/naga decor.html" class="view-btn">View Details</a>
-                    </div>
-                </article>
 
-            <article class="product-card">
+            <!-- PAINTED PANELS -->
+            <div class="product-card" data-category="Painted Panels">
+
                 <div class="product-image-container">
-                    <img src="images/images/antique furniture/smallitems.webp">
+                    <!-- Image will be loaded from Supabase -->
                 </div>
-                <div class="product-info">
-                    <h3 class="product-title">Antique Furniture</h3>
-                    <a href="products/antique furniture.html" class="view-btn">View Details</a>
-                </div>
-            </article>
 
-            <article class="product-card">
-                <div class="product-image-container">
-                    <img src="../images/images/wallhorse.webp">
-                </div>
                 <div class="product-info">
-                    <h3 class="product-title">Wall Decors</h3>
-                    <a href="products/wall decors.html" class="view-btn">View Details</a>
-                </div>
-            </article>
 
-            <article class="product-card">
-                <div class="product-image-container">
-                    <img src="../images/images/nepali pot2.webp" alt="Nepali Pot">
-                </div>
-                <div class="product-info">
-                    <h3 class="product-title">Pots</h3>
-                    <a href="products/pots.html" class="view-btn">View Details</a>
-                </div>
-            </article>
+                    <h3 class="product-title">
+                        Painted Panels
+                    </h3>
 
-            <article class="product-card">
+                    <a href="products/painted naga panels.html"
+                       class="view-btn">
+                        View Details
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- NAGA DECOR -->
+            <div class="product-card" data-category="Naga Home Decor">
+
                 <div class="product-image-container">
-                    <img src="../images/statues/naga statue 13.webp" alt="Naga Statue">
+                    <!-- Image will be loaded from Supabase -->
                 </div>
+
                 <div class="product-info">
-                    <h3 class="product-title">Statues</h3>
-                    <a href="products/statues.html" class="view-btn">View Details</a>
+
+                    <h3 class="product-title">
+                        Naga Home Decor
+                    </h3>
+
+                    <a href="products/naga decor.html"
+                       class="view-btn">
+                        View Details
+                    </a>
+
                 </div>
-			
-            </article>
-	<div id="searchFallback" style="display:none; text-align:center; margin-top:30px; color:#aaa;">
-    No products found.
+
+            </div>
+
+
+            <!-- Naga Wooden Table -->
+            <div class="product-card" data-category="Naga Table">
+
+                <div class="product-image-container">
+                    <!-- Image will be loaded from Supabase -->
+                </div>
+
+                <div class="product-info">
+
+                    <h3 class="product-title">
+                        Naga Table
+                    </h3>
+
+                    <a href="products/naga table.html"
+                       class="view-btn">
+                        View Details
+                    </a>
+
+                </div>
+
+            </div>
+
+
+  <!-- HOME DECOR-->
+            <div class="product-card" data-category="Home Decor">
+
+                <div class="product-image-container">
+                    <!-- Image will be loaded from Supabase -->
+                </div>
+
+                <div class="product-info">
+
+                    <h3 class="product-title">
+                        Home Decor
+                    </h3>
+
+                    <a href="products/Home Decor.html"
+                       class="view-btn">
+                        View Details
+                    </a>
+
+                </div>
+
+            </div>
+
+
+<!-- NAGA BENCH -->
+<div class="product-card" data-category="Naga Bench">
+
+    <div class="product-image-container">
+        <!-- Image will be loaded from Supabase -->
+    </div>
+
+    <div class="product-info">
+
+        <h3 class="product-title">
+            Naga Bench
+        </h3>
+
+        <a href="products/Naga Bench.html"
+           class="view-btn">
+            View Details
+        </a>
+
+    </div>
+
 </div>
-		</div>
-    </section>
+
+<!-- NAGA DOORS -->
+<div class="product-card" data-category="Naga Doors">
+
+    <div class="product-image-container">
+        <!-- Image will be loaded from Supabase -->
+    </div>
+
+    <div class="product-info">
+
+        <h3 class="product-title">
+            Naga Doors
+        </h3>
+
+        <a href="products/Naga Doors.html"
+           class="view-btn">
+            View Details
+        </a>
+
+    </div>
+
+</div>
+
+  <!-- NAGA GRINDERS-->
+            <div class="product-card" data-category="Naga Grinders">
+
+                <div class="product-image-container">
+                    <!-- Image will be loaded from Supabase -->
+                </div>
+
+                <div class="product-info">
+
+                    <h3 class="product-title">
+                        Naga Grinders
+                    </h3>
+
+                    <a href="products/Naga Grinders.html"
+                       class="view-btn">
+                        View Details
+                    </a>
+
+                </div>
+
+            </div>
+            
+   
+                <!-- Naga Home Decor-->
+            <div class="product-card" data-category="Naga Wooden Stools">
+
+                <div class="product-image-container">
+                    <!-- Image will be loaded from Supabase -->
+                </div>
+
+                <div class="product-info">
+
+                    <h3 class="product-title">
+                        Naga Wooden Stool
+                    </h3>
+
+                    <a href="products/Naga Wooden Stools.html"
+                       class="view-btn">
+                        View Details
+                    </a>
+
+                </div>
+
+            </div>
+            
+          <!-- Nagaland Tribal Decor Pieces-->
+            <div class="product-card" data-category="Nagaland Tribal Decor Pieces">
+
+                <div class="product-image-container">
+                    <!-- Image will be loaded from Supabase -->
+                </div>
+
+                <div class="product-info">
+
+                    <h3 class="product-title">
+                        Nagaland Tribal Decor Pieces
+                    </h3>
+
+                    <a href="products/Nagaland Tribal Decor Pieces.html"
+                       class="view-btn">
+                        View Details
+                    </a>
+
+                </div>
+
+            </div>
+            
+                     
+          <!-- South Indian Wooden Panels-->
+            <div class="product-card" data-category="South Indian Wooden Panels">
+
+                <div class="product-image-container">
+                    <!-- Image will be loaded from Supabase -->
+                </div>
+
+                <div class="product-info">
+
+                    <h3 class="product-title">
+                        South Indian Wooden Panels
+                    </h3>
+
+                    <a href="products/South Indian Wooden Panels.html"
+                       class="view-btn">
+                        View Details
+                    </a>
+
+                </div>
+
+            </div>
+            
+                      <!-- Wooden Candle Stand-->
+            <div class="product-card" data-category="Wooden Candle Stand">
+
+                <div class="product-image-container">
+                    <!-- Image will be loaded from Supabase -->
+                </div>
+
+                <div class="product-info">
+
+                    <h3 class="product-title">
+                        Wooden Candle Stand
+                    </h3>
+
+                    <a href="products/Wooden Candle Stand.html"
+                       class="view-btn">
+                        View Details
+                    </a>
+
+                </div>
+
+            </div>
+            
+            <!-- STATUES -->
+            <div class="product-card" data-category="Naga Statues">
+
+                <div class="product-image-container">
+                    <!-- Image will be loaded from Supabase -->
+                </div>
+
+                <div class="product-info">
+
+                    <h3 class="product-title">
+                        Naga Statues
+                    </h3>
+
+                    <a href="products/statues.html"
+                       class="view-btn">
+                        View Details
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 </main>
 
 <footer class="footer-container">
@@ -1093,9 +1510,6 @@ window.onload = function () {
             return "Hello 👋 Welcome to Privika Handcraft Studio. How can I help you today?";
         }
 
-        if(text.includes("product") || text.includes("products") || text.includes("sell")){
-            return "We offer Naga Panels, Naga Tables, Painted Panels, Antique Furniture, Pots, Wall Decor and Statues.";
-        }
 
         if(text.includes("contact") || text.includes("phone") || text.includes("call")){
             return "Call us on +91 9266821800 or email us at privikahandcraftstudio@gmail.com.";
@@ -1334,6 +1748,53 @@ updateHeroVideo();
 window.addEventListener("resize", updateHeroVideo);
 	
 </script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="supabase.js"></script>
+
+<script src="load-slider.js"></script>
+
+<script src="load-category-images.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", async () => {
+
+    // Check Supabase
+    if (typeof db === "undefined") {
+        console.error("❌ Supabase db not found");
+        return;
+    }
+
+    try {
+
+        // Record one website visit
+        const { error } = await db
+            .from("site_visits")
+            .insert({});
+
+        if (error) {
+            console.error(
+                "❌ Visit tracking failed:",
+                error
+            );
+            return;
+        }
+
+        console.log("✅ Website visit recorded");
+
+    } catch (error) {
+
+        console.error(
+            "❌ Visit tracking error:",
+            error
+        );
+
+    }
+
+});
+</script>
+
 </body>
 </html>
-
+</body>
+</html>
