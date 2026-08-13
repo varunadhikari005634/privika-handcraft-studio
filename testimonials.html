@@ -26,12 +26,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
 <style>
-    /* DESIGN SYSTEM: Deep Charcoal, Muted Ebony & Brilliant Gold Theme */
+
 /* =========================
-   RESET
+   DESIGN SYSTEM
 ========================= */
+
 *{
     margin:0;
     padding:0;
@@ -52,6 +52,7 @@ body{
 /* =========================
    COLORS
 ========================= */
+
 :root{
     --black:#0d0d0d;
     --dark:#161616;
@@ -82,31 +83,113 @@ header{
     align-items:center;
 }
 
+/* =========================
+   PREMIUM CAPSULE NAVIGATION
+========================= */
+
 .capsule-nav{
     display:flex;
-    gap:5px;
-    background:rgba(0,0,0,.7);
-    border:1px solid rgba(212,175,55,.3);
+    align-items:center;
+    justify-content:center;
+
+    gap:4px;
+
+    background:rgba(8,8,8,.96);
+
+    border:1px solid rgba(212,175,55,.45);
+
     border-radius:50px;
-    padding:6px 10px;
+
+    padding:6px;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.35),
+        inset 0 0 15px rgba(212,175,55,.04);
+
     overflow-x:auto;
     scrollbar-width:none;
 }
 
-.nav-link{
-    text-decoration:none;
-    color:#aaa;
-    padding:10px 18px;
-    border-radius:30px;
-    font-size:.8rem;
-    text-transform:uppercase;
-    letter-spacing:1px;
+.capsule-nav::-webkit-scrollbar{
+    display:none;
 }
 
-.nav-link.active,
+/* =========================
+   NAV LINKS
+========================= */
+
+.nav-link{
+    position:relative;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-decoration:none;
+
+    color:#bdbdbd;
+
+    padding:11px 20px;
+
+    border-radius:30px;
+
+    font-family:'Montserrat',sans-serif;
+
+    font-size:.78rem;
+    font-weight:500;
+
+    text-transform:uppercase;
+    letter-spacing:1.2px;
+
+    white-space:nowrap;
+
+    transition:
+        background .3s ease,
+        color .3s ease,
+        transform .3s ease,
+        box-shadow .3s ease;
+}
+
+/* Hover */
+
 .nav-link:hover{
-    background:var(--bright-gold);
+    color:#fff;
+
+    background:rgba(212,175,55,.12);
+
+    transform:translateY(-1px);
+}
+
+/* Active */
+
+.nav-link.active{
+    background:linear-gradient(
+        135deg,
+        #ffd700,
+        #d4af37
+    );
+
     color:#000;
+
+    box-shadow:
+        0 4px 14px rgba(255,215,0,.25);
+}
+
+/* Active Hover */
+
+.nav-link.active:hover{
+    background:linear-gradient(
+        135deg,
+        #ffe45c,
+        #d4af37
+    );
+
+    color:#000;
+
+    transform:translateY(-1px);
+
+    box-shadow:
+        0 5px 18px rgba(255,215,0,.35);
 }
 
 /* =========================
@@ -167,8 +250,6 @@ header{
     font-size:1.2rem;
     color:#fff;
 }
-
-
 
 /* =========================
    SLIDER + NOTE
@@ -242,6 +323,7 @@ header{
 /* =========================
    STUDIO NOTE
 ========================= */
+
 .note-box{
     background:rgba(255,255,255,0.12);
     backdrop-filter:blur(12px);
@@ -264,7 +346,6 @@ header{
     line-height:1.9;
     font-size:1rem;
 }
-
 
 /* =========================
    PRODUCTS
@@ -401,7 +482,11 @@ header{
     color:#000;
 }
 
-	#chatbot-box{
+/* =========================
+   CHATBOT
+========================= */
+
+#chatbot-box{
     position:fixed;
     right:90px;
     bottom:20px;
@@ -473,6 +558,7 @@ header{
     background:#ffd700;
     cursor:pointer;
 }
+
 /* =========================
    FOOTER
 ========================= */
@@ -507,6 +593,10 @@ header{
     color:var(--gold);
 }
 
+/* =========================
+   RATING STARS
+========================= */
+
 .star{
     font-size:34px;
     color:#ffffff;
@@ -525,75 +615,50 @@ header{
     color:#D4AF37;
     text-shadow:0 0 10px rgba(212,175,55,.5);
 }
-	
-/*==============================
-TESTIMONIALS
-==============================*/
+
+/* =========================
+   TESTIMONIALS
+========================= */
 
 .testimonials-hero{
-
     padding:30px 15px;
-
     text-align:center;
-
     background:#080808;
-
     border-bottom:1px solid rgba(212,175,55,.15);
-
 }
 
 .hero-tag{
-
     color:#d4af37;
-
     letter-spacing:3px;
-
     font-size:.85rem;
-
 }
 
 .testimonials-hero h1{
-
-    font-size:3rem;
-
     color:#fff;
-
     margin:20px 0;
-
     line-height:1.2;
     font-size:clamp(1.8rem,8vw,3rem);
 }
 
 .testimonials-hero p{
-
     color:#bdbdbd;
-
     max-width:750px;
-
     margin:auto;
-
     line-height:1.8;
-
 }
 
 .testimonials-wrapper{
-
     max-width:1400px;
-
     margin:auto;
-
     padding:80px 20px;
-
     display:grid;
-
     grid-template-columns:380px 1fr;
-
     gap:40px;
-
 }
-/* ===========================
+
+/* =========================
    LUXURY REVIEW CARD
-=========================== */
+========================= */
 
 .testimonial-slider{
     width:100%;
@@ -665,39 +730,29 @@ TESTIMONIALS
     opacity:.18;
 }
 
+/* =========================
+   REVIEW FORM
+========================= */
+
 .input-group{
-
     display:flex;
-
     flex-direction:column;
-
     margin-bottom:22px;
-
 }
 
 .input-group label{
-
     margin-bottom:8px;
-
     color:#d4af37;
-
 }
 
 .input-group input,
 .input-group textarea{
-
     background:#1b1b1b;
-
     color:#fff;
-
     border:1px solid rgba(212,175,55,.2);
-
     border-radius:12px;
-
     padding:14px;
-
     outline:none;
-
 }
 
 .rating-stars{
@@ -706,88 +761,115 @@ TESTIMONIALS
 }
 
 .review-box button{
-
     width:100%;
-
     padding:16px;
-
     background:#d4af37;
-
     color:#000;
-
     border:none;
-
     border-radius:12px;
-
     cursor:pointer;
-
     font-weight:600;
-
 }
 
 .review-box button:hover{
-
     background:#f5d76e;
-
 }
+
+/* =========================
+   ANIMATION
+========================= */
 
 @keyframes fadeIn{
 
-from{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
 
-opacity:0;
-transform:translateY(20px);
-
-}
-
-to{
-
-opacity:1;
-transform:translateY(0);
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
 
 }
-}
 
-	/* ===========================
+/* ===========================
    MOBILE RESPONSIVE
 =========================== */
 
 @media (max-width:768px){
 
-.nav-container{
-    padding:10px;
-    justify-content:center;
-}
+    /* NAVIGATION */
 
-.capsule-nav{
-    width:100%;
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:8px;
-    padding:8px;
-    border-radius:18px;
-    overflow:visible;
-}
+    .nav-container{
+        padding:10px 8px;
+        justify-content:center;
+    }
 
-.nav-link{
-    padding:10px 14px;
-    font-size:12px;
-    white-space:nowrap;
-}
+    .capsule-nav{
+        width:100%;
+        max-width:100%;
+
+        display:flex;
+        align-items:center;
+        justify-content:flex-start;
+
+        gap:3px;
+
+        padding:5px;
+
+        border-radius:35px;
+
+        overflow-x:auto;
+        overflow-y:hidden;
+
+        scrollbar-width:none;
+    }
+
+    .capsule-nav::-webkit-scrollbar{
+        display:none;
+    }
+
+    .nav-link{
+        flex:0 0 auto;
+
+        padding:10px 13px;
+
+        font-size:10px;
+
+        letter-spacing:.8px;
+
+        border-radius:25px;
+
+        white-space:nowrap;
+    }
+
+    .nav-link:hover{
+        transform:none;
+    }
+
+    .nav-link.active{
+        box-shadow:
+            0 3px 10px rgba(255,215,0,.25);
+    }
+
+    /* TESTIMONIAL HERO */
 
     .testimonials-hero{
         padding:40px 18px;
     }
-.testimonials-hero h1{
-    font-size:clamp(1.8rem,8vw,2.5rem);
-    line-height:1.2;
-}
 
-.testimonials-hero p{
-    font-size:15px;
-    line-height:1.7;
-}
+    .testimonials-hero h1{
+        font-size:clamp(1.8rem,8vw,2.5rem);
+        line-height:1.2;
+    }
+
+    .testimonials-hero p{
+        font-size:15px;
+        line-height:1.7;
+    }
+
+    /* TESTIMONIAL LAYOUT */
 
     .testimonials-wrapper{
         grid-template-columns:1fr;
@@ -822,18 +904,22 @@ transform:translateY(0);
         font-size:15px;
     }
 
-.floating-apps-panel{
-    right:10px;
-    top:auto;
-    bottom:20px;
-    transform:none;
-    gap:10px;
-}
+    /* FLOATING APPS */
+
+    .floating-apps-panel{
+        right:10px;
+        top:auto;
+        bottom:20px;
+        transform:none;
+        gap:10px;
+    }
 
     .app-trigger{
         width:45px;
         height:45px;
     }
+
+    /* CHATBOT */
 
     #chatbot-box{
         width:95%;
@@ -841,11 +927,29 @@ transform:translateY(0);
         height:70vh;
         bottom:10px;
     }
-	.review-card{
-
-min-height:auto;
 
 }
+
+/* ===========================
+   SMALL MOBILE DEVICES
+=========================== */
+
+@media (max-width:400px){
+
+    .nav-container{
+        padding:8px 5px;
+    }
+
+    .capsule-nav{
+        gap:2px;
+        padding:4px;
+    }
+
+    .nav-link{
+        padding:9px 10px;
+        font-size:9px;
+        letter-spacing:.6px;
+    }
 
 }
 
@@ -862,7 +966,7 @@ min-height:auto;
     <nav class="nav-container" aria-label="Main Navigation">
         <div class="capsule-nav">
 <a href="index.html" class="nav-link" id="homeBtn">Home</a>
-<a href="index.html#products">Products</a>
+<a href="index.html#products" class="nav-link">Products</a>
 <a href="about.html" class="nav-link">About</a>
 <a href="testimonials.html" class="nav-link active">Testimonials</a>
 <a href="contact.html" class="nav-link">Contact</a>
