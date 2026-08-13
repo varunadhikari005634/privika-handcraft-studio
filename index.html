@@ -1781,6 +1781,113 @@ header {
     }
 
 }
+/* =========================================================
+   MOBILE CATEGORY VIEW
+========================================================= */
+
+.mobile-category-selector {
+    display: none;
+}
+
+@media (max-width: 768px) {
+
+    /* Mobile par existing product cards hide */
+    .products-grid {
+        display: none;
+    }
+
+    /* Category selector show */
+    .mobile-category-selector {
+        display: block;
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 50;
+    }
+
+    .category-selector-btn {
+        width: 100%;
+        min-height: 52px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 14px 18px;
+
+        background: #111;
+
+        border: 1px solid rgba(212,175,55,.4);
+        border-radius: 14px;
+
+        color: #d4af37;
+
+        font-family: 'Montserrat', sans-serif;
+        font-size: .9rem;
+        font-weight: 600;
+
+        cursor: pointer;
+    }
+
+    .category-selector-btn i {
+        transition: transform .3s ease;
+    }
+
+    .category-selector-btn.active i {
+        transform: rotate(180deg);
+    }
+
+    /* Category list initially hidden */
+    .mobile-category-menu {
+        display: none;
+
+        margin-top: 8px;
+
+        width: 100%;
+
+        background: #111;
+
+        border: 1px solid rgba(212,175,55,.3);
+        border-radius: 14px;
+
+        overflow: hidden;
+
+        box-shadow: 0 15px 40px rgba(0,0,0,.6);
+    }
+
+    /* Category list open */
+    .mobile-category-menu.show {
+        display: block;
+    }
+
+    .mobile-category-menu a {
+        display: block;
+
+        width: 100%;
+
+        padding: 14px 17px;
+
+        color: #ddd;
+
+        text-decoration: none;
+
+        font-size: .84rem;
+
+        border-bottom: 1px solid rgba(255,255,255,.07);
+
+        transition: .2s ease;
+    }
+
+    .mobile-category-menu a:last-child {
+        border-bottom: none;
+    }
+
+    .mobile-category-menu a:active {
+        background: rgba(212,175,55,.12);
+        color: #ffd700;
+    }
+}
 
 </style>
 
@@ -1934,7 +2041,70 @@ header {
             Explore our handcrafted collection of traditional and premium
             wooden décor, furniture, panels and artistic creations.
         </p>
+<div class="mobile-category-selector">
 
+    <button class="category-selector-btn" id="categorySelectorBtn">
+        <span>Select Category</span>
+        <i class="fa-solid fa-chevron-down"></i>
+    </button>
+
+    <div class="mobile-category-menu" id="categoryMenu">
+
+        <a href="products/naga panels.html">
+            Naga Panels
+        </a>
+
+        <a href="products/painted naga panels.html">
+            Painted Panels
+        </a>
+
+        <a href="products/naga decor.html">
+            Naga Home Decor
+        </a>
+
+        <a href="products/naga table.html">
+            Naga Table
+        </a>
+
+        <a href="products/Home Decor.html">
+            Home Decor
+        </a>
+
+        <a href="products/Naga Bench.html">
+            Naga Bench
+        </a>
+
+        <a href="products/Naga Doors.html">
+            Naga Doors
+        </a>
+
+        <a href="products/Naga Grinders.html">
+            Naga Grinders
+        </a>
+
+        <a href="products/Naga Wooden Stools.html">
+            Naga Wooden Stool
+        </a>
+
+        <a href="products/Nagaland Tribal Decor Pieces.html">
+            Nagaland Tribal Decor Pieces
+        </a>
+
+        <a href="products/South Indian Wooden Panels.html">
+            South Indian Wooden Panels
+        </a>
+
+        <a href="products/Wooden Candle Stand.html">
+            Wooden Candle Stand
+        </a>
+
+        <a href="products/statues.html">
+            Naga Statues
+        </a>
+
+    </div>
+
+</div>
         <div class="products-grid">
 
             <!-- NAGA PANELS -->
@@ -2616,6 +2786,71 @@ document.addEventListener("DOMContentLoaded", async () => {
         );
 
     }
+
+});
+
+// =========================================================
+// MOBILE CATEGORY DROPDOWN
+// =========================================================
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const categoryBtn =
+        document.getElementById("categorySelectorBtn");
+
+    const categoryMenu =
+        document.getElementById("categoryMenu");
+
+    if (!categoryBtn || !categoryMenu) {
+        console.log("Category selector not found");
+        return;
+    }
+
+    categoryBtn.addEventListener("click", function (e) {
+
+        e.stopPropagation();
+
+        categoryMenu.classList.toggle("show");
+
+        categoryBtn.classList.toggle("active");
+
+    });
+
+
+    // Menu ke bahar click karne par close
+
+    document.addEventListener("click", function (e) {
+
+        if (
+            !categoryBtn.contains(e.target) &&
+            !categoryMenu.contains(e.target)
+        ) {
+
+            categoryMenu.classList.remove("show");
+
+            categoryBtn.classList.remove("active");
+
+        }
+
+    });
+
+
+    // Category select karne ke baad menu close
+
+    const categoryLinks =
+        categoryMenu.querySelectorAll("a");
+
+    categoryLinks.forEach(link => {
+
+        link.addEventListener("click", function () {
+
+            categoryMenu.classList.remove("show");
+
+            categoryBtn.classList.remove("active");
+
+        });
+
+    });
 
 });
 </script>
