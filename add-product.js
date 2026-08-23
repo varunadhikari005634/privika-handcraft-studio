@@ -7,15 +7,65 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
+
+    // =====================================================
+    // PREVENT DUPLICATE EVENT LISTENER
+    // =====================================================
+
+    if (form.dataset.listenerAttached === "true") {
+        console.warn("⚠️ Submit listener already attached.");
+        return;
+    }
+
+    form.dataset.listenerAttached = "true";
+
+
+    // =====================================================
+    // SUBMIT HANDLER
+    // =====================================================
+
     form.addEventListener("submit", async (e) => {
 
         e.preventDefault();
+        e.stopPropagation();
+
+
+        // =================================================
+        // PREVENT DOUBLE SUBMISSION
+        // =================================================
+
+        if (form.dataset.submitting === "true") {
+            console.warn("⚠️ Product submission already in progress.");
+            return;
+        }
+
+        form.dataset.submitting = "true";
+
+
+        // Get submit button
+        const submitButton =
+            form.querySelector('button[type="submit"]');
+
+        // Store original button content
+        const originalButtonContent =
+            submitButton ? submitButton.innerHTML : "";
+
+
+        // Disable button immediately
+        if (submitButton) {
+
+            submitButton.disabled = true;
+
+            submitButton.innerHTML =
+                '<i class="fa-solid fa-spinner fa-spin"></i> Saving Product...';
+        }
+
 
         try {
 
-            // =========================
+            // =================================================
             // GET FORM DATA
-            // =========================
+            // =================================================
 
             const name =
                 document.getElementById("name").value.trim();
@@ -51,21 +101,23 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.getElementById("images360").files;
 
 
-            // =========================
+            // =================================================
             // VALIDATION
-            // =========================
+            // =================================================
 
             if (!name || !category) {
 
-                alert("Please enter product name and category.");
+                alert(
+                    "Please enter product name and category."
+                );
 
                 return;
             }
 
 
-            // =========================
+            // =================================================
             // UPLOAD MAIN IMAGE
-            // =========================
+            // =================================================
 
             let imageUrl = null;
 
@@ -77,32 +129,45 @@ document.addEventListener("DOMContentLoaded", () => {
                 const filePath =
                     `products/${category}/${fileName}`;
 
+
                 const { error: uploadError } =
                     await db.storage
                         .from("product-images")
-                        .upload(filePath, mainImage);
+                        .upload(
+                            filePath,
+                            mainImage
+                        );
+
 
                 if (uploadError) {
 
-                    console.error(uploadError);
+                    console.error(
+                        "❌ Main image upload error:",
+                        uploadError
+                    );
 
-                    alert("❌ Main image upload failed.");
+                    alert(
+                        "❌ Main image upload failed."
+                    );
 
                     return;
                 }
+
 
                 const { data: publicData } =
                     db.storage
                         .from("product-images")
                         .getPublicUrl(filePath);
 
-                imageUrl = publicData.publicUrl;
+
+                imageUrl =
+                    publicData.publicUrl;
             }
 
 
-            // =========================
+            // =================================================
             // INSERT PRODUCT
-            // =========================
+            // =================================================
 
             const { data: product, error } =
                 await db
@@ -111,12 +176,27 @@ document.addEventListener("DOMContentLoaded", () => {
                         {
                             name: name,
                             category: category,
-                            description: description || null,
-                            price: price ? Number(price) : null,
-                            stock: stock ? Number(stock) : null,
-                            material: material || null,
-                            dimensions: dimensions || null,
+                            description:
+                                description || null,
+
+                            price:
+                                price
+                                    ? Number(price)
+                                    : null,
+
+                            stock:
+                                stock
+                                    ? Number(stock)
+                                    : null,
+
+                            material:
+                                material || null,
+
+                            dimensions:
+                                dimensions || null,
+
                             featured: featured,
+
                             image_url: imageUrl
                         }
                     ])
@@ -124,9 +204,16 @@ document.addEventListener("DOMContentLoaded", () => {
                     .single();
 
 
+            // =================================================
+            // DATABASE ERROR
+            // =================================================
+
             if (error) {
 
-                console.error("❌ Database Error:", error);
+                console.error(
+                    "❌ Database Error:",
+                    error
+                );
 
                 alert(
                     "❌ Product could not be saved.\n\n" +
@@ -137,12 +224,15 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
 
-            console.log("✅ Product added:", product);
+            console.log(
+                "✅ Product added:",
+                product
+            );
 
 
-            // =========================
+            // =================================================
             // ADDITIONAL IMAGES
-            // =========================
+            // =================================================
 
             if (galleryImages.length > 0) {
 
@@ -154,10 +244,15 @@ document.addEventListener("DOMContentLoaded", () => {
                     const filePath =
                         `gallery/${product.id}/${fileName}`;
 
+
                     const { error: uploadError } =
                         await db.storage
                             .from("product-images")
-                            .upload(filePath, file);
+                            .upload(
+                                filePath,
+                                file
+                            );
+
 
                     if (uploadError) {
 
@@ -169,10 +264,12 @@ document.addEventListener("DOMContentLoaded", () => {
                         continue;
                     }
 
+
                     const { data: publicData } =
                         db.storage
                             .from("product-images")
                             .getPublicUrl(filePath);
+
 
                     console.log(
                         "Gallery image:",
@@ -182,9 +279,9 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
 
-            // =========================
+            // =================================================
             // 360° IMAGES
-            // =========================
+            // =================================================
 
             if (images360.length > 0) {
 
@@ -196,10 +293,15 @@ document.addEventListener("DOMContentLoaded", () => {
                     const filePath =
                         `360/${product.id}/${fileName}`;
 
+
                     const { error: uploadError } =
                         await db.storage
                             .from("product-images")
-                            .upload(filePath, file);
+                            .upload(
+                                filePath,
+                                file
+                            );
+
 
                     if (uploadError) {
 
@@ -211,6 +313,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         continue;
                     }
 
+
                     console.log(
                         "✅ 360 image uploaded:",
                         file.name
@@ -219,13 +322,18 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
 
-            // =========================
+            // =================================================
             // SUCCESS
-            // =========================
+            // =================================================
 
-            alert("✅ Product added successfully!");
+            alert(
+                "✅ Product added successfully!"
+            );
 
+
+            // Reset form
             form.reset();
+
 
         }
 
@@ -241,6 +349,25 @@ document.addEventListener("DOMContentLoaded", () => {
                 error.message
             );
 
+        }
+
+        finally {
+
+            // =================================================
+            // ALLOW SUBMISSION AGAIN
+            // =================================================
+
+            form.dataset.submitting = "false";
+
+
+            // Restore button
+            if (submitButton) {
+
+                submitButton.disabled = false;
+
+                submitButton.innerHTML =
+                    originalButtonContent;
+            }
         }
 
     });
