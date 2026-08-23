@@ -9,6 +9,381 @@
 
     <title>Add Product | Privika</title>
 
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <link rel="stylesheet" href="add-product.css">
+
+</head>
+
+<body>
+
+    <!-- BACK BUTTON -->
+
+    <a href="index.html" class="back-btn">
+        <i class="fa-solid fa-arrow-left"></i>
+        Back to Dashboard
+    </a>
+
+
+    <!-- MAIN CONTAINER -->
+
+    <div class="container">
+
+        <h1>Add New Product</h1>
+
+        <form id="productForm">
+
+            <!-- =========================================
+                 PRODUCT NAME & CATEGORY
+            ========================================== -->
+
+            <div class="row">
+
+                <!-- Product Name -->
+
+                <div class="input-group">
+
+                    <label>
+                        Product Name
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Enter Product Name"
+                        required>
+
+                </div>
+
+
+                <!-- Category -->
+
+                <div class="input-group">
+
+                    <label>
+                        Category
+                        <span class="required">*</span>
+                    </label>
+
+                    <select id="category" required>
+
+                        <option value="">
+                            Select Category
+                        </option>
+
+
+                        <!-- =================================
+                             EXISTING CATEGORIES
+                        ================================== -->
+
+                        <option value="Naga Panels">
+                            Naga Panels
+                        </option>
+
+                        <option value="Naga Table">
+                            Naga Table
+                        </option>
+
+                        <option value="Painted Panels">
+                            Painted Panels
+                        </option>
+
+                        <option value="Naga Home Decor">
+                            Naga Home Decor
+                        </option>
+
+                        <option value="Naga Statues">
+                            Naga Statues
+                        </option>
+
+
+                        <!-- =================================
+                             NAGA CHAIR
+                        ================================== -->
+
+                        <option value="Naga Chair">
+                            Naga Chair
+                        </option>
+
+
+                        <!-- =================================
+                             OTHER CATEGORIES
+                        ================================== -->
+
+                        <option value="Home Decor">
+                            Home Decor
+                        </option>
+
+                        <option value="Naga Bench">
+                            Naga Bench
+                        </option>
+
+                        <option value="Naga Doors">
+                            Naga Doors
+                        </option>
+
+                        <option value="Naga Grinders">
+                            Naga Grinders
+                        </option>
+
+                        <option value="Naga Wooden Stools">
+                            Naga Wooden Stools
+                        </option>
+
+                        <option value="Nagaland Tribal Decor Pieces">
+                            Nagaland Tribal Decor Pieces
+                        </option>
+
+                        <option value="South Indian Wooden Panels">
+                            South Indian Wooden Panels
+                        </option>
+
+                        <option value="Wooden Candle Stand">
+                            Wooden Candle Stand
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================================
+                 DESCRIPTION
+            ========================================== -->
+
+            <div class="input-group">
+
+                <label>
+                    Description
+                    <small>(Optional)</small>
+                </label>
+
+                <textarea
+                    id="description"
+                    rows="5"
+                    placeholder="Write about the product..."></textarea>
+
+            </div>
+
+
+            <!-- =========================================
+                 PRICE & STOCK
+            ========================================== -->
+
+            <div class="row">
+
+                <!-- Price -->
+
+                <div class="input-group">
+
+                    <label>
+                        Price
+                        <small>(Optional)</small>
+                    </label>
+
+                    <input
+                        type="number"
+                        id="price"
+                        placeholder="₹">
+
+                </div>
+
+
+                <!-- Stock -->
+
+                <div class="input-group">
+
+                    <label>
+                        Stock
+                        <small>(Optional)</small>
+                    </label>
+
+                    <input
+                        type="number"
+                        id="stock"
+                        placeholder="Available Quantity">
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================================
+                 MATERIAL & DIMENSIONS
+            ========================================== -->
+
+            <div class="row">
+
+                <!-- Material -->
+
+                <div class="input-group">
+
+                    <label>
+                        Material
+                        <small>(Optional)</small>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="material"
+                        placeholder="Wood, Bamboo, Stone...">
+
+                </div>
+
+
+                <!-- Dimensions -->
+
+                <div class="input-group">
+
+                    <label>
+                        Dimensions
+                        <small>(Optional)</small>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="dimensions"
+                        placeholder="12 x 8 x 4 inches">
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================================
+                 MAIN IMAGE
+            ========================================== -->
+
+            <div class="input-group">
+
+                <label>
+                    Main Image
+                    <small>(Optional)</small>
+                </label>
+
+                <input
+                    type="file"
+                    id="image"
+                    accept="image/*">
+
+            </div>
+
+
+            <!-- =========================================
+                 ADDITIONAL IMAGES
+            ========================================== -->
+
+            <div class="input-group">
+
+                <label>
+                    Additional Images
+                    <small>(Optional)</small>
+                </label>
+
+                <input
+                    type="file"
+                    id="gallery"
+                    multiple
+                    accept="image/*">
+
+            </div>
+
+
+            <!-- =========================================
+                 360° IMAGES
+            ========================================== -->
+
+            <div class="input-group">
+
+                <label>
+                    360° Images
+                    <small>(Optional)</small>
+                </label>
+
+                <input
+                    type="file"
+                    id="images360"
+                    multiple
+                    accept="image/*">
+
+            </div>
+
+
+            <!-- =========================================
+                 FEATURED PRODUCT
+            ========================================== -->
+
+            <div class="checkbox">
+
+                <input
+                    type="checkbox"
+                    id="featured">
+
+                <label for="featured">
+                    Featured Product
+                </label>
+
+            </div>
+
+
+            <!-- =========================================
+                 SAVE PRODUCT
+            ========================================== -->
+
+            <button type="submit">
+
+                <i class="fa-solid fa-floppy-disk"></i>
+
+                Save Product
+
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- =============================================
+         SUPABASE
+    ============================================== -->
+
+    <!-- Supabase JavaScript Library -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+    <!-- Your Supabase Configuration -->
+
+    <script src="supabase.js"></script>
+
+
+    <!-- Product Upload / Database Logic -->
+
+    <script src="add-product.js"></script>
+
+
+</body>
+
+</html><!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Add Product | Privika</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet"
