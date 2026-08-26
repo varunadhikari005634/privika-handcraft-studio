@@ -12,6 +12,10 @@
 
 <style>
 
+/* =========================================================
+   GLOBAL
+========================================================= */
+
 * {
     margin: 0;
     padding: 0;
@@ -23,9 +27,14 @@ html {
 }
 
 body {
+    margin: 0;
+    padding: 0;
+
     background: #000;
     color: #fff;
+
     font-family: 'Poppins', sans-serif;
+
     overflow-x: hidden;
 }
 
@@ -36,41 +45,52 @@ body {
 
 .product-btn {
     position: fixed;
+
     top: 18px;
     left: 18px;
+
     z-index: 1000;
 
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    justify-content: center;
 
-    padding: 11px 20px;
+    padding: 12px 22px;
 
     background: rgba(0, 0, 0, 0.92);
+
     color: #ffd700;
 
-    border: 1px solid rgba(255, 215, 0, 0.45);
-    border-radius: 30px;
+    border: 1px solid rgba(255, 215, 0, 0.65);
+
+    border-radius: 50px;
 
     font-family: 'Cinzel', serif;
+
     font-size: 13px;
     font-weight: 600;
 
     text-decoration: none;
 
-    transition: all 0.3s ease;
+    box-shadow:
+        0 0 15px rgba(255, 215, 0, 0.12);
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
 .product-btn:hover {
     background: #ffd700;
-    color: #000;
 
-    border-color: #ffd700;
+    color: #000;
 
     transform: translateY(-2px);
 
     box-shadow:
-        0 8px 25px rgba(255, 215, 0, 0.25);
+        0 0 25px rgba(255, 215, 0, 0.4);
 }
 
 
@@ -80,6 +100,7 @@ body {
 
 .product-header {
     width: 100%;
+
     max-width: 1100px;
 
     margin: 105px auto 55px;
@@ -90,37 +111,56 @@ body {
 }
 
 .product-header h1 {
-    font-family: 'Cinzel', serif;
-
-    font-size:
-        clamp(2.4rem, 5vw, 4rem);
-
-    line-height: 1.2;
+    margin: 0 0 28px;
 
     color: #ffd700;
 
-    margin-bottom: 25px;
+    font-family: 'Cinzel', serif;
 
-    text-transform: uppercase;
+    font-size:
+        clamp(2.5rem, 5vw, 4.2rem);
+
+    font-weight: 700;
+
+    line-height: 1.15;
 
     letter-spacing: 1px;
+
+    text-shadow:
+        0 0 18px rgba(255, 215, 0, 0.08);
 }
 
 .product-header .desc {
-    max-width: 900px;
+    max-width: 950px;
 
-    margin: auto;
+    margin: 0 auto;
 
-    color: #d0d0d0;
+    color: #ddd;
+
+    font-size: 1.05rem;
+
+    font-weight: 400;
+
+    line-height: 1.9;
+}
+
+.product-header .desc strong {
+    display: inline-block;
+
+    margin-top: 18px;
+
+    color: #ffd700;
+
+    font-family: 'Cinzel', serif;
 
     font-size: 1rem;
 
-    line-height: 1.85;
+    letter-spacing: 0.6px;
 }
 
 
 /* =========================================================
-   GALLERY
+   GALLERY SECTION
 ========================================================= */
 
 .gallery-section {
@@ -130,8 +170,13 @@ body {
 
     margin: 0 auto;
 
-    padding: 0 40px 90px;
+    padding: 0 35px 90px;
 }
+
+
+/* =========================================================
+   PRODUCT GRID
+========================================================= */
 
 .gallery-grid {
     width: 100%;
@@ -141,19 +186,26 @@ body {
     grid-template-columns:
         repeat(3, minmax(0, 1fr));
 
-    gap: 32px;
+    gap: 30px;
 
     align-items: stretch;
 }
 
 
 /* =========================================================
-   PRODUCT CARD
+   PREMIUM PRODUCT CARD
 ========================================================= */
 
 .gallery-card {
     width: 100%;
+
     min-width: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    overflow: hidden;
 
     background:
         linear-gradient(
@@ -167,10 +219,7 @@ body {
 
     border-radius: 20px;
 
-    overflow: hidden;
-
-    display: flex;
-    flex-direction: column;
+    text-align: center;
 
     box-shadow:
         0 12px 35px rgba(0, 0, 0, 0.65);
@@ -182,9 +231,11 @@ body {
 }
 
 .gallery-card:hover {
-    transform: translateY(-8px);
+    transform:
+        translateY(-8px);
 
-    border-color: #ffd700;
+    border-color:
+        #ffd700;
 
     box-shadow:
         0 20px 45px rgba(0, 0, 0, 0.8),
@@ -200,14 +251,8 @@ body {
     position: relative;
 
     width: 100%;
-    height: 360px;
 
-    background:
-        radial-gradient(
-            circle at center,
-            #1c1c1c 0%,
-            #080808 78%
-        );
+    height: 360px;
 
     display: flex;
 
@@ -215,6 +260,13 @@ body {
     justify-content: center;
 
     overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #1c1c1c 0%,
+            #080808 78%
+        );
 
     border-bottom:
         1px solid rgba(255, 215, 0, 0.14);
@@ -227,6 +279,7 @@ body {
 
 .gallery-card img {
     width: 100%;
+
     height: 100%;
 
     display: block;
@@ -241,7 +294,26 @@ body {
 }
 
 .gallery-card:hover img {
-    transform: scale(1.045);
+    transform:
+        scale(1.045);
+}
+
+
+/* =========================================================
+   SOLD OUT IMAGE
+========================================================= */
+
+.gallery-card .image-wrapper.is-sold img {
+    filter:
+        grayscale(45%)
+        brightness(0.58);
+
+    transform: scale(1);
+}
+
+.gallery-card:hover
+.image-wrapper.is-sold img {
+    transform: scale(1);
 }
 
 
@@ -254,7 +326,7 @@ body {
 
     inset: 0;
 
-    z-index: 10;
+    z-index: 20;
 
     display: flex;
 
@@ -264,7 +336,7 @@ body {
     background:
         linear-gradient(
             135deg,
-            rgba(0, 0, 0, 0.30),
+            rgba(0, 0, 0, 0.28),
             rgba(0, 0, 0, 0.72)
         );
 
@@ -282,10 +354,11 @@ body {
     align-items: center;
     justify-content: center;
 
-    padding: 14px 32px;
+    padding:
+        14px 32px;
 
     background:
-        rgba(0, 0, 0, 0.90);
+        rgba(0, 0, 0, 0.92);
 
     color: #ffd700;
 
@@ -310,25 +383,8 @@ body {
     box-shadow:
         0 0 28px rgba(255, 215, 0, 0.28);
 
-    transform: rotate(-4deg);
-}
-
-
-/* =========================================================
-   SOLD PRODUCT IMAGE
-========================================================= */
-
-.gallery-card .image-wrapper.is-sold img {
-    filter:
-        grayscale(40%)
-        brightness(0.62);
-
-    transform: scale(1);
-}
-
-.gallery-card:hover
-.image-wrapper.is-sold img {
-    transform: scale(1);
+    transform:
+        rotate(-4deg);
 }
 
 
@@ -351,6 +407,8 @@ body {
 
     min-height: 68px;
 
+    margin: 0;
+
     padding:
         20px 20px 12px;
 
@@ -359,11 +417,9 @@ body {
     align-items: center;
     justify-content: center;
 
-    text-align: center;
+    background: #050505;
 
     color: #ffd700;
-
-    background: #050505;
 
     font-family: 'Cinzel', serif;
 
@@ -374,6 +430,8 @@ body {
     line-height: 1.4;
 
     letter-spacing: 0.7px;
+
+    text-transform: uppercase;
 }
 
 
@@ -401,6 +459,8 @@ body {
     flex-direction: column;
 
     gap: 14px;
+
+    text-align: left;
 }
 
 
@@ -440,8 +500,6 @@ body {
 
     line-height: 1.75;
 
-    text-align: left;
-
     overflow-wrap: anywhere;
 }
 
@@ -459,6 +517,8 @@ body {
 
     padding-bottom: 10px;
 
+    color: #ddd;
+
     font-size: 14px;
 
     line-height: 1.55;
@@ -470,7 +530,7 @@ body {
 
 
 /* =========================================================
-   LABEL
+   DETAIL LABEL
 ========================================================= */
 
 .detail-label {
@@ -483,7 +543,7 @@ body {
 
 
 /* =========================================================
-   VALUE
+   DETAIL VALUE
 ========================================================= */
 
 .detail-value {
@@ -533,6 +593,8 @@ body {
 ========================================================= */
 
 .gallery-card .coming-soon {
+    position: relative;
+
     margin:
         0 20px 22px;
 
@@ -545,8 +607,6 @@ body {
 
     align-items: center;
     justify-content: center;
-
-    position: relative;
 
     overflow: hidden;
 
@@ -565,9 +625,6 @@ body {
     text-align: center;
 }
 
-
-/* Gold accent line */
-
 .gallery-card .coming-soon::before {
     content: "";
 
@@ -584,9 +641,6 @@ body {
     box-shadow:
         0 0 15px rgba(255, 215, 0, 0.7);
 }
-
-
-/* Coming Soon Text */
 
 .gallery-card .coming-soon span {
     color: #ffd700;
@@ -615,16 +669,14 @@ body {
 
     height: 360px;
 
-    background: #111;
-
-    color: #777;
-
     display: flex;
 
     align-items: center;
     justify-content: center;
 
-    text-align: center;
+    background: #111;
+
+    color: #777;
 
     font-size: 14px;
 }
@@ -661,8 +713,8 @@ body {
 
     z-index: 99999;
 
-    background:
-        rgba(0, 0, 0, 0.97);
+    width: 100%;
+    height: 100%;
 
     display: flex;
 
@@ -670,6 +722,9 @@ body {
     justify-content: center;
 
     padding: 25px;
+
+    background:
+        rgba(0, 0, 0, 0.97);
 
     backdrop-filter: blur(10px);
 }
@@ -719,7 +774,7 @@ body {
 
 
 /* =========================================================
-   CLOSE BUTTON
+   CLOSE VIEWER
 ========================================================= */
 
 .close-viewer {
@@ -733,10 +788,15 @@ body {
 
     padding: 0;
 
-    border-radius: 50%;
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
 
     border:
         1px solid #ffd700;
+
+    border-radius: 50%;
 
     background:
         rgba(0, 0, 0, 0.85);
@@ -764,10 +824,10 @@ body {
 
 
 /* =========================================================
-   TABLET
+   LARGE TABLET
 ========================================================= */
 
-@media (max-width: 1100px) {
+@media (max-width: 1200px) {
 
     .gallery-grid {
         grid-template-columns:
@@ -778,11 +838,12 @@ body {
 
     .gallery-card .image-wrapper,
     .no-image {
-        height: 330px;
+        height: 340px;
     }
 
     .gallery-card .sold-badge {
-        padding: 12px 26px;
+        padding:
+            12px 28px;
 
         font-size: 16px;
     }
@@ -790,27 +851,75 @@ body {
 
 
 /* =========================================================
-   SMALL TABLET
+   TABLET
 ========================================================= */
 
-@media (max-width: 750px) {
+@media (max-width: 800px) {
+
+    .product-header {
+        margin-top: 95px;
+
+        padding:
+            0 20px;
+    }
+
+    .product-header h1 {
+        font-size: 3rem;
+    }
+
+    .product-header .desc {
+        font-size: 0.98rem;
+
+        line-height: 1.8;
+    }
 
     .gallery-section {
         padding:
-            0 20px 60px;
+            0 20px 70px;
     }
 
     .gallery-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
 
-        max-width: 620px;
-
-        margin: auto;
+        gap: 20px;
     }
 
     .gallery-card .image-wrapper,
     .no-image {
-        height: 380px;
+        height: 300px;
+    }
+
+    .gallery-card h3 {
+        font-size: 16px;
+    }
+
+    .product-info {
+        margin:
+            0 14px 17px;
+
+        padding:
+            16px 15px;
+    }
+
+    .product-description p {
+        font-size: 13px;
+    }
+
+    .product-detail-row {
+        font-size: 13px;
+    }
+
+    .product-price {
+        margin:
+            0 14px 17px;
+
+        font-size: 16px;
+    }
+
+    .gallery-card .coming-soon {
+        margin:
+            0 14px 17px;
     }
 }
 
@@ -819,21 +928,20 @@ body {
    MOBILE
 ========================================================= */
 
-@media (max-width: 550px) {
+@media (max-width: 600px) {
 
     .product-btn {
         top: 12px;
-
         left: 12px;
 
         padding:
-            9px 15px;
+            9px 16px;
 
         font-size: 11px;
     }
 
     .product-header {
-        margin-top: 82px;
+        margin-top: 85px;
 
         margin-bottom: 40px;
 
@@ -842,20 +950,26 @@ body {
     }
 
     .product-header h1 {
-        font-size: 2.15rem;
+        font-size: 2.3rem;
 
-        margin-bottom: 18px;
+        margin-bottom: 20px;
     }
 
     .product-header .desc {
-        font-size: 0.9rem;
+        font-size: 0.92rem;
 
         line-height: 1.75;
     }
 
+    .product-header .desc strong {
+        font-size: 0.9rem;
+
+        margin-top: 15px;
+    }
+
     .gallery-section {
         padding:
-            0 14px 50px;
+            0 14px 55px;
     }
 
     .gallery-grid {
@@ -865,7 +979,7 @@ body {
     }
 
     .gallery-card {
-        border-radius: 17px;
+        border-radius: 18px;
     }
 
     .gallery-card .image-wrapper,
@@ -874,12 +988,12 @@ body {
     }
 
     .gallery-card h3 {
-        min-height: 62px;
+        min-height: 65px;
 
         padding:
-            18px 15px 10px;
+            18px 15px;
 
-        font-size: 18px;
+        font-size: 17px;
     }
 
     .product-info {
@@ -919,7 +1033,18 @@ body {
     }
 
 
-    /* SOLD OUT MOBILE */
+    /* =============================================
+       MOBILE SOLD OUT
+    ============================================= */
+
+    .gallery-card .sold-overlay {
+        background:
+            linear-gradient(
+                135deg,
+                rgba(0, 0, 0, 0.35),
+                rgba(0, 0, 0, 0.75)
+            );
+    }
 
     .gallery-card .sold-badge {
         padding:
@@ -929,11 +1054,14 @@ body {
 
         letter-spacing: 2px;
 
-        transform: rotate(-3deg);
+        transform:
+            rotate(-3deg);
     }
 
 
-    /* COMING SOON MOBILE */
+    /* =============================================
+       MOBILE COMING SOON
+    ============================================= */
 
     .gallery-card .coming-soon {
         margin:
@@ -952,6 +1080,15 @@ body {
     }
 
 
+    /* =============================================
+       IMAGE VIEWER MOBILE
+    ============================================= */
+
+    .image-viewer {
+        padding:
+            15px;
+    }
+
     .viewer-content img {
         max-width: 95vw;
 
@@ -964,11 +1101,9 @@ body {
 
     .close-viewer {
         top: 12px;
-
         right: 12px;
 
         width: 42px;
-
         height: 42px;
 
         font-size: 27px;
@@ -982,13 +1117,43 @@ body {
 
 @media (max-width: 380px) {
 
+    .product-btn {
+        padding:
+            8px 13px;
+
+        font-size: 10px;
+    }
+
+    .product-header {
+        padding:
+            0 13px;
+    }
+
     .product-header h1 {
         font-size: 1.85rem;
+    }
+
+    .product-header .desc {
+        font-size: 0.87rem;
+    }
+
+    .gallery-section {
+        padding:
+            0 11px 45px;
     }
 
     .gallery-card .image-wrapper,
     .no-image {
         height: 285px;
+    }
+
+    .gallery-card h3 {
+        min-height: 60px;
+
+        padding:
+            16px 12px;
+
+        font-size: 15px;
     }
 
     .product-info {
@@ -997,17 +1162,39 @@ body {
 
         padding:
             14px 13px;
+
+        gap: 10px;
+    }
+
+    .product-description p {
+        font-size: 12px;
+
+        line-height: 1.65;
     }
 
     .product-detail-row {
         flex-direction: column;
 
         gap: 2px;
+
+        font-size: 12px;
     }
 
     .detail-label {
         white-space: normal;
     }
+
+    .product-price {
+        margin:
+            0 11px 15px;
+
+        font-size: 15px;
+    }
+
+
+    /* =============================================
+       VERY SMALL SOLD BADGE
+    ============================================= */
 
     .gallery-card .sold-badge {
         padding:
@@ -1018,9 +1205,17 @@ body {
         letter-spacing: 1.5px;
     }
 
+
+    /* =============================================
+       VERY SMALL COMING SOON
+    ============================================= */
+
     .gallery-card .coming-soon {
         margin:
             0 11px 15px;
+
+        padding:
+            16px 10px;
     }
 
     .gallery-card .coming-soon span {
