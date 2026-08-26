@@ -179,59 +179,63 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
 
-    // =====================================================
-    // TOTAL WEBSITE VIEWS
-    // =====================================================
+// =====================================================
+// UNIQUE WEBSITE VISITORS
+// =====================================================
 
-    async function loadTotalViews() {
+async function loadTotalViews() {
 
-        if (!totalViews) return;
-
-
-        console.log("👁 Loading website visits...");
+    if (!totalViews) return;
 
 
-        const {
-            count,
+    console.log("👥 Loading unique website visitors...");
+
+
+    const {
+        data,
+        error
+    } = await db.rpc(
+        "get_unique_visitors"
+    );
+
+
+    if (error) {
+
+        console.error(
+            "❌ UNIQUE VISITORS ERROR:",
             error
-        } = await db
-            .from("site_visits")
-            .select("id", {
-                count: "exact",
-                head: true
-            });
-
-
-        if (error) {
-
-            console.error(
-                "❌ SITE VISITS ERROR:",
-                error
-            );
-
-
-            totalViews.textContent = "0";
-
-
-            // Show useful message
-            totalViews.title =
-                "Unable to read site_visits table";
-
-
-            return;
-
-        }
-
-
-        totalViews.textContent =
-            formatNumber(count || 0);
-
-
-        console.log(
-            `👁 Total website visits: ${count || 0}`
         );
 
+
+        totalViews.textContent = "0";
+
+
+        totalViews.title =
+            "Unable to read unique visitors";
+
+
+        return;
+
     }
+
+
+    const uniqueVisitors =
+        Number(data || 0);
+
+
+    totalViews.textContent =
+        formatNumber(uniqueVisitors);
+
+
+    totalViews.title =
+        "Unique visitors to Privika website";
+
+
+    console.log(
+        `👥 Unique website visitors: ${uniqueVisitors}`
+    );
+
+}
 
 
     // =====================================================
