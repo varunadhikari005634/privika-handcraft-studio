@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="../style.css">
 
 <style>
-
 /* =========================================================
    GLOBAL
 ========================================================= */
@@ -57,7 +56,7 @@ body {
 
     padding: 12px 22px;
 
-    background: rgba(0, 0, 0, 0.88);
+    background: rgba(0, 0, 0, 0.92);
 
     color: #ffd700;
 
@@ -117,7 +116,8 @@ body {
 
     font-family: 'Cinzel', serif;
 
-    font-size: clamp(2.5rem, 5vw, 4.2rem);
+    font-size:
+        clamp(2.5rem, 5vw, 4.2rem);
 
     font-weight: 700;
 
@@ -146,17 +146,15 @@ body {
 .product-header .desc strong {
     display: inline-block;
 
-    margin-bottom: 3px;
+    margin-top: 18px;
 
     color: #ffd700;
 
     font-family: 'Cinzel', serif;
 
-    font-size: 1.1rem;
+    font-size: 1rem;
 
-    font-weight: 700;
-
-    letter-spacing: 0.8px;
+    letter-spacing: 0.6px;
 }
 
 
@@ -232,9 +230,11 @@ body {
 }
 
 .gallery-card:hover {
-    transform: translateY(-8px);
+    transform:
+        translateY(-8px);
 
-    border-color: #ffd700;
+    border-color:
+        #ffd700;
 
     box-shadow:
         0 20px 45px rgba(0, 0, 0, 0.8),
@@ -247,6 +247,8 @@ body {
 ========================================================= */
 
 .gallery-card .image-wrapper {
+    position: relative;
+
     width: 100%;
 
     height: 360px;
@@ -269,6 +271,11 @@ body {
         1px solid rgba(255, 215, 0, 0.14);
 }
 
+
+/* =========================================================
+   PRODUCT IMAGE
+========================================================= */
+
 .gallery-card img {
     width: 100%;
 
@@ -281,11 +288,112 @@ body {
     cursor: zoom-in;
 
     transition:
-        transform 0.5s ease;
+        transform 0.5s ease,
+        filter 0.4s ease;
 }
 
 .gallery-card:hover img {
-    transform: scale(1.045);
+    transform:
+        scale(1.045);
+}
+
+
+/* =========================================================
+   SOLD OUT IMAGE
+========================================================= */
+
+.gallery-card .image-wrapper.is-sold img {
+    filter:
+        grayscale(45%)
+        brightness(0.58);
+
+    transform: scale(1);
+}
+
+.gallery-card:hover
+.image-wrapper.is-sold img {
+    transform: scale(1);
+}
+
+
+/* =========================================================
+   SOLD OUT OVERLAY
+========================================================= */
+
+.gallery-card .sold-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 20;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 0, 0, 0.28),
+            rgba(0, 0, 0, 0.72)
+        );
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   SOLD OUT BADGE
+========================================================= */
+
+.gallery-card .sold-badge {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding:
+        14px 32px;
+
+    background:
+        rgba(0, 0, 0, 0.92);
+
+    color: #ffd700;
+
+    border:
+        2px solid #ffd700;
+
+    border-radius: 8px;
+
+    font-family: 'Cinzel', serif;
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    text-shadow:
+        0 0 12px rgba(255, 215, 0, 0.45);
+
+    box-shadow:
+        0 0 28px rgba(255, 215, 0, 0.28);
+
+    transform:
+        rotate(-4deg);
+}
+
+
+/* =========================================================
+   SOLD CARD BORDER
+========================================================= */
+
+.gallery-card:has(.sold-overlay) {
+    border-color:
+        rgba(255, 215, 0, 0.45);
 }
 
 
@@ -327,7 +435,7 @@ body {
 
 
 /* =========================================================
-   PRODUCT INFORMATION CARD
+   PRODUCT INFORMATION
 ========================================================= */
 
 .product-info {
@@ -396,31 +504,7 @@ body {
 
 
 /* =========================================================
-   GENERIC PRODUCT DETAILS
-========================================================= */
-
-.product-details {
-    width: 100%;
-
-    padding:
-        18px 22px 22px;
-
-    background: #090909;
-
-    color: #d4d4d4;
-
-    text-align: left;
-
-    font-size: 14px;
-
-    line-height: 1.75;
-
-    overflow-wrap: anywhere;
-}
-
-
-/* =========================================================
-   DETAIL ROW
+   DETAIL ROWS
 ========================================================= */
 
 .product-detail-row {
@@ -445,7 +529,7 @@ body {
 
 
 /* =========================================================
-   LABEL
+   DETAIL LABEL
 ========================================================= */
 
 .detail-label {
@@ -458,7 +542,7 @@ body {
 
 
 /* =========================================================
-   VALUE
+   DETAIL VALUE
 ========================================================= */
 
 .detail-value {
@@ -467,63 +551,6 @@ body {
     font-weight: 400;
 
     overflow-wrap: anywhere;
-}
-
-
-/* =========================================================
-   MATERIAL
-========================================================= */
-
-.product-material {
-    margin-top: 9px;
-
-    color: #ddd;
-
-    font-size: 14px;
-
-    line-height: 1.6;
-}
-
-.product-material strong {
-    color: #ffd700;
-}
-
-
-/* =========================================================
-   DIMENSIONS
-========================================================= */
-
-.product-dimensions {
-    margin-top: 8px;
-
-    color: #ddd;
-
-    font-size: 14px;
-
-    line-height: 1.6;
-}
-
-.product-dimensions strong {
-    color: #ffd700;
-}
-
-
-/* =========================================================
-   STOCK
-========================================================= */
-
-.product-stock {
-    margin-top: 8px;
-
-    color: #ddd;
-
-    font-size: 14px;
-
-    line-height: 1.6;
-}
-
-.product-stock strong {
-    color: #ffd700;
 }
 
 
@@ -557,6 +584,78 @@ body {
     font-weight: 600;
 
     text-align: center;
+}
+
+
+/* =========================================================
+   COMING SOON
+========================================================= */
+
+.gallery-card .coming-soon {
+    position: relative;
+
+    margin:
+        0 20px 22px;
+
+    padding:
+        20px 18px;
+
+    min-height: 65px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 215, 0, 0.10),
+            rgba(255, 215, 0, 0.025)
+        );
+
+    border:
+        1px solid rgba(255, 215, 0, 0.35);
+
+    border-radius: 12px;
+
+    text-align: center;
+}
+
+.gallery-card .coming-soon::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 4px;
+    height: 100%;
+
+    background: #ffd700;
+
+    box-shadow:
+        0 0 15px rgba(255, 215, 0, 0.7);
+}
+
+.gallery-card .coming-soon span {
+    color: #ffd700;
+
+    font-family: 'Cinzel', serif;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    letter-spacing: 2.5px;
+
+    text-transform: uppercase;
+
+    text-shadow:
+        0 0 10px rgba(255, 215, 0, 0.35);
 }
 
 
@@ -670,13 +769,11 @@ body {
     font-family: 'Cinzel', serif;
 
     font-size: 23px;
-
-    letter-spacing: 0.5px;
 }
 
 
 /* =========================================================
-   CLOSE BUTTON
+   CLOSE VIEWER
 ========================================================= */
 
 .close-viewer {
@@ -688,26 +785,24 @@ body {
     width: 48px;
     height: 48px;
 
+    padding: 0;
+
     display: flex;
 
     align-items: center;
     justify-content: center;
-
-    padding: 0;
-
-    background:
-        rgba(0, 0, 0, 0.85);
-
-    color: #ffd700;
 
     border:
         1px solid #ffd700;
 
     border-radius: 50%;
 
-    font-size: 30px;
+    background:
+        rgba(0, 0, 0, 0.85);
 
-    line-height: 1;
+    color: #ffd700;
+
+    font-size: 30px;
 
     cursor: pointer;
 
@@ -744,6 +839,13 @@ body {
     .no-image {
         height: 340px;
     }
+
+    .gallery-card .sold-badge {
+        padding:
+            12px 28px;
+
+        font-size: 16px;
+    }
 }
 
 
@@ -756,7 +858,8 @@ body {
     .product-header {
         margin-top: 95px;
 
-        padding: 0 20px;
+        padding:
+            0 20px;
     }
 
     .product-header h1 {
@@ -788,6 +891,34 @@ body {
 
     .gallery-card h3 {
         font-size: 16px;
+    }
+
+    .product-info {
+        margin:
+            0 14px 17px;
+
+        padding:
+            16px 15px;
+    }
+
+    .product-description p {
+        font-size: 13px;
+    }
+
+    .product-detail-row {
+        font-size: 13px;
+    }
+
+    .product-price {
+        margin:
+            0 14px 17px;
+
+        font-size: 16px;
+    }
+
+    .gallery-card .coming-soon {
+        margin:
+            0 14px 17px;
     }
 }
 
@@ -830,7 +961,9 @@ body {
     }
 
     .product-header .desc strong {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
+
+        margin-top: 15px;
     }
 
     .gallery-section {
@@ -882,23 +1015,10 @@ body {
         line-height: 1.7;
     }
 
-    .product-details {
-        padding:
-            16px 18px 18px;
-
-        font-size: 13px;
-    }
-
     .product-detail-row {
         font-size: 13px;
 
         gap: 6px;
-    }
-
-    .product-material,
-    .product-dimensions,
-    .product-stock {
-        font-size: 13px;
     }
 
     .product-price {
@@ -909,6 +1029,63 @@ body {
             11px 15px;
 
         font-size: 16px;
+    }
+
+
+    /* =============================================
+       MOBILE SOLD OUT
+    ============================================= */
+
+    .gallery-card .sold-overlay {
+        background:
+            linear-gradient(
+                135deg,
+                rgba(0, 0, 0, 0.35),
+                rgba(0, 0, 0, 0.75)
+            );
+    }
+
+    .gallery-card .sold-badge {
+        padding:
+            11px 22px;
+
+        font-size: 14px;
+
+        letter-spacing: 2px;
+
+        transform:
+            rotate(-3deg);
+    }
+
+
+    /* =============================================
+       MOBILE COMING SOON
+    ============================================= */
+
+    .gallery-card .coming-soon {
+        margin:
+            0 14px 17px;
+
+        padding:
+            18px 12px;
+
+        min-height: 58px;
+    }
+
+    .gallery-card .coming-soon span {
+        font-size: 13px;
+
+        letter-spacing: 2px;
+    }
+
+
+    /* =============================================
+       IMAGE VIEWER MOBILE
+    ============================================= */
+
+    .image-viewer {
+        padding:
+            15px;
     }
 
     .viewer-content img {
@@ -939,6 +1116,18 @@ body {
 
 @media (max-width: 380px) {
 
+    .product-btn {
+        padding:
+            8px 13px;
+
+        font-size: 10px;
+    }
+
+    .product-header {
+        padding:
+            0 13px;
+    }
+
     .product-header h1 {
         font-size: 1.85rem;
     }
@@ -947,17 +1136,23 @@ body {
         font-size: 0.87rem;
     }
 
+    .gallery-section {
+        padding:
+            0 11px 45px;
+    }
+
     .gallery-card .image-wrapper,
     .no-image {
         height: 285px;
     }
 
     .gallery-card h3 {
-        font-size: 15px;
-    }
+        min-height: 60px;
 
-    .product-details {
-        font-size: 12.5px;
+        padding:
+            16px 12px;
+
+        font-size: 15px;
     }
 
     .product-info {
@@ -966,205 +1161,66 @@ body {
 
         padding:
             14px 13px;
+
+        gap: 10px;
+    }
+
+    .product-description p {
+        font-size: 12px;
+
+        line-height: 1.65;
     }
 
     .product-detail-row {
         flex-direction: column;
 
         gap: 2px;
+
+        font-size: 12px;
     }
 
     .detail-label {
         white-space: normal;
     }
-}
-/* =========================================================
-   SOLD OUT OVERLAY
-========================================================= */
 
-.image-wrapper {
-    position: relative;
-}
-
-
-/* Dark overlay over product image */
-
-.sold-overlay {
-    position: absolute;
-
-    inset: 0;
-
-    z-index: 5;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    background:
-        rgba(0, 0, 0, 0.52);
-
-    pointer-events: none;
-}
-
-
-/* SOLD OUT badge */
-
-.sold-badge {
-    display: inline-flex;
-
-    align-items: center;
-    justify-content: center;
-
-    padding: 13px 28px;
-
-    color: #ffd700;
-
-    background:
-        rgba(0, 0, 0, 0.88);
-
-    border:
-        1px solid #ffd700;
-
-    border-radius: 6px;
-
-    font-family: 'Cinzel', serif;
-
-    font-size: 18px;
-
-    font-weight: 700;
-
-    letter-spacing: 3px;
-
-    text-transform: uppercase;
-
-    box-shadow:
-        0 0 20px rgba(255, 215, 0, 0.35);
-
-    transform: rotate(-8deg);
-}
-
-
-/* =========================================================
-   SOLD PRODUCT IMAGE
-========================================================= */
-
-.image-wrapper.is-sold img {
-    filter:
-        grayscale(45%)
-        brightness(0.62);
-
-    transform: scale(1);
-}
-
-
-/* Don't zoom sold image on hover */
-
-.gallery-card:hover
-.image-wrapper.is-sold img {
-    transform: scale(1.02);
-}
-
-
-/* =========================================================
-   COMING SOON
-========================================================= */
-
-.coming-soon {
-    width: 100%;
-
-    padding: 22px 15px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255, 215, 0, 0.10),
-            rgba(255, 215, 0, 0.025)
-        );
-
-    border:
-        1px solid rgba(255, 215, 0, 0.28);
-
-    border-radius: 11px;
-
-    position: relative;
-
-    overflow: hidden;
-}
-
-
-.coming-soon::before {
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-    top: 0;
-
-    width: 3px;
-    height: 100%;
-
-    background: #ffd700;
-
-    box-shadow:
-        0 0 12px rgba(255, 215, 0, 0.7);
-}
-
-
-.coming-soon span {
-    color: #ffd700;
-
-    font-family: 'Cinzel', serif;
-
-    font-size: 15px;
-
-    font-weight: 700;
-
-    letter-spacing: 2.5px;
-
-    text-transform: uppercase;
-
-    text-align: center;
-}
-
-
-/* =========================================================
-   SOLD CARD
-========================================================= */
-
-.gallery-card:has(.sold-overlay) {
-    border-color:
-        rgba(255, 215, 0, 0.42);
-}
-
-
-/* =========================================================
-   MOBILE SOLD BADGE
-========================================================= */
-
-@media (max-width: 600px) {
-
-    .sold-badge {
-        padding: 11px 22px;
+    .product-price {
+        margin:
+            0 11px 15px;
 
         font-size: 15px;
-
-        letter-spacing: 2px;
     }
 
-    .coming-soon {
-        padding: 19px 12px;
+
+    /* =============================================
+       VERY SMALL SOLD BADGE
+    ============================================= */
+
+    .gallery-card .sold-badge {
+        padding:
+            10px 18px;
+
+        font-size: 12px;
+
+        letter-spacing: 1.5px;
     }
 
-    .coming-soon span {
-        font-size: 13px;
 
-        letter-spacing: 2px;
+    /* =============================================
+       VERY SMALL COMING SOON
+    ============================================= */
+
+    .gallery-card .coming-soon {
+        margin:
+            0 11px 15px;
+
+        padding:
+            16px 10px;
+    }
+
+    .gallery-card .coming-soon span {
+        font-size: 12px;
+
+        letter-spacing: 1.5px;
     }
 }
 </style>
