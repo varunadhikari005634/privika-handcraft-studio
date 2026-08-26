@@ -2780,28 +2780,86 @@ window.addEventListener("resize", updateHeroVideo);
 <script>
 document.addEventListener("DOMContentLoaded", async () => {
 
+    // =====================================================
+    // WEBSITE VISITOR TRACKING
+    // =====================================================
+
     // Check Supabase
     if (typeof db === "undefined") {
+
         console.error("❌ Supabase db not found");
+
         return;
     }
 
     try {
 
-        // Record one website visit
+        // =================================================
+        // GET EXISTING VISITOR ID
+        // =================================================
+
+        let visitorId =
+            localStorage.getItem("privika_visitor_id");
+
+
+        // =================================================
+        // CREATE NEW VISITOR ID
+        // =================================================
+
+        if (!visitorId) {
+
+            visitorId = crypto.randomUUID();
+
+            localStorage.setItem(
+                "privika_visitor_id",
+                visitorId
+            );
+
+            console.log(
+                "🆕 New visitor created:",
+                visitorId
+            );
+
+        } else {
+
+            console.log(
+                "👤 Returning visitor:",
+                visitorId
+            );
+
+        }
+
+
+        // =================================================
+        // RECORD WEBSITE VISIT
+        // =================================================
+
         const { error } = await db
             .from("site_visits")
-            .insert({});
+            .insert({
+                visitor_id: visitorId
+            });
+
+
+        // =================================================
+        // ERROR CHECK
+        // =================================================
 
         if (error) {
+
             console.error(
                 "❌ Visit tracking failed:",
                 error
             );
+
             return;
         }
 
-        console.log("✅ Website visit recorded");
+
+        console.log(
+            "✅ Website visit recorded"
+        );
+
 
     } catch (error) {
 
@@ -2813,6 +2871,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
 });
+</script>
 
 // =========================================================
 // MOBILE CATEGORY DROPDOWN
