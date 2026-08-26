@@ -2778,86 +2778,158 @@ window.addEventListener("resize", updateHeroVideo);
 <script src="load-category-images.js"></script>
 
 <script>
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", function () {
 
     // =====================================================
     // WEBSITE VISITOR TRACKING
     // =====================================================
 
-    if (typeof db === "undefined") {
-
-        console.error("❌ Supabase db not found");
-
-        return;
-    }
-
     try {
 
-        // Get existing visitor ID
-        let visitorId =
-            localStorage.getItem("privika_visitor_id");
+        if (typeof db !== "undefined" && db) {
 
+            let visitorId =
+                localStorage.getItem("privika_visitor_id");
 
-        // Create visitor ID for new visitor
-        if (!visitorId) {
+            if (!visitorId) {
 
-            visitorId = crypto.randomUUID();
+                visitorId = crypto.randomUUID();
 
-            localStorage.setItem(
-                "privika_visitor_id",
-                visitorId
-            );
+                localStorage.setItem(
+                    "privika_visitor_id",
+                    visitorId
+                );
 
-            console.log(
-                "🆕 New visitor:",
-                visitorId
-            );
+                console.log(
+                    "🆕 New visitor:",
+                    visitorId
+                );
+
+            } else {
+
+                console.log(
+                    "👤 Returning visitor:",
+                    visitorId
+                );
+
+            }
+
+            db
+                .from("site_visits")
+                .insert({
+                    visitor_id: visitorId
+                })
+                .then(function (result) {
+
+                    if (result.error) {
+
+                        console.error(
+                            "❌ Visit tracking failed:",
+                            result.error
+                        );
+
+                    } else {
+
+                        console.log(
+                            "✅ Website visit recorded"
+                        );
+
+                    }
+
+                })
+                .catch(function (error) {
+
+                    console.error(
+                        "❌ Supabase tracking error:",
+                        error
+                    );
+
+                });
 
         } else {
 
-            console.log(
-                "👤 Returning visitor:",
-                visitorId
+            console.warn(
+                "⚠️ Supabase db is not initialized. Visitor tracking skipped."
             );
 
         }
-
-
-        // Record visit in Supabase
-        const { error } = await db
-            .from("site_visits")
-            .insert({
-                visitor_id: visitorId
-            });
-
-
-        if (error) {
-
-            console.error(
-                "❌ Visit tracking failed:",
-                error
-            );
-
-            return;
-        }
-
-
-        console.log(
-            "✅ Website visit recorded"
-        );
-
 
     } catch (error) {
 
         console.error(
-            "❌ Visit tracking error:",
+            "❌ Visitor tracking error:",
             error
         );
 
     }
 
-});
 
+    // =====================================================
+    // MOBILE CATEGORY DROPDOWN
+    // =====================================================
+
+    const categoryBtn =
+        document.getElementById("categorySelectorBtn");
+
+    const categoryMenu =
+        document.getElementById("categoryMenu");
+
+
+    if (!categoryBtn || !categoryMenu) {
+
+        console.log(
+            "ℹ️ Category selector not found."
+        );
+
+        return;
+    }
+
+
+    categoryBtn.addEventListener("click", function (e) {
+
+        e.stopPropagation();
+
+        categoryMenu.classList.toggle("show");
+
+        categoryBtn.classList.toggle("active");
+
+    });
+
+
+    document.addEventListener("click", function (e) {
+
+        if (
+            !categoryBtn.contains(e.target) &&
+            !categoryMenu.contains(e.target)
+        ) {
+
+            categoryMenu.classList.remove("show");
+
+            categoryBtn.classList.remove("active");
+
+        }
+
+    });
+
+
+    const categoryLinks =
+        categoryMenu.querySelectorAll("a");
+
+
+    categoryLinks.forEach(function (link) {
+
+        link.addEventListener("click", function () {
+
+            categoryMenu.classList.remove("show");
+
+            categoryBtn.classList.remove("active");
+
+        });
+
+    });
+
+});
+</script>
 
 // =========================================================
 // MOBILE CATEGORY DROPDOWN
