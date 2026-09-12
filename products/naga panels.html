@@ -1261,9 +1261,7 @@ body {
         </p>
 
     </section>
-
-
-    <!-- PRODUCTS FROM SUPABASE -->
+    <!-- PRODUCTS FROM GITHUB / LOCAL REPOSITORY -->
 
     <section class="gallery-section">
 
@@ -1272,13 +1270,231 @@ body {
     </section>
 
 
-    <!-- SUPABASE -->
+    <!-- GITHUB IMAGE LOADER -->
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
 
-    <script src="../supabase.js"></script>
+        const container =
+            document.getElementById("products-container");
 
-    <script src="load-products.js"></script>
+        /*
+         * GitHub folder:
+         * products/item images/Naga Panel/
+         *
+         * 101 unique images:
+         * naga_panel_01.jpeg ... naga_panel_101.jpeg
+         */
+
+        const imageNames = [
+            "naga_panel_01.jpeg",
+            "naga_panel_02.jpeg",
+            "naga_panel_03.jpeg",
+            "naga_panel_04.jpeg",
+            "naga_panel_05.jpeg",
+            "naga_panel_06.jpeg",
+            "naga_panel_07.jpeg",
+            "naga_panel_08.jpeg",
+            "naga_panel_09.jpeg",
+            "naga_panel_10.jpeg",
+            "naga_panel_11.jpeg",
+            "naga_panel_12.jpeg",
+            "naga_panel_13.jpeg",
+            "naga_panel_14.jpeg",
+            "naga_panel_15.jpeg",
+            "naga_panel_16.jpeg",
+            "naga_panel_17.jpeg",
+            "naga_panel_18.jpeg",
+            "naga_panel_19.jpeg",
+            "naga_panel_20.jpeg",
+            "naga_panel_21.jpeg",
+            "naga_panel_22.jpeg",
+            "naga_panel_23.jpeg",
+            "naga_panel_24.jpeg",
+            "naga_panel_25.jpeg",
+            "naga_panel_26.jpeg",
+            "naga_panel_27.jpeg",
+            "naga_panel_28.jpeg",
+            "naga_panel_29.jpeg",
+            "naga_panel_30.jpeg",
+            "naga_panel_31.jpeg",
+            "naga_panel_32.jpeg",
+            "naga_panel_33.jpeg",
+            "naga_panel_34.jpeg",
+            "naga_panel_35.jpeg",
+            "naga_panel_36.jpeg",
+            "naga_panel_37.jpeg",
+            "naga_panel_38.jpeg",
+            "naga_panel_39.jpeg",
+            "naga_panel_40.jpeg",
+            "naga_panel_41.jpeg",
+            "naga_panel_42.jpeg",
+            "naga_panel_43.jpeg",
+            "naga_panel_44.jpeg",
+            "naga_panel_45.jpeg",
+            "naga_panel_46.jpeg",
+            "naga_panel_47.jpeg",
+            "naga_panel_48.jpeg",
+            "naga_panel_49.jpeg",
+            "naga_panel_50.jpeg",
+            "naga_panel_51.jpeg",
+            "naga_panel_52.jpeg",
+            "naga_panel_53.jpeg",
+            "naga_panel_54.jpeg",
+            "naga_panel_55.jpeg",
+            "naga_panel_56.jpeg",
+            "naga_panel_57.jpeg",
+            "naga_panel_58.jpeg",
+            "naga_panel_59.jpeg",
+            "naga_panel_60.jpeg",
+            "naga_panel_61.jpeg",
+            "naga_panel_62.jpeg",
+            "naga_panel_63.jpeg",
+            "naga_panel_64.jpeg",
+            "naga_panel_65.jpeg",
+            "naga_panel_66.jpeg",
+            "naga_panel_67.jpeg",
+            "naga_panel_68.jpeg",
+            "naga_panel_69.jpeg",
+            "naga_panel_70.jpeg",
+            "naga_panel_71.jpeg",
+            "naga_panel_72.jpeg",
+            "naga_panel_73.jpeg",
+            "naga_panel_74.jpeg",
+            "naga_panel_75.jpeg",
+            "naga_panel_76.jpeg",
+            "naga_panel_77.jpeg",
+            "naga_panel_78.jpeg",
+            "naga_panel_79.jpeg",
+            "naga_panel_80.jpeg",
+            "naga_panel_81.jpeg",
+            "naga_panel_82.jpeg",
+            "naga_panel_83.jpeg",
+            "naga_panel_84.jpeg",
+            "naga_panel_85.jpeg",
+            "naga_panel_86.jpeg",
+            "naga_panel_87.jpeg",
+            "naga_panel_88.jpeg",
+            "naga_panel_89.jpeg",
+            "naga_panel_90.jpeg",
+            "naga_panel_91.jpeg",
+            "naga_panel_92.jpeg",
+            "naga_panel_93.jpeg",
+            "naga_panel_94.jpeg",
+            "naga_panel_95.jpeg",
+            "naga_panel_96.jpeg",
+            "naga_panel_97.jpeg",
+            "naga_panel_98.jpeg",
+            "naga_panel_99.jpeg",
+            "naga_panel_100.jpeg",
+            "naga_panel_101.jpeg"
+        ];
+
+        if (!container) return;
+
+        // Safety: remove any accidental duplicate filenames.
+        const uniqueImages = [...new Set(imageNames)];
+
+        uniqueImages.forEach((fileName, index) => {
+
+            const card = document.createElement("div");
+            card.className = "gallery-card";
+
+            const imagePath =
+                "item images/Naga Panel/" +
+                fileName
+                    .split("/")
+                    .map(encodeURIComponent)
+                    .join("/");
+
+            const productName =
+                `Naga Panel ${index + 1}`;
+
+            card.innerHTML = `
+                <div class="image-wrapper">
+                    <img
+                        src="${imagePath}"
+                        alt="${productName}"
+                        loading="lazy"
+                    >
+                </div>
+
+                <h3>${productName}</h3>
+            `;
+
+            const image = card.querySelector("img");
+
+            image.addEventListener("error", () => {
+                image.parentElement.innerHTML = `
+                    <div class="no-image">
+                        No Image Available
+                    </div>
+                `;
+            });
+
+            /* Preserve the existing image-viewer experience. */
+            image.addEventListener("click", () => {
+
+                const viewer = document.createElement("div");
+                viewer.className = "image-viewer";
+
+                viewer.innerHTML = `
+                    <button
+                        class="close-viewer"
+                        type="button"
+                        aria-label="Close image viewer">
+                        ×
+                    </button>
+
+                    <div class="viewer-content">
+                        <img
+                            src="${imagePath}"
+                            alt="${productName}"
+                        >
+                        <h2>${productName}</h2>
+                    </div>
+                `;
+
+                document.body.appendChild(viewer);
+
+                const closeButton =
+                    viewer.querySelector(".close-viewer");
+
+                function closeViewer() {
+                    viewer.remove();
+                    document.removeEventListener(
+                        "keydown",
+                        closeWithEscape
+                    );
+                }
+
+                closeButton.addEventListener(
+                    "click",
+                    closeViewer
+                );
+
+                viewer.addEventListener("click", (event) => {
+                    if (event.target === viewer) {
+                        closeViewer();
+                    }
+                });
+
+                function closeWithEscape(event) {
+                    if (event.key === "Escape") {
+                        closeViewer();
+                    }
+                }
+
+                document.addEventListener(
+                    "keydown",
+                    closeWithEscape
+                );
+            });
+
+            container.appendChild(card);
+        });
+    });
+    </script>
 
 </body>
 
