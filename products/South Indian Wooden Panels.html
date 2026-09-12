@@ -1254,15 +1254,150 @@ body {
         </div>
 
     </section>
+    <!-- LOCAL GITHUB PRODUCT IMAGES -->
 
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
 
-    <!-- SUPABASE -->
+        const container =
+            document.getElementById("products-container");
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+        /*
+         * HTML file:
+         * products/South Indian Wooden Panels.html
+         *
+         * Images:
+         * products/item images/South Indian Wooden Panels/
+         */
 
-    <script src="../supabase.js"></script>
+        const imageNames = [
+            "Wooden Panel 1.webp",
+            "Wooden Panel 2.webp",
+            "Wooden Panel 3.webp",
+            "Wooden Panel 4.webp",
+            "Wooden Panel 5.webp",
+            "Wooden Panel 6.webp",
+            "Wooden Panel 7.webp",
+            "Wooden Panel 8.webp",
+            "Wooden Panel 9.webp",
+            "Wooden Panel 10.webp"
+        ];
 
-    <script src="load-products.js"></script>
+        if (!container) return;
+
+        if (!imageNames.length) {
+            container.innerHTML = `
+                <div class="no-products">
+                    No products available in this category yet.
+                </div>
+            `;
+            return;
+        }
+
+        imageNames.forEach((fileName) => {
+
+            const card = document.createElement("div");
+            card.className = "gallery-card";
+
+            const imagePath =
+                "item images/South Indian Wooden Panels/" +
+                fileName
+                    .split("/")
+                    .map(encodeURIComponent)
+                    .join("/");
+
+            const productName =
+                fileName
+                    .replace(/\.[^/.]+$/, "")
+                    .replace(/\s+/g, " ")
+                    .trim()
+                    .replace(/^Wooden Panel\s+/i, "South Indian Panel ");
+
+            card.innerHTML = `
+                <div class="image-wrapper">
+                    <img
+                        src="${imagePath}"
+                        alt="${productName}"
+                        loading="lazy"
+                    >
+                </div>
+
+                <h3>${productName}</h3>
+            `;
+
+            const image = card.querySelector("img");
+
+            image.addEventListener("error", () => {
+                image.parentElement.innerHTML = `
+                    <div class="no-image">
+                        No Image Available
+                    </div>
+                `;
+            });
+
+            image.addEventListener("click", () => {
+
+                const viewer = document.createElement("div");
+                viewer.className = "image-viewer";
+
+                viewer.innerHTML = `
+                    <button
+                        class="close-viewer"
+                        type="button"
+                        aria-label="Close image viewer">
+                        ×
+                    </button>
+
+                    <div class="viewer-content">
+                        <img
+                            src="${imagePath}"
+                            alt="${productName}"
+                        >
+
+                        <h2>${productName}</h2>
+                    </div>
+                `;
+
+                document.body.appendChild(viewer);
+
+                const closeButton =
+                    viewer.querySelector(".close-viewer");
+
+                function closeViewer() {
+                    viewer.remove();
+                    document.removeEventListener(
+                        "keydown",
+                        closeWithEscape
+                    );
+                }
+
+                closeButton.addEventListener(
+                    "click",
+                    closeViewer
+                );
+
+                viewer.addEventListener("click", (event) => {
+                    if (event.target === viewer) {
+                        closeViewer();
+                    }
+                });
+
+                function closeWithEscape(event) {
+                    if (event.key === "Escape") {
+                        closeViewer();
+                    }
+                }
+
+                document.addEventListener(
+                    "keydown",
+                    closeWithEscape
+                );
+            });
+
+            container.appendChild(card);
+        });
+    });
+    </script>
 
 
 </body>
