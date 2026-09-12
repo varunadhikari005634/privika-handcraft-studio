@@ -3070,236 +3070,599 @@ window.addEventListener("resize", updateHeroVideo);
 
 <script>
 /* =========================================================
-   GITHUB CATEGORY IMAGES
-   Images are loaded directly from:
-   varunadhikari005634/privika-handcraft-studio
-   /products/item images/<category folder>/
+   GITHUB CATEGORY IMAGES — DIRECT RAW GITHUB
 ========================================================= */
 
-const GITHUB_CATEGORY_TREE_URL =
-    "https://api.github.com/repos/varunadhikari005634/privika-handcraft-studio/git/trees/main?recursive=1";
+/*
+ * IMPORTANT:
+ * The previous version depended on the recursive GitHub Tree API.
+ * That API can fail/rate-limit for a large repository.
+ *
+ * This version uses DIRECT raw.githubusercontent.com URLs for
+ * the known category files, so the category sliders do NOT
+ * depend on the GitHub API.
+ *
+ * Repository:
+ * varunadhikari005634/privika-handcraft-studio
+ *
+ * Root:
+ * products/item images/<folder>/
+ */
 
-const GITHUB_CATEGORY_RAW_ROOT =
-    "https://raw.githubusercontent.com/varunadhikari005634/privika-handcraft-studio/main/";
+const GITHUB_RAW_ROOT =
+    "https://raw.githubusercontent.com/varunadhikari005634/" +
+    "privika-handcraft-studio/main/products/item%20images/";
 
 const CATEGORY_SLIDE_LIMIT = 6;
 
-async function loadCategoryImagesFromGitHub() {
-    const cards = document.querySelectorAll(".product-card[data-category]");
-    if (!cards.length) return;
+/*
+ * Exact GitHub folder + filenames.
+ * The slider uses these files directly from GitHub.
+ */
+const GITHUB_CATEGORY_MANIFEST = {
+    "Naga Panels": {
+        "folder": "Naga Panels",
+        "files": [
+            "naga_panel_01.jpeg",
+            "naga_panel_02.jpeg",
+            "naga_panel_03.jpeg",
+            "naga_panel_04.jpeg",
+            "naga_panel_05.jpeg",
+            "naga_panel_06.jpeg",
+            "naga_panel_07.jpeg",
+            "naga_panel_08.jpeg",
+            "naga_panel_09.jpeg",
+            "naga_panel_10.jpeg",
+            "naga_panel_11.jpeg",
+            "naga_panel_12.jpeg",
+            "naga_panel_13.jpeg",
+            "naga_panel_14.jpeg",
+            "naga_panel_15.jpeg",
+            "naga_panel_16.jpeg",
+            "naga_panel_17.jpeg",
+            "naga_panel_18.jpeg",
+            "naga_panel_19.jpeg",
+            "naga_panel_20.jpeg",
+            "naga_panel_21.jpeg",
+            "naga_panel_22.jpeg",
+            "naga_panel_23.jpeg",
+            "naga_panel_24.jpeg",
+            "naga_panel_25.jpeg",
+            "naga_panel_26.jpeg",
+            "naga_panel_27.jpeg",
+            "naga_panel_28.jpeg",
+            "naga_panel_29.jpeg",
+            "naga_panel_30.jpeg",
+            "naga_panel_31.jpeg",
+            "naga_panel_32.jpeg",
+            "naga_panel_33.jpeg",
+            "naga_panel_34.jpeg",
+            "naga_panel_35.jpeg",
+            "naga_panel_36.jpeg",
+            "naga_panel_37.jpeg",
+            "naga_panel_38.jpeg",
+            "naga_panel_39.jpeg",
+            "naga_panel_40.jpeg",
+            "naga_panel_41.jpeg",
+            "naga_panel_42.jpeg",
+            "naga_panel_43.jpeg",
+            "naga_panel_44.jpeg",
+            "naga_panel_45.jpeg",
+            "naga_panel_46.jpeg",
+            "naga_panel_47.jpeg",
+            "naga_panel_48.jpeg",
+            "naga_panel_49.jpeg",
+            "naga_panel_50.jpeg",
+            "naga_panel_51.jpeg",
+            "naga_panel_52.jpeg",
+            "naga_panel_53.jpeg",
+            "naga_panel_54.jpeg",
+            "naga_panel_55.jpeg",
+            "naga_panel_56.jpeg",
+            "naga_panel_57.jpeg",
+            "naga_panel_58.jpeg",
+            "naga_panel_59.jpeg",
+            "naga_panel_60.jpeg",
+            "naga_panel_61.jpeg",
+            "naga_panel_62.jpeg",
+            "naga_panel_63.jpeg",
+            "naga_panel_64.jpeg",
+            "naga_panel_65.jpeg",
+            "naga_panel_66.jpeg",
+            "naga_panel_67.jpeg",
+            "naga_panel_68.jpeg",
+            "naga_panel_69.jpeg",
+            "naga_panel_70.jpeg",
+            "naga_panel_71.jpeg",
+            "naga_panel_72.jpeg",
+            "naga_panel_73.jpeg",
+            "naga_panel_74.jpeg",
+            "naga_panel_75.jpeg",
+            "naga_panel_76.jpeg",
+            "naga_panel_77.jpeg",
+            "naga_panel_78.jpeg",
+            "naga_panel_79.jpeg",
+            "naga_panel_80.jpeg",
+            "naga_panel_81.jpeg",
+            "naga_panel_82.jpeg",
+            "naga_panel_83.jpeg",
+            "naga_panel_84.jpeg",
+            "naga_panel_85.jpeg",
+            "naga_panel_86.jpeg",
+            "naga_panel_87.jpeg",
+            "naga_panel_88.jpeg",
+            "naga_panel_89.jpeg",
+            "naga_panel_90.jpeg",
+            "naga_panel_91.jpeg",
+            "naga_panel_92.jpeg",
+            "naga_panel_93.jpeg",
+            "naga_panel_94.jpeg",
+            "naga_panel_95.jpeg",
+            "naga_panel_96.jpeg",
+            "naga_panel_97.jpeg",
+            "naga_panel_98.jpeg",
+            "naga_panel_99.jpeg",
+            "naga_panel_100.jpeg",
+            "naga_panel_101.jpeg"
+        ]
+    },
+    "Painted Panels": {
+        "folder": "Painted Panel",
+        "files": [
+            "Color Panel 1.jpg",
+            "painted panel 1.jpg",
+            "painted panel 2.jpg",
+            "painted panel 3.jpg",
+            "painted panel 4.jpg",
+            "painted panel 5.jpg",
+            "painted panel 6.jpg",
+            "painted panel 7.jpg",
+            "painted panel 8.jpg",
+            "painted panel 9.jpg",
+            "painted panel 10.jpg",
+            "painted panel 11.jpg",
+            "painted panel 12.jpg",
+            "painted panel 13.jpg",
+            "painted panel 14.jpg",
+            "painted panel 15.jpg",
+            "painted panel 16.jpg",
+            "painted panel 17.jpg",
+            "painted panel 18.jpg",
+            "painted panel 19.jpg",
+            "painted panel 20.jpg",
+            "painted panel 21.jpg",
+            "painted panel 23.jpg",
+            "painted panel 24.jpg",
+            "painted panel 25.jpg",
+            "Painted Panel 26.jpg",
+            "Painted Panel 27.jpg",
+            "Painted Panel 28.jpg",
+            "Painted Panel 29.jpg",
+            "tiger color panel.jpg"
+        ]
+    },
+    "Naga Home Decor": {
+        "folder": "Naga Decor",
+        "files": [
+            "Naga Beer Mjug.jpg",
+            "Naga Beer Mug(1).jpg",
+            "Naga Bottle Gourd Bottle.jpg",
+            "Naga Bowls.jpg",
+            "Naga Fruit bowl.jpg",
+            "Naga Tray.jpg",
+            "Siliguri pots.jpg"
+        ]
+    },
+    "Naga Table": {
+        "folder": "Naga Table",
+        "files": [
+            "Naga Horn Table.jpg",
+            "Naga Hornbill Table.jpg",
+            "Naga Table 1.jpg",
+            "Naga Table 2.jpg",
+            "Naga Table 3.jpg"
+        ]
+    },
+    "Naga Doors": {
+        "folder": "Naga Doors",
+        "files": [
+            "Naga Door 1.jpg",
+            "Naga Door 2.png",
+            "Naga Door 3.png",
+            "Naga Door 4.png"
+        ]
+    },
+    "Naga Grinders": {
+        "folder": "Naga Grinders",
+        "files": [
+            "Old Naga Grinder.jpg"
+        ]
+    },
+    "Naga Wooden Stools": {
+        "folder": "Naga Wooden Stool",
+        "files": [
+            "Naga Stool.jpg",
+            "Naga Wooden Stool.jpg"
+        ]
+    },
+    "Nagaland Tribal Decor Pieces": {
+        "folder": "Nagaland Tribal Decor Pieces",
+        "files": [
+            "Naga Tribal Hat.jpg",
+            "Naga Wooden Belt.jpg.png",
+            "Nagaland Drum 2.jpg",
+            "Nagaland Wooden Bag(Tribal).jpg",
+            "Nagaland drum 1.jpg"
+        ]
+    },
+    "South Indian Wooden Panels": {
+        "folder": "South Indian Wooden Panels",
+        "files": [
+            "Wooden Panel 1.webp",
+            "Wooden Panel 2.webp",
+            "Wooden Panel 3.webp",
+            "Wooden Panel 4.webp",
+            "Wooden Panel 5.webp",
+            "Wooden Panel 6.webp",
+            "Wooden Panel 7.webp",
+            "Wooden Panel 8.webp",
+            "Wooden Panel 9.webp",
+            "Wooden Panel 10.webp"
+        ]
+    },
+    "Wooden Candle Stand": {
+        "folder": "Wooden Candle Stand",
+        "files": [
+            "Candle Stand.jpg",
+            "Printed Candle Stand 1.jpg",
+            "Printed Candle Stand 2.jpg",
+            "Printed Candle Stand 3.jpg",
+            "Printed Candle Stand 4.jpg",
+            "Printed Candle Stand 5.jpg",
+            "Printed Candle Stand 6.jpg"
+        ]
+    },
+    "Naga Statues": {
+        "folder": "Statues",
+        "files": [
+            "naga statue 1.webp",
+            "naga statue 2.webp",
+            "naga statue 3.webp",
+            "naga statue 4.webp",
+            "naga statue 5.webp",
+            "naga statue 6.webp",
+            "naga statue 7.webp",
+            "naga statue 8.webp",
+            "naga statue 9.webp",
+            "naga statue 10.webp",
+            "naga statue 11.webp",
+            "naga statue 12.webp",
+            "naga statue 13.webp",
+            "naga statue 14.webp",
+            "naga statue 15.webp",
+            "naga statue 16.webp",
+            "naga statue 17.webp",
+            "naga statue 18.webp",
+            "naga statue 19.webp",
+            "naga statue 20.webp",
+            "naga statue 21.webp",
+            "naga statue 22.webp",
+            "naga statue 23.webp",
+            "naga statue 24.webp",
+            "naga statue 25.webp"
+        ]
+    },
+    "Naga Chair": {
+        "folder": "Naga Chair",
+        "files": [
+            "Naga_Chair_Compressed.jpg"
+        ]
+    }
+};
 
-    try {
-        const response = await fetch(GITHUB_CATEGORY_TREE_URL, {
-            headers: {
-                "Accept": "application/vnd.github+json"
-            },
-            cache: "no-store"
-        });
+/*
+ * Encode every path segment separately.
+ * This correctly handles spaces, parentheses, underscores, etc.
+ */
+function githubImageUrl(folder, filename) {
+    return GITHUB_RAW_ROOT +
+        encodeURIComponent(folder) + "/" +
+        encodeURIComponent(filename);
+}
 
-        if (!response.ok) {
-            throw new Error("GitHub returned HTTP " + response.status);
+function titleFromFilename(filename) {
+    return filename
+        .replace(/\.[^.]+$/, "")
+        .replace(/[_-]+/g, " ")
+        .replace(/\s+/g, " ")
+        .trim()
+        .replace(/\b\w/g, ch => ch.toUpperCase());
+}
+
+function setupCategorySlider(card, images) {
+
+    const slider =
+        card.querySelector(".category-slider");
+
+    const slidesContainer =
+        card.querySelector(".category-slides");
+
+    const dotsContainer =
+        card.querySelector(".category-slider-dots");
+
+    const prevBtn =
+        card.querySelector(".category-slider-prev");
+
+    const nextBtn =
+        card.querySelector(".category-slider-next");
+
+    if (!slider || !slidesContainer) return;
+
+    slidesContainer.innerHTML = "";
+    if (dotsContainer) dotsContainer.innerHTML = "";
+
+    const selected =
+        images.slice(0, CATEGORY_SLIDE_LIMIT);
+
+    if (!selected.length) {
+        slidesContainer.innerHTML = `
+            <div class="category-no-image">
+                <i class="fa-regular fa-image"></i>
+                <span>No images found in GitHub folder</span>
+            </div>
+        `;
+        return;
+    }
+
+    selected.forEach((item, index) => {
+
+        const wrapper =
+            document.createElement("div");
+
+        wrapper.className = "category-slide";
+
+        if (index === 0) {
+            wrapper.classList.add("active");
         }
 
-        const data = await response.json();
+        const img =
+            document.createElement("img");
 
-        if (!Array.isArray(data.tree)) {
-            throw new Error("GitHub repository tree was not returned.");
-        }
+        img.src = githubImageUrl(
+            item.folder,
+            item.file
+        );
 
-        /*
-         * Read ONLY images under:
-         * products/item images/
-         */
-        const imageFiles = data.tree
-            .filter(item =>
-                item.type === "blob" &&
-                /^products\/item images\//i.test(item.path) &&
-                /\.(webp|jpg|jpeg|png|gif)$/i.test(item.path)
-            )
-            .map(item => ({
-                path: item.path,
-                name: item.path.split("/").pop(),
-                folder: item.path.split("/")[2] || ""
-            }))
-            .filter((item, index, array) =>
-                array.findIndex(other =>
-                    other.path.toLowerCase() === item.path.toLowerCase()
-                ) === index
+        img.alt =
+            titleFromFilename(item.file);
+
+        img.loading =
+            index === 0 ? "eager" : "lazy";
+
+        img.decoding = "async";
+
+        img.onerror = function () {
+            /*
+             * Hide only this broken image instead of
+             * breaking the entire category slider.
+             */
+            wrapper.remove();
+
+            if (dotsContainer) {
+                const dots =
+                    dotsContainer.querySelectorAll(
+                        ".category-slider-dot"
+                    );
+
+                if (dots[index]) {
+                    dots[index].remove();
+                }
+            }
+        };
+
+        wrapper.appendChild(img);
+        slidesContainer.appendChild(wrapper);
+
+        if (dotsContainer) {
+
+            const dot =
+                document.createElement("button");
+
+            dot.type = "button";
+            dot.className =
+                "category-slider-dot";
+
+            if (index === 0) {
+                dot.classList.add("active");
+            }
+
+            dot.setAttribute(
+                "aria-label",
+                "View image " + (index + 1)
             );
 
-        cards.forEach(card => {
-            const slider = card.querySelector(".category-slider");
-            const slidesContainer = card.querySelector(".category-slides");
-            const dotsContainer = card.querySelector(".category-slider-dots");
-            const prevBtn = card.querySelector(".category-slider-prev");
-            const nextBtn = card.querySelector(".category-slider-next");
-
-            if (!slider || !slidesContainer) return;
-
-            const folderAliases = (slider.dataset.folders || "")
-                .split("|")
-                .map(x => x.trim().toLowerCase())
-                .filter(Boolean);
-
-            /*
-             * Match the actual GitHub folder name case-insensitively.
-             * This handles folders such as:
-             * "Painted Panel"
-             * "Naga Wooden Stool"
-             * etc.
-             */
-            const matchedImages = imageFiles
-                .filter(item =>
-                    folderAliases.includes(item.folder.toLowerCase())
-                )
-                .sort((a, b) =>
-                    a.path.localeCompare(
-                        b.path,
-                        undefined,
-                        {
-                            numeric: true,
-                            sensitivity: "base"
-                        }
-                    )
+            dot.addEventListener("click", () => {
+                showCategorySlide(
+                    slidesContainer,
+                    dotsContainer,
+                    index
                 );
-
-            slidesContainer.innerHTML = "";
-            dotsContainer.innerHTML = "";
-
-            if (!matchedImages.length) {
-                slidesContainer.innerHTML = `
-                    <div class="category-no-image">
-                        <i class="fa-regular fa-image"></i>
-                        <span>No GitHub images found</span>
-                    </div>
-                `;
-                if (prevBtn) prevBtn.style.display = "none";
-                if (nextBtn) nextBtn.style.display = "none";
-                return;
-            }
-
-            const selected = matchedImages.slice(0, CATEGORY_SLIDE_LIMIT);
-            let current = 0;
-            const slides = [];
-
-            selected.forEach((item, index) => {
-                const wrapper = document.createElement("div");
-                wrapper.className = "category-slide";
-                if (index === 0) wrapper.classList.add("active");
-
-                const img = document.createElement("img");
-
-                const encodedPath = item.path
-                    .split("/")
-                    .map(part => encodeURIComponent(part))
-                    .join("/");
-
-                img.src = GITHUB_CATEGORY_RAW_ROOT + encodedPath;
-                img.alt = card.querySelector(".product-title")?.textContent.trim() || item.name;
-                img.loading = index === 0 ? "eager" : "lazy";
-                img.decoding = "async";
-
-                img.addEventListener("error", () => {
-                    wrapper.remove();
-                    const remaining = slidesContainer.querySelectorAll(".category-slide");
-                    if (!remaining.length) {
-                        slidesContainer.innerHTML = `
-                            <div class="category-no-image">
-                                <i class="fa-regular fa-image"></i>
-                                <span>Unable to load GitHub image</span>
-                            </div>
-                        `;
-                    }
-                });
-
-                wrapper.appendChild(img);
-                slidesContainer.appendChild(wrapper);
-                slides.push(wrapper);
-
-                const dot = document.createElement("button");
-                dot.type = "button";
-                dot.className = "category-slider-dot";
-                if (index === 0) dot.classList.add("active");
-                dot.setAttribute("aria-label", "Show image " + (index + 1));
-
-                dot.addEventListener("click", () => {
-                    showCategorySlide(index);
-                });
-
-                dotsContainer.appendChild(dot);
             });
 
-            function refreshSlides() {
-                return Array.from(
-                    slidesContainer.querySelectorAll(".category-slide")
+            dotsContainer.appendChild(dot);
+        }
+    });
+
+    let current = 0;
+
+    function updateButtons() {
+
+        const count =
+            slidesContainer.querySelectorAll(
+                ".category-slide"
+            ).length;
+
+        if (prevBtn) {
+            prevBtn.style.display =
+                count > 1 ? "" : "none";
+        }
+
+        if (nextBtn) {
+            nextBtn.style.display =
+                count > 1 ? "" : "none";
+        }
+    }
+
+    function move(step) {
+
+        const slides =
+            slidesContainer.querySelectorAll(
+                ".category-slide"
+            );
+
+        if (slides.length < 2) return;
+
+        current =
+            (current + step + slides.length) %
+            slides.length;
+
+        showCategorySlide(
+            slidesContainer,
+            dotsContainer,
+            current
+        );
+    }
+
+    if (prevBtn) {
+        prevBtn.onclick = () => move(-1);
+    }
+
+    if (nextBtn) {
+        nextBtn.onclick = () => move(1);
+    }
+
+    updateButtons();
+
+    /*
+     * Auto-slide every 3 seconds.
+     */
+    if (selected.length > 1) {
+
+        setInterval(() => {
+
+            const slides =
+                slidesContainer.querySelectorAll(
+                    ".category-slide"
+                );
+
+            if (slides.length > 1) {
+                current =
+                    (current + 1) %
+                    slides.length;
+
+                showCategorySlide(
+                    slidesContainer,
+                    dotsContainer,
+                    current
                 );
             }
 
-            function showCategorySlide(index) {
-                const currentSlides = refreshSlides();
-                if (!currentSlides.length) return;
-
-                current = (index + currentSlides.length) % currentSlides.length;
-
-                currentSlides.forEach((slide, i) => {
-                    slide.classList.toggle("active", i === current);
-                });
-
-                const dots = Array.from(
-                    dotsContainer.querySelectorAll(".category-slider-dot")
-                );
-
-                dots.forEach((dot, i) => {
-                    dot.classList.toggle("active", i === current);
-                });
-            }
-
-            if (prevBtn) {
-                prevBtn.addEventListener("click", () => {
-                    showCategorySlide(current - 1);
-                });
-            }
-
-            if (nextBtn) {
-                nextBtn.addEventListener("click", () => {
-                    showCategorySlide(current + 1);
-                });
-            }
-
-            if (selected.length <= 1) {
-                if (prevBtn) prevBtn.style.display = "none";
-                if (nextBtn) nextBtn.style.display = "none";
-                dotsContainer.style.display = "none";
-            }
-
-            /* Automatic category preview */
-            if (selected.length > 1) {
-                setInterval(() => {
-                    showCategorySlide(current + 1);
-                }, 3000);
-            }
-        });
-
-    } catch (error) {
-        console.error("GitHub category image loading failed:", error);
-
-        cards.forEach(card => {
-            const slidesContainer =
-                card.querySelector(".category-slides");
-
-            if (slidesContainer) {
-                slidesContainer.innerHTML = `
-                    <div class="category-no-image">
-                        <i class="fa-regular fa-image"></i>
-                        <span>Unable to load images from GitHub</span>
-                    </div>
-                `;
-            }
-        });
+        }, 3000);
     }
 }
 
-loadCategoryImagesFromGitHub();
+function showCategorySlide(
+    slidesContainer,
+    dotsContainer,
+    index
+) {
+
+    const slides =
+        slidesContainer.querySelectorAll(
+            ".category-slide"
+        );
+
+    if (!slides.length) return;
+
+    const safeIndex =
+        Math.max(
+            0,
+            Math.min(index, slides.length - 1)
+        );
+
+    slides.forEach((slide, i) => {
+        slide.classList.toggle(
+            "active",
+            i === safeIndex
+        );
+    });
+
+    if (dotsContainer) {
+
+        dotsContainer
+            .querySelectorAll(
+                ".category-slider-dot"
+            )
+            .forEach((dot, i) => {
+
+                dot.classList.toggle(
+                    "active",
+                    i === safeIndex
+                );
+            });
+    }
+}
+
+function loadGitHubCategoryImages() {
+
+    const cards =
+        document.querySelectorAll(
+            ".product-card[data-category]"
+        );
+
+    cards.forEach(card => {
+
+        const category =
+            card.dataset.category;
+
+        const config =
+            GITHUB_CATEGORY_MANIFEST[category];
+
+        /*
+         * If this category does not yet have a confirmed
+         * filename list, leave the existing card intact.
+         * This avoids showing false/broken images.
+         */
+        if (!config) {
+            console.warn(
+                "No confirmed GitHub image manifest for:",
+                category
+            );
+            return;
+        }
+
+        const images =
+            config.files.map(file => ({
+                folder: config.folder,
+                file: file
+            }));
+
+        setupCategorySlider(card, images);
+    });
+}
+
+if (document.readyState === "loading") {
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        loadGitHubCategoryImages
+    );
+
+} else {
+
+    loadGitHubCategoryImages();
+}
+
 </script>
 
 <script>
