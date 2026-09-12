@@ -1212,10 +1212,10 @@ body {
          * GitHub repository:
          * varunadhikari005634/privika-handcraft-studio
          *
-         * Folder:
-         * products/item images/Naga Statues/
+         * Exact GitHub folder:
+         * products/item images/Statues/
          *
-         * Exact files:
+         * Exact files visible in the GitHub folder:
          * naga statue 1.webp ... naga statue 25.webp
          */
 
@@ -1247,60 +1247,58 @@ body {
             "naga statue 25.webp"
         ];
 
+        /*
+         * IMPORTANT:
+         * Images are loaded DIRECTLY from GitHub.
+         * The folder name is "Statues" (not "Naga Statues").
+         */
         const githubBase =
             "https://raw.githubusercontent.com/varunadhikari005634/" +
-            "privika-handcraft-studio/main/products/item%20images/Naga%20Statues/";
+            "privika-handcraft-studio/main/products/item%20images/Statues/";
 
         if (!container) return;
 
-        if (!imageNames.length) {
-            container.innerHTML = `
-                <div class="no-products">
-                    No products available in this category yet.
-                </div>
-            `;
-            return;
-        }
-
         imageNames.forEach((fileName, index) => {
 
-            const card = document.createElement("div");
+            const card = document.createElement("article");
             card.className = "gallery-card";
 
-            /*
-             * Encode the filename so spaces are handled correctly.
-             */
+            const imageWrapper = document.createElement("div");
+            imageWrapper.className = "image-wrapper";
+
             const imagePath =
                 githubBase + encodeURIComponent(fileName);
 
-            // Proper display name: Naga Statue 1 ... Naga Statue 25
             const productName =
                 `Naga Statue ${index + 1}`;
 
-            card.innerHTML = `
-                <div class="image-wrapper">
-                    <img
-                        src="${imagePath}"
-                        alt="${productName}"
-                        loading="lazy"
-                        decoding="async"
-                    >
-                </div>
+            const img = document.createElement("img");
+            img.src = imagePath;
+            img.alt = productName;
+            img.loading = "lazy";
+            img.decoding = "async";
 
-                <h3>${productName}</h3>
-            `;
+            imageWrapper.appendChild(img);
 
-            const image = card.querySelector("img");
+            const title = document.createElement("h3");
+            title.textContent = productName;
 
-            image.addEventListener("error", () => {
-                image.parentElement.innerHTML = `
-                    <div class="no-image">
-                        No Image Available
-                    </div>
-                `;
+            card.appendChild(imageWrapper);
+            card.appendChild(title);
+            container.appendChild(card);
+
+            /*
+             * Missing-image behaviour.
+             */
+            img.addEventListener("error", () => {
+                imageWrapper.innerHTML =
+                    '<div class="no-image">No Image Available</div>';
             });
 
-            image.addEventListener("click", () => {
+            /*
+             * Existing full-screen image viewer.
+             */
+            img.addEventListener("click", () => {
 
                 const viewer =
                     document.createElement("div");
@@ -1318,36 +1316,31 @@ body {
                     <div class="viewer-content">
                         <img
                             src="${imagePath}"
-                            alt="${productName}"
-                        >
-
+                            alt="${productName}">
                         <h2>${productName}</h2>
                     </div>
                 `;
 
                 document.body.appendChild(viewer);
+                document.body.style.overflow = "hidden";
 
-                const closeButton =
-                    viewer.querySelector(".close-viewer");
-
-                function closeViewer() {
+                const closeViewer = () => {
                     viewer.remove();
+                    document.body.style.overflow = "";
                     document.removeEventListener(
                         "keydown",
-                        closeWithEscape
+                        escapeHandler
                     );
-                }
+                };
 
-                function closeWithEscape(event) {
+                const escapeHandler = (event) => {
                     if (event.key === "Escape") {
                         closeViewer();
                     }
-                }
+                };
 
-                closeButton.addEventListener(
-                    "click",
-                    closeViewer
-                );
+                viewer.querySelector(".close-viewer")
+                    .addEventListener("click", closeViewer);
 
                 viewer.addEventListener("click", (event) => {
                     if (event.target === viewer) {
@@ -1357,11 +1350,9 @@ body {
 
                 document.addEventListener(
                     "keydown",
-                    closeWithEscape
+                    escapeHandler
                 );
             });
-
-            container.appendChild(card);
         });
     });
     </script>
