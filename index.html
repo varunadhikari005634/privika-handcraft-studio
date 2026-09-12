@@ -2829,182 +2829,82 @@ window.addEventListener("scroll", () => {
 // ==============================
 
 /*
- * Slider images are now loaded DIRECTLY from GitHub.
- * Supabase is NOT used for the slider.
+ * HERO SLIDER — DIRECT GITHUB RAW IMAGES
  *
- * Repository:
- * varunadhikari005634/privika-handcraft-studio
- *
- * Image root:
- * products/item images/
- *
- * GitHub's recursive tree API is used so the actual
- * filenames/folders in the repository are extracted
- * automatically. This avoids problems with spaces,
- * capitals, underscores and renamed image files.
+ * IMPORTANT:
+ * - No GitHub API is used here.
+ * - No Supabase is used for these images.
+ * - The existing slider HTML/CSS/buttons/animation are preserved.
+ * - Only the image source list is hard-coded to direct GitHub RAW files.
  */
 
-const GITHUB_TREE_URL =
-    "https://api.github.com/repos/varunadhikari005634/privika-handcraft-studio/git/trees/main?recursive=1";
+const GITHUB_SLIDER_IMAGES = [
+    "https://raw.githubusercontent.com/varunadhikari005634/privika-handcraft-studio/main/products/item%20images/Painted%20Panel/Color%20Panel%201.jpg",
+    "https://raw.githubusercontent.com/varunadhikari005634/privika-handcraft-studio/main/products/item%20images/Painted%20Panel/painted%20panel%201.jpg",
+    "https://raw.githubusercontent.com/varunadhikari005634/privika-handcraft-studio/main/products/item%20images/Naga%20Table/Naga%20Horn%20Table.jpg",
+    "https://raw.githubusercontent.com/varunadhikari005634/privika-handcraft-studio/main/products/item%20images/Naga%20Table/Naga%20Hornbill%20Table.jpg",
+    "https://raw.githubusercontent.com/varunadhikari005634/privika-handcraft-studio/main/products/item%20images/Naga%20Doors/Naga%20Door%201.jpg",
+    "https://raw.githubusercontent.com/varunadhikari005634/privika-handcraft-studio/main/products/item%20images/Naga%20Doors/Naga%20Door%202.png",
+    "https://raw.githubusercontent.com/varunadhikari005634/privika-handcraft-studio/main/products/item%20images/Naga%20Grinders/Old%20Naga%20Grinder.jpg",
+    "https://raw.githubusercontent.com/varunadhikari005634/privika-handcraft-studio/main/products/item%20images/Naga%20Wooden%20Stool/Naga%20Stool.jpg",
+    "https://raw.githubusercontent.com/varunadhikari005634/privika-handcraft-studio/main/products/item%20images/Nagaland%20Tribal%20Decor%20Pieces/Naga%20Tribal%20Hat.jpg",
+    "https://raw.githubusercontent.com/varunadhikari005634/privika-handcraft-studio/main/products/item%20images/Nagaland%20Tribal%20Decor%20Pieces/Nagaland%20Drum%202.jpg",
+    "https://raw.githubusercontent.com/varunadhikari005634/privika-handcraft-studio/main/products/item%20images/South%20Indian%20Wooden%20Panels/Wooden%20Panel%201.webp",
+    "https://raw.githubusercontent.com/varunadhikari005634/privika-handcraft-studio/main/products/item%20images/South%20Indian%20Wooden%20Panels/Wooden%20Panel%202.webp",
+    "https://raw.githubusercontent.com/varunadhikari005634/privika-handcraft-studio/main/products/item%20images/Wooden%20Candle%20Stand/Candle%20Stand.jpg",
+    "https://raw.githubusercontent.com/varunadhikari005634/privika-handcraft-studio/main/products/item%20images/Statues/naga%20statue%201.webp",
+    "https://raw.githubusercontent.com/varunadhikari005634/privika-handcraft-studio/main/products/item%20images/Naga%20Chair/Naga_Chair_Compressed.jpg"
+];
 
-const GITHUB_RAW_ROOT =
-    "https://raw.githubusercontent.com/varunadhikari005634/privika-handcraft-studio/main/";
-
-const SLIDER_IMAGE_LIMIT = 15;
-
-async function loadGitHubSlider() {
+function loadGitHubSlider() {
 
     const sliderContainer =
         document.getElementById("slider-products");
 
     if (!sliderContainer) return;
 
-    try {
+    sliderContainer.innerHTML = "";
 
-        sliderContainer.innerHTML = "";
+    GITHUB_SLIDER_IMAGES.forEach((imageUrl, index) => {
 
-        const response =
-            await fetch(GITHUB_TREE_URL, {
-                headers: {
-                    "Accept": "application/vnd.github+json"
-                },
-                cache: "no-store"
-            });
+        const wrapper =
+            document.createElement("div");
 
-        if (!response.ok) {
-            throw new Error(
-                "GitHub returned HTTP " + response.status
-            );
+        wrapper.className = "slide-wrapper";
+
+        if (index === 0) {
+            wrapper.classList.add("active");
         }
 
-        const data = await response.json();
+        const bg =
+            document.createElement("img");
 
-        if (!Array.isArray(data.tree)) {
-            throw new Error("GitHub repository tree was not returned.");
-        }
+        bg.className = "slide-bg";
+        bg.src = imageUrl;
+        bg.alt = "";
+        bg.setAttribute("aria-hidden", "true");
+        bg.loading = index === 0 ? "eager" : "lazy";
+        bg.decoding = "async";
 
-        /*
-         * Extract only real image files inside:
-         * products/item images/
-         */
-        const imageFiles = data.tree
-            .filter(item =>
-                item.type === "blob" &&
-                /^products\/item images\//i.test(item.path) &&
-                /\.(webp|jpg|jpeg|png|gif)$/i.test(item.path)
-            )
-            .map(item => ({
-                path: item.path,
-                name: item.path.split("/").pop()
-            }))
-            .filter((item, index, array) =>
-                array.findIndex(other =>
-                    other.path.toLowerCase() === item.path.toLowerCase()
-                ) === index
-            );
+        const img =
+            document.createElement("img");
 
-        /*
-         * Stable ordering so the slider does not randomly
-         * change on every page load.
-         */
-        imageFiles.sort((a, b) =>
-            a.path.localeCompare(
-                b.path,
-                undefined,
-                {
-                    numeric: true,
-                    sensitivity: "base"
-                }
-            )
-        );
+        img.className = "slide";
+        img.src = imageUrl;
+        img.alt = "Privika Handcraft Studio";
+        img.loading = index === 0 ? "eager" : "lazy";
+        img.decoding = "async";
 
-        if (!imageFiles.length) {
-            sliderContainer.innerHTML = `
-                <div class="category-no-image">
-                    <i class="fa-regular fa-image"></i>
-                    <span>No GitHub images found</span>
-                </div>
-            `;
-            return;
-        }
-
-        /*
-         * Use a manageable number of images in the hero slider.
-         * Images still come directly from GitHub RAW.
-         */
-        const selectedImages =
-            imageFiles.slice(0, SLIDER_IMAGE_LIMIT);
-
-        selectedImages.forEach((item, index) => {
-
-            const wrapper =
-                document.createElement("div");
-
-            wrapper.className = "slide-wrapper";
-
-            if (index === 0) {
-                wrapper.classList.add("active");
-            }
-
-            const img =
-                document.createElement("img");
-
-            const encodedPath =
-                item.path
-                    .split("/")
-                    .map(part => encodeURIComponent(part))
-                    .join("/");
-
-            const imageUrl =
-                GITHUB_RAW_ROOT + encodedPath;
-
-            img.className = "slide";
-            img.src = imageUrl;
-            img.alt = "Privika Handcraft Studio";
-            img.loading =
-                index === 0 ? "eager" : "lazy";
-            img.decoding = "async";
-
-            /*
-             * The blurred background uses the SAME GitHub image,
-             * so no local/Supabase image is required.
-             */
-            const bg =
-                document.createElement("img");
-
-            bg.className = "slide-bg";
-            bg.src = imageUrl;
-            bg.alt = "";
-            bg.setAttribute("aria-hidden", "true");
-            bg.loading = "lazy";
-            bg.decoding = "async";
-
-            wrapper.appendChild(bg);
-            wrapper.appendChild(img);
-
-            img.addEventListener("error", () => {
-                wrapper.remove();
-            });
-
-            sliderContainer.appendChild(wrapper);
+        img.addEventListener("error", () => {
+            wrapper.remove();
         });
 
-        initialiseGitHubSlider();
+        wrapper.appendChild(bg);
+        wrapper.appendChild(img);
+        sliderContainer.appendChild(wrapper);
+    });
 
-    } catch (error) {
-
-        console.error(
-            "GitHub slider loading failed:",
-            error
-        );
-
-        sliderContainer.innerHTML = `
-            <div class="category-no-image">
-                <i class="fa-regular fa-image"></i>
-                <span>Unable to load images from GitHub</span>
-            </div>
-        `;
-    }
+    initialiseGitHubSlider();
 }
 
 function initialiseGitHubSlider() {
@@ -3061,22 +2961,14 @@ function initialiseGitHubSlider() {
     }
 
     if (nextBtn) {
-        nextBtn.addEventListener(
-            "click",
-            nextSlide
-        );
+        nextBtn.addEventListener("click", nextSlide);
     }
 
     if (prevBtn) {
-        prevBtn.addEventListener(
-            "click",
-            prevSlide
-        );
+        prevBtn.addEventListener("click", prevSlide);
     }
 
-    /*
-     * Automatic slider — same 2.5 second behaviour.
-     */
+    // Keep the existing automatic slider timing.
     setInterval(() => {
 
         refreshSlides();
