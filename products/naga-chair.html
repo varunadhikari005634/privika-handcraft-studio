@@ -1,3 +1,36 @@
+GitHub mein HTML file ka naam rakho:
+
+Naga Chair.html
+
+Location:
+
+products/Naga Chair.html
+
+Aur images ka folder:
+
+products/item images/Naga Chair/
+
+
+compress this image
+
+58.7% smaller — dimensions and item appearance preserved.
+
+Pasted text(20260912-174238).txt
+Document
+ab code mai add krke doh and bakki ui and design vgera same rehne doh
+
+Done. UI/design same rakha hai, sirf image source GitHub par shift kiya hai.
+
+Image path:
+
+products/item images/Naga Chair/Naga_Chair_Compressed.jpg
+
+Supabase completely removed.
+
+GitHub mein file ko yahan upload/replace karo:
+
+products/Naga Chair.html
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -959,17 +992,88 @@ body {
     </section>
 
 
-    <!-- SUPABASE -->
+    <!-- GITHUB-ONLY PRODUCT IMAGE -->
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
 
-    <!-- Your Supabase configuration -->
-    <script src="../supabase.js"></script>
+        const container = document.getElementById("products-container");
+        if (!container) return;
 
-    <!-- Product loader -->
-    <script src="load-products.js"></script>
+        const imageUrl = "https://raw.githubusercontent.com/varunadhikari005634/privika-handcraft-studio/main/products/item%20images/Naga%20Chair/Naga_Chair_Compressed.jpg";
+
+        const card = document.createElement("article");
+        card.className = "gallery-card";
+
+        card.innerHTML = `
+            <div class="image-wrapper">
+                <img
+                    src="${imageUrl}"
+                    alt="Naga Chair"
+                    loading="lazy"
+                >
+            </div>
+
+            <h3>Naga Chair</h3>
+        `;
+
+        const img = card.querySelector("img");
+
+        // Keep the existing "No Image Available" appearance if GitHub
+        // cannot serve the image.
+        img.addEventListener("error", function () {
+            this.style.display = "none";
+
+            const wrapper = this.parentElement;
+            wrapper.innerHTML = `
+                <div class="no-image">No Image Available</div>
+            `;
+        });
+
+        // Preserve the existing image-viewer style/behaviour.
+        img.addEventListener("click", function () {
+
+            const viewer = document.createElement("div");
+            viewer.className = "image-viewer";
+
+            viewer.innerHTML = `
+                <button class="close-viewer" type="button"
+                        aria-label="Close image viewer">×</button>
+
+                <div class="viewer-content">
+                    <img src="${imageUrl}" alt="Naga Chair">
+                    <h2>Naga Chair</h2>
+                </div>
+            `;
+
+            document.body.appendChild(viewer);
+
+            const close = () => {
+                viewer.remove();
+                document.removeEventListener("keydown", esc);
+            };
+
+            const esc = (event) => {
+                if (event.key === "Escape") close();
+            };
+
+            viewer.querySelector(".close-viewer")
+                  .addEventListener("click", close);
+
+            viewer.addEventListener("click", function (event) {
+                if (event.target === viewer) close();
+            });
+
+            document.addEventListener("keydown", esc);
+        });
+
+        container.appendChild(card);
+    });
+    </script>
 
 
 </body>
 
 </html>
+
+
