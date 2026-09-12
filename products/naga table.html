@@ -1265,6 +1265,10 @@ body {
          products/item images/Naga Table/
     -->
 
+    <section class="gallery-section">
+        <div id="products-container" class="gallery-grid"></div>
+    </section>
+
     <script>
     document.addEventListener("DOMContentLoaded", () => {
 
@@ -1273,6 +1277,15 @@ body {
 
         if (!container) return;
 
+        /*
+         * Exact GitHub repository:
+         * varunadhikari005634/privika-handcraft-studio
+         *
+         * Exact folder:
+         * products/item images/Naga Table/
+         *
+         * Exact files from the supplied GitHub screenshot:
+         */
         const products = [
             { name: "Naga Horn Table", file: "Naga Horn Table.jpg" },
             { name: "Naga Hornbill Table", file: "Naga Hornbill Table.jpg" },
@@ -1281,52 +1294,104 @@ body {
             { name: "Naga Table 3", file: "Naga Table 3.jpg" }
         ];
 
-        // Safety: ensure no duplicate image files are rendered.
-        const uniqueProducts = [];
+        /*
+         * Direct GitHub RAW image location.
+         * encodeURIComponent() safely handles spaces in filenames.
+         */
+        const githubBase =
+            "https://raw.githubusercontent.com/varunadhikari005634/" +
+            "privika-handcraft-studio/main/products/item%20images/Naga%20Table/";
+
+        // Prevent duplicate files.
         const usedFiles = new Set();
 
         products.forEach(product => {
-            if (!usedFiles.has(product.file)) {
-                usedFiles.add(product.file);
-                uniqueProducts.push(product);
-            }
-        });
 
-        uniqueProducts.forEach(product => {
-
-            const card = document.createElement("div");
-            card.className = "gallery-card";
+            if (usedFiles.has(product.file)) return;
+            usedFiles.add(product.file);
 
             const imageUrl =
-                "https://raw.githubusercontent.com/varunadhikari005634/privika-handcraft-studio/main/products/item%20images/Naga%20Table/" +
-                product.file
-                    .split("/")
-                    .map(encodeURIComponent)
-                    .join("/");
+                githubBase + encodeURIComponent(product.file);
 
-            card.innerHTML = `
-                <div class="image-wrapper">
-                    <img
-                        src="${imageUrl}"
-                        alt="${product.name}"
-                        loading="lazy"
-                    >
+            const card = document.createElement("article");
+            card.className = "gallery-card";
+
+            const imageWrapper =
+                document.createElement("div");
+            imageWrapper.className = "image-wrapper";
+
+            const image =
+                document.createElement("img");
+
+            image.src = imageUrl;
+            image.alt = product.name;
+            image.loading = "lazy";
+            image.decoding = "async";
+
+            imageWrapper.appendChild(image);
+
+            const title =
+                document.createElement("h3");
+            title.textContent = product.name;
+
+            card.appendChild(imageWrapper);
+            card.appendChild(title);
+
+            /*
+             * Keep the existing product information/design.
+             */
+            const info =
+                document.createElement("div");
+            info.className = "product-info";
+
+            info.innerHTML = `
+                <div class="product-description">
+                    <span class="detail-label">Description</span>
+                    <p>
+                        Handcrafted Naga table made from solid natural wood,
+                        combining traditional craftsmanship with timeless
+                        character and unique natural grain.
+                    </p>
                 </div>
 
-                <h3>${product.name}</h3>
+                <div class="product-detail-row">
+                    <span class="detail-label">Material:</span>
+                    <span class="detail-value">Solid Natural Wood</span>
+                </div>
+
+                <div class="product-detail-row">
+                    <span class="detail-label">Finish:</span>
+                    <span class="detail-value">Handcrafted / Natural</span>
+                </div>
+
+                <div class="product-detail-row">
+                    <span class="detail-label">Customization:</span>
+                    <span class="detail-value">Available on request</span>
+                </div>
             `;
 
-            const image = card.querySelector("img");
+            const enquire =
+                document.createElement("div");
+            enquire.className = "coming-soon";
+            enquire.innerHTML =
+                "<span>Enquire for Price</span>";
 
+            card.appendChild(info);
+            card.appendChild(enquire);
+            container.appendChild(card);
+
+            /*
+             * If a GitHub image is missing, show the existing
+             * No Image Available state.
+             */
             image.addEventListener("error", () => {
-                image.parentElement.innerHTML = `
-                    <div class="no-image">
-                        No Image Available
-                    </div>
-                `;
+                imageWrapper.innerHTML =
+                    '<div class="no-image">No Image Available</div>';
             });
 
-            // Keep the existing full-screen image viewer behaviour.
+            /*
+             * Existing full-screen image viewer.
+             */
             image.addEventListener("click", () => {
 
                 const viewer =
@@ -1345,29 +1410,31 @@ body {
                     <div class="viewer-content">
                         <img
                             src="${imageUrl}"
-                            alt="${product.name}"
-                        >
+                            alt="${product.name}">
                         <h2>${product.name}</h2>
                     </div>
                 `;
 
                 document.body.appendChild(viewer);
+                document.body.style.overflow = "hidden";
 
-                const closeButton =
-                    viewer.querySelector(".close-viewer");
-
-                function closeViewer() {
+                const closeViewer = () => {
                     viewer.remove();
+                    document.body.style.overflow = "";
                     document.removeEventListener(
                         "keydown",
-                        closeWithEscape
+                        escapeHandler
                     );
-                }
+                };
 
-                closeButton.addEventListener(
-                    "click",
-                    closeViewer
-                );
+                const escapeHandler = (event) => {
+                    if (event.key === "Escape") {
+                        closeViewer();
+                    }
+                };
+
+                viewer.querySelector(".close-viewer")
+                    .addEventListener("click", closeViewer);
 
                 viewer.addEventListener("click", event => {
                     if (event.target === viewer) {
@@ -1375,23 +1442,14 @@ body {
                     }
                 });
 
-                function closeWithEscape(event) {
-                    if (event.key === "Escape") {
-                        closeViewer();
-                    }
-                }
-
                 document.addEventListener(
                     "keydown",
-                    closeWithEscape
+                    escapeHandler
                 );
             });
-
-            container.appendChild(card);
         });
     });
     </script>
 
 </body>
-
 </html>
