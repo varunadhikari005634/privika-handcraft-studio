@@ -1201,47 +1201,97 @@ body {
     </section>
 
     <script>
-        const githubBase =
-            "https://raw.githubusercontent.com/varunadhikari005634/privika-handcraft-studio/main/products/item%20images/Naga%20Statues/";
+        const githubApi =
+            "https://api.github.com/repos/varunadhikari005634/privika-handcraft-studio/contents/products/item%20images/Naga%20Statues?ref=main";
 
-        const nagaStatues = Array.from({ length: 25 }, (_, i) => {
-            const number = i + 1;
-            return {
-                name: `Naga Statue ${number}`,
-                image: `${githubBase}naga%20statue%20${number}.webp`
-            };
-        });
+        const githubRawBase =
+            "https://raw.githubusercontent.com/varunadhikari005634/privika-handcraft-studio/main/products/item%20images/Naga%20Statues/";
 
         const container = document.getElementById("products-container");
 
-        // Prevent duplicate image entries.
-        const uniqueImages = new Set();
+        async function loadNagaStatuesFromGitHub() {
+            try {
+                const response = await fetch(githubApi, {
+                    headers: { "Accept": "application/vnd.github+json" },
+                    cache: "no-store"
+                });
 
-        nagaStatues.forEach(product => {
-            if (uniqueImages.has(product.image)) return;
-            uniqueImages.add(product.image);
+                if (!response.ok) {
+                    throw new Error(`GitHub returned ${response.status}`);
+                }
 
-            const card = document.createElement("article");
-            card.className = "gallery-card";
+                const files = await response.json();
 
-            const imageWrapper = document.createElement("div");
-            imageWrapper.className = "image-wrapper";
+                const imageFiles = files
+                    .filter(file =>
+                        file.type === "file" &&
+                        /\.(webp|jpg|jpeg|png)$/i.test(file.name)
+                    )
+                    .filter((file, index, arr) =>
+                        arr.findIndex(item =>
+                            item.name.toLowerCase() === file.name.toLowerCase()
+                        ) === index
+                    )
+                    .sort((a, b) =>
+                        a.name.localeCompare(b.name, undefined, {
+                            numeric: true,
+                            sensitivity: "base"
+                        })
+                    );
 
-            const img = document.createElement("img");
-            img.src = product.image;
-            img.alt = product.name;
-            img.loading = "lazy";
-            img.decoding = "async";
+                if (!imageFiles.length) {
+                    container.innerHTML =
+                        '<div class="no-products">No images found in the GitHub folder.</div>';
+                    return;
+                }
 
-            imageWrapper.appendChild(img);
+                container.innerHTML = "";
 
-            const title = document.createElement("h3");
-            title.textContent = product.name;
+                imageFiles.forEach(file => {
+                    const imageUrl = githubRawBase + encodeURIComponent(file.name);
 
-            card.appendChild(imageWrapper);
-            card.appendChild(title);
-            container.appendChild(card);
-        });
+                    const displayName = file.name
+                        .replace(/\.[^.]+$/, "")
+                        .replace(/[_-]+/g, " ")
+                        .replace(/\s+/g, " ")
+                        .trim()
+                        .replace(/^naga\s+statue\s*/i, "Naga Statue ");
+
+                    const card = document.createElement("article");
+                    card.className = "gallery-card";
+
+                    const imageWrapper = document.createElement("div");
+                    imageWrapper.className = "image-wrapper";
+
+                    const img = document.createElement("img");
+                    img.src = imageUrl;
+                    img.alt = displayName;
+                    img.loading = "lazy";
+                    img.decoding = "async";
+
+                    img.addEventListener("error", () => {
+                        imageWrapper.innerHTML =
+                            '<div class="no-image">No Image Available</div>';
+                    });
+
+                    imageWrapper.appendChild(img);
+
+                    const title = document.createElement("h3");
+                    title.textContent = displayName;
+
+                    card.appendChild(imageWrapper);
+                    card.appendChild(title);
+                    container.appendChild(card);
+                });
+
+            } catch (error) {
+                console.error("GitHub image loading failed:", error);
+                container.innerHTML =
+                    '<div class="no-products">Unable to load images from GitHub.</div>';
+            }
+        }
+
+        loadNagaStatuesFromGitHub();
     </script>
 
 </body>
