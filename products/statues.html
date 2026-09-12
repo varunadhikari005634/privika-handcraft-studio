@@ -1195,105 +1195,176 @@ body {
 
     </section>
 
-    <!-- PRODUCTS FROM GITHUB ONLY -->
+
+    <!-- PRODUCTS FROM GITHUB -->
     <section class="gallery-section">
         <div id="products-container" class="gallery-grid"></div>
     </section>
 
+    <!-- GITHUB PRODUCT IMAGES -->
     <script>
-        const githubApi =
-            "https://api.github.com/repos/varunadhikari005634/privika-handcraft-studio/contents/products/item%20images/Naga%20Statues?ref=main";
+    document.addEventListener("DOMContentLoaded", () => {
 
-        const githubRawBase =
-            "https://raw.githubusercontent.com/varunadhikari005634/privika-handcraft-studio/main/products/item%20images/Naga%20Statues/";
+        const container =
+            document.getElementById("products-container");
 
-        const container = document.getElementById("products-container");
+        /*
+         * GitHub repository:
+         * varunadhikari005634/privika-handcraft-studio
+         *
+         * Folder:
+         * products/item images/Naga Statues/
+         *
+         * Exact files:
+         * naga statue 1.webp ... naga statue 25.webp
+         */
 
-        async function loadNagaStatuesFromGitHub() {
-            try {
-                const response = await fetch(githubApi, {
-                    headers: { "Accept": "application/vnd.github+json" },
-                    cache: "no-store"
-                });
+        const imageNames = [
+            "naga statue 1.webp",
+            "naga statue 2.webp",
+            "naga statue 3.webp",
+            "naga statue 4.webp",
+            "naga statue 5.webp",
+            "naga statue 6.webp",
+            "naga statue 7.webp",
+            "naga statue 8.webp",
+            "naga statue 9.webp",
+            "naga statue 10.webp",
+            "naga statue 11.webp",
+            "naga statue 12.webp",
+            "naga statue 13.webp",
+            "naga statue 14.webp",
+            "naga statue 15.webp",
+            "naga statue 16.webp",
+            "naga statue 17.webp",
+            "naga statue 18.webp",
+            "naga statue 19.webp",
+            "naga statue 20.webp",
+            "naga statue 21.webp",
+            "naga statue 22.webp",
+            "naga statue 23.webp",
+            "naga statue 24.webp",
+            "naga statue 25.webp"
+        ];
 
-                if (!response.ok) {
-                    throw new Error(`GitHub returned ${response.status}`);
-                }
+        const githubBase =
+            "https://raw.githubusercontent.com/varunadhikari005634/" +
+            "privika-handcraft-studio/main/products/item%20images/Naga%20Statues/";
 
-                const files = await response.json();
+        if (!container) return;
 
-                const imageFiles = files
-                    .filter(file =>
-                        file.type === "file" &&
-                        /\.(webp|jpg|jpeg|png)$/i.test(file.name)
-                    )
-                    .filter((file, index, arr) =>
-                        arr.findIndex(item =>
-                            item.name.toLowerCase() === file.name.toLowerCase()
-                        ) === index
-                    )
-                    .sort((a, b) =>
-                        a.name.localeCompare(b.name, undefined, {
-                            numeric: true,
-                            sensitivity: "base"
-                        })
-                    );
-
-                if (!imageFiles.length) {
-                    container.innerHTML =
-                        '<div class="no-products">No images found in the GitHub folder.</div>';
-                    return;
-                }
-
-                container.innerHTML = "";
-
-                imageFiles.forEach(file => {
-                    const imageUrl = githubRawBase + encodeURIComponent(file.name);
-
-                    const displayName = file.name
-                        .replace(/\.[^.]+$/, "")
-                        .replace(/[_-]+/g, " ")
-                        .replace(/\s+/g, " ")
-                        .trim()
-                        .replace(/^naga\s+statue\s*/i, "Naga Statue ");
-
-                    const card = document.createElement("article");
-                    card.className = "gallery-card";
-
-                    const imageWrapper = document.createElement("div");
-                    imageWrapper.className = "image-wrapper";
-
-                    const img = document.createElement("img");
-                    img.src = imageUrl;
-                    img.alt = displayName;
-                    img.loading = "lazy";
-                    img.decoding = "async";
-
-                    img.addEventListener("error", () => {
-                        imageWrapper.innerHTML =
-                            '<div class="no-image">No Image Available</div>';
-                    });
-
-                    imageWrapper.appendChild(img);
-
-                    const title = document.createElement("h3");
-                    title.textContent = displayName;
-
-                    card.appendChild(imageWrapper);
-                    card.appendChild(title);
-                    container.appendChild(card);
-                });
-
-            } catch (error) {
-                console.error("GitHub image loading failed:", error);
-                container.innerHTML =
-                    '<div class="no-products">Unable to load images from GitHub.</div>';
-            }
+        if (!imageNames.length) {
+            container.innerHTML = `
+                <div class="no-products">
+                    No products available in this category yet.
+                </div>
+            `;
+            return;
         }
 
-        loadNagaStatuesFromGitHub();
+        imageNames.forEach((fileName, index) => {
+
+            const card = document.createElement("div");
+            card.className = "gallery-card";
+
+            /*
+             * Encode the filename so spaces are handled correctly.
+             */
+            const imagePath =
+                githubBase + encodeURIComponent(fileName);
+
+            // Proper display name: Naga Statue 1 ... Naga Statue 25
+            const productName =
+                `Naga Statue ${index + 1}`;
+
+            card.innerHTML = `
+                <div class="image-wrapper">
+                    <img
+                        src="${imagePath}"
+                        alt="${productName}"
+                        loading="lazy"
+                        decoding="async"
+                    >
+                </div>
+
+                <h3>${productName}</h3>
+            `;
+
+            const image = card.querySelector("img");
+
+            image.addEventListener("error", () => {
+                image.parentElement.innerHTML = `
+                    <div class="no-image">
+                        No Image Available
+                    </div>
+                `;
+            });
+
+            image.addEventListener("click", () => {
+
+                const viewer =
+                    document.createElement("div");
+
+                viewer.className = "image-viewer";
+
+                viewer.innerHTML = `
+                    <button
+                        class="close-viewer"
+                        type="button"
+                        aria-label="Close image viewer">
+                        ×
+                    </button>
+
+                    <div class="viewer-content">
+                        <img
+                            src="${imagePath}"
+                            alt="${productName}"
+                        >
+
+                        <h2>${productName}</h2>
+                    </div>
+                `;
+
+                document.body.appendChild(viewer);
+
+                const closeButton =
+                    viewer.querySelector(".close-viewer");
+
+                function closeViewer() {
+                    viewer.remove();
+                    document.removeEventListener(
+                        "keydown",
+                        closeWithEscape
+                    );
+                }
+
+                function closeWithEscape(event) {
+                    if (event.key === "Escape") {
+                        closeViewer();
+                    }
+                }
+
+                closeButton.addEventListener(
+                    "click",
+                    closeViewer
+                );
+
+                viewer.addEventListener("click", (event) => {
+                    if (event.target === viewer) {
+                        closeViewer();
+                    }
+                });
+
+                document.addEventListener(
+                    "keydown",
+                    closeWithEscape
+                );
+            });
+
+            container.appendChild(card);
+        });
+    });
     </script>
 
 </body>
-
 </html>
