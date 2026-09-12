@@ -1195,23 +1195,54 @@ body {
 
     </section>
 
-
-    <!-- PRODUCTS FROM SUPABASE -->
-
+    <!-- PRODUCTS FROM GITHUB ONLY -->
     <section class="gallery-section">
-
         <div id="products-container" class="gallery-grid"></div>
-
     </section>
 
+    <script>
+        const githubBase =
+            "https://raw.githubusercontent.com/varunadhikari005634/privika-handcraft-studio/main/products/item%20images/Naga%20Statues/";
 
-    <!-- SUPABASE -->
+        const nagaStatues = Array.from({ length: 25 }, (_, i) => {
+            const number = i + 1;
+            return {
+                name: `Naga Statue ${number}`,
+                image: `${githubBase}naga%20statue%20${number}.webp`
+            };
+        });
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+        const container = document.getElementById("products-container");
 
-    <script src="../supabase.js"></script>
+        // Prevent duplicate image entries.
+        const uniqueImages = new Set();
 
-    <script src="load-products.js"></script>
+        nagaStatues.forEach(product => {
+            if (uniqueImages.has(product.image)) return;
+            uniqueImages.add(product.image);
+
+            const card = document.createElement("article");
+            card.className = "gallery-card";
+
+            const imageWrapper = document.createElement("div");
+            imageWrapper.className = "image-wrapper";
+
+            const img = document.createElement("img");
+            img.src = product.image;
+            img.alt = product.name;
+            img.loading = "lazy";
+            img.decoding = "async";
+
+            imageWrapper.appendChild(img);
+
+            const title = document.createElement("h3");
+            title.textContent = product.name;
+
+            card.appendChild(imageWrapper);
+            card.appendChild(title);
+            container.appendChild(card);
+        });
+    </script>
 
 </body>
 
