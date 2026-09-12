@@ -1145,19 +1145,142 @@ body {
          SUPABASE
     ====================================================== -->
 
-    <script
-        src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
-    </script>
-
-
-    <script src="../supabase.js"></script>
-
-
     <!-- =====================================================
-         PRODUCT LOADER
+         LOCAL GITHUB PRODUCT IMAGES
     ====================================================== -->
 
-    <script src="load-products.js"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+        const container = document.getElementById("products-container");
+
+        /*
+         * HTML file:
+         * products/Naga Bench.html
+         *
+         * Images:
+         * products/item images/Naga Bench/
+         */
+
+        const imageNames = [
+            "Naga Bench 1.jpg"
+        ];
+
+        if (!container) return;
+
+        if (!imageNames.length) {
+            container.innerHTML = `
+                <div class="no-products">
+                    No products available in this category yet.
+                </div>
+            `;
+            return;
+        }
+
+        imageNames.forEach((fileName) => {
+
+            const card = document.createElement("div");
+            card.className = "gallery-card";
+
+            const imagePath =
+                "item images/Naga Bench/" +
+                fileName
+                    .split("/")
+                    .map(encodeURIComponent)
+                    .join("/");
+
+            const productName =
+                fileName
+                    .replace(/\.[^/.]+$/, "")
+                    .replace(/\s+/g, " ")
+                    .trim();
+
+            card.innerHTML = `
+                <div class="image-wrapper">
+                    <img
+                        src="${imagePath}"
+                        alt="${productName}"
+                        loading="lazy"
+                    >
+                </div>
+
+                <h3>${productName}</h3>
+            `;
+
+            const image = card.querySelector("img");
+
+            image.addEventListener("error", () => {
+                image.parentElement.innerHTML = `
+                    <div class="no-image">
+                        No Image Available
+                    </div>
+                `;
+            });
+
+            image.addEventListener("click", () => {
+
+                const viewer = document.createElement("div");
+                viewer.className = "image-viewer";
+
+                viewer.innerHTML = `
+                    <button
+                        class="close-viewer"
+                        type="button"
+                        aria-label="Close image viewer">
+                        ×
+                    </button>
+
+                    <div class="viewer-content">
+                        <img
+                            src="${imagePath}"
+                            alt="${productName}"
+                        >
+                        <h2>${productName}</h2>
+                    </div>
+                `;
+
+                document.body.appendChild(viewer);
+
+                const closeButton =
+                    viewer.querySelector(".close-viewer");
+
+                function closeViewer() {
+                    viewer.remove();
+                    document.removeEventListener(
+                        "keydown",
+                        closeWithEscape
+                    );
+                }
+
+                closeButton.addEventListener(
+                    "click",
+                    closeViewer
+                );
+
+                viewer.addEventListener("click", (event) => {
+                    if (event.target === viewer) {
+                        closeViewer();
+                    }
+                });
+
+                function closeWithEscape(event) {
+                    if (event.key === "Escape") {
+                        closeViewer();
+                    }
+                }
+
+                document.addEventListener(
+                    "keydown",
+                    closeWithEscape
+                );
+
+            });
+
+            container.appendChild(card);
+        });
+
+    });
+    </script>
 
 
 </body>
