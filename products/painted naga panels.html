@@ -1268,169 +1268,228 @@ body {
 ========================================================= */
 
 /*
- * Exact GitHub repository:
+ * Repository:
  * varunadhikari005634/privika-handcraft-studio
  *
- * Exact folder shown in the GitHub setup:
- * products/item images/Wooden Coloured Panel/
+ * EXACT GitHub folder from the supplied screenshots:
+ * products/item images/Painted Panel/
  *
- * Every filename below is taken from the supplied folder screenshot.
+ * Images are read directly from GitHub.
+ * No Supabase is used on this page.
+ *
+ * Using the GitHub Contents API means the code reads the
+ * ACTUAL filenames currently present in this folder, so
+ * spaces, capital letters and missing numbers are handled
+ * automatically.
  */
-const GITHUB_IMAGE_BASE =
-    "https://raw.githubusercontent.com/varunadhikari005634/privika-handcraft-studio/main/products/item%20images/Wooden%20Coloured%20Panel/";
 
-/*
- * Exact image files:
- * Color Panel 1.jpg
- * painted panel 1.jpg ... painted panel 21.jpg
- * painted panel 23.jpg ... painted panel 25.jpg
- * Painted Panel 26.jpg ... Painted Panel 29.jpg
- * tiger color panel.jpg
- *
- * Painted Panel 22 is intentionally NOT included because it
- * is not present in the supplied screenshot.
- */
-const products = [
-    ["Color Panel 1", "Color Panel 1.jpg"],
-    ["Painted Panel 1", "painted panel 1.jpg"],
-    ["Painted Panel 2", "painted panel 2.jpg"],
-    ["Painted Panel 3", "painted panel 3.jpg"],
-    ["Painted Panel 4", "painted panel 4.jpg"],
-    ["Painted Panel 5", "painted panel 5.jpg"],
-    ["Painted Panel 6", "painted panel 6.jpg"],
-    ["Painted Panel 7", "painted panel 7.jpg"],
-    ["Painted Panel 8", "painted panel 8.jpg"],
-    ["Painted Panel 9", "painted panel 9.jpg"],
-    ["Painted Panel 10", "painted panel 10.jpg"],
-    ["Painted Panel 11", "painted panel 11.jpg"],
-    ["Painted Panel 12", "painted panel 12.jpg"],
-    ["Painted Panel 13", "painted panel 13.jpg"],
-    ["Painted Panel 14", "painted panel 14.jpg"],
-    ["Painted Panel 15", "painted panel 15.jpg"],
-    ["Painted Panel 16", "painted panel 16.jpg"],
-    ["Painted Panel 17", "painted panel 17.jpg"],
-    ["Painted Panel 18", "painted panel 18.jpg"],
-    ["Painted Panel 19", "painted panel 19.jpg"],
-    ["Painted Panel 20", "painted panel 20.jpg"],
-    ["Painted Panel 21", "painted panel 21.jpg"],
-    ["Painted Panel 23", "painted panel 23.jpg"],
-    ["Painted Panel 24", "painted panel 24.jpg"],
-    ["Painted Panel 25", "painted panel 25.jpg"],
-    ["Painted Panel 26", "Painted Panel 26.jpg"],
-    ["Painted Panel 27", "Painted Panel 27.jpg"],
-    ["Painted Panel 28", "Painted Panel 28.jpg"],
-    ["Painted Panel 29", "Painted Panel 29.jpg"],
-    ["Tiger Color Panel", "tiger color panel.jpg"]
-];
+const GITHUB_API_URL =
+    "https://api.github.com/repos/varunadhikari005634/privika-handcraft-studio/contents/products/item%20images/Painted%20Panel?ref=main";
 
 const container =
     document.getElementById("products-container");
 
-if (container) {
+async function loadPaintedPanelsFromGitHub() {
 
-    const seen = new Set();
+    if (!container) return;
 
-    products.forEach(([name, filename]) => {
+    try {
 
-        /* Prevent duplicate image entries. */
-        const key = filename.toLowerCase();
+        container.innerHTML = "";
 
-        if (seen.has(key)) return;
-        seen.add(key);
+        const response = await fetch(
+            GITHUB_API_URL,
+            {
+                headers: {
+                    "Accept": "application/vnd.github+json"
+                },
+                cache: "no-store"
+            }
+        );
 
-        const card =
-            document.createElement("article");
+        if (!response.ok) {
+            throw new Error(
+                "GitHub returned HTTP " + response.status
+            );
+        }
 
-        card.className = "gallery-card";
+        const files = await response.json();
 
-        const imageWrapper =
-            document.createElement("div");
-
-        imageWrapper.className =
-            "image-wrapper";
+        if (!Array.isArray(files)) {
+            throw new Error(
+                "GitHub folder contents could not be read."
+            );
+        }
 
         /*
-         * encodeURIComponent() correctly handles spaces
-         * in filenames such as "Color Panel 1.jpg".
+         * Take every image actually present in:
+         * products/item images/Painted Panel/
+         *
+         * .gitkeep and other non-image files are ignored.
          */
-        const imageUrl =
-            GITHUB_IMAGE_BASE +
-            encodeURIComponent(filename);
+        const imageFiles = files
+            .filter(file =>
+                file.type === "file" &&
+                /\.(webp|jpg|jpeg|png|gif)$/i.test(file.name)
+            )
+            .filter((file, index, array) =>
+                array.findIndex(item =>
+                    item.name.toLowerCase() ===
+                    file.name.toLowerCase()
+                ) === index
+            )
+            .sort((a, b) =>
+                a.name.localeCompare(
+                    b.name,
+                    undefined,
+                    {
+                        numeric: true,
+                        sensitivity: "base"
+                    }
+                )
+            );
 
-        const img =
-            document.createElement("img");
+        if (!imageFiles.length) {
 
-        img.src = imageUrl;
-        img.alt = name;
-        img.loading = "lazy";
-        img.decoding = "async";
+            container.innerHTML =
+                '<div class="no-products">' +
+                'No images found in the GitHub Painted Panel folder.' +
+                '</div>';
 
-        img.onerror = function () {
-            imageWrapper.innerHTML =
-                '<div class="no-image">No Image Available</div>';
-        };
+            return;
+        }
 
-        imageWrapper.appendChild(img);
+        imageFiles.forEach(file => {
 
-        const title =
-            document.createElement("h3");
+            /*
+             * GitHub's own download_url is used.
+             * This is the exact raw image location generated
+             * by GitHub for the file — no guessed filename URL.
+             */
+            const imageUrl = file.download_url;
 
-        title.textContent = name;
+            /*
+             * Convert filename to a clean product title.
+             *
+             * Examples:
+             * "Color Panel 1.jpg"     -> "Color Panel 1"
+             * "painted panel 1.jpg"   -> "Painted Panel 1"
+             * "tiger color panel.jpg" -> "Tiger Color Panel"
+             */
+            const name = file.name
+                .replace(/\.[^.]+$/, "")
+                .replace(/[_-]+/g, " ")
+                .replace(/\s+/g, " ")
+                .trim()
+                .replace(/\b\w/g, letter =>
+                    letter.toUpperCase()
+                );
 
-        /* Existing product-card information area. */
-        const info =
-            document.createElement("div");
+            const card =
+                document.createElement("article");
 
-        info.className =
-            "product-info";
+            card.className = "gallery-card";
 
-        info.innerHTML = `
-            <div class="product-description">
-                <span class="detail-label">Description</span>
-                <p>
-                    Handcrafted wooden painted panel featuring
-                    unique traditional artwork, natural character,
-                    and an individual handcrafted finish.
-                </p>
-            </div>
+            const imageWrapper =
+                document.createElement("div");
 
-            <div class="product-detail-row">
-                <span class="detail-label">Material:</span>
-                <span class="detail-value">Reclaimed Wood</span>
-            </div>
+            imageWrapper.className =
+                "image-wrapper";
 
-            <div class="product-detail-row">
-                <span class="detail-label">Finish:</span>
-                <span class="detail-value">Handcrafted / Painted</span>
-            </div>
+            const img =
+                document.createElement("img");
 
-            <div class="product-detail-row">
-                <span class="detail-label">Customization:</span>
-                <span class="detail-value">Available on request</span>
-            </div>
-        `;
+            img.src = imageUrl;
+            img.alt = name;
+            img.loading = "lazy";
+            img.decoding = "async";
 
-        const comingSoon =
-            document.createElement("div");
+            img.onerror = function () {
 
-        comingSoon.className =
-            "coming-soon";
+                imageWrapper.innerHTML =
+                    '<div class="no-image">' +
+                    'No Image Available' +
+                    '</div>';
+            };
 
-        comingSoon.innerHTML =
-            "<span>Enquire for Price</span>";
+            imageWrapper.appendChild(img);
 
-        card.appendChild(imageWrapper);
-        card.appendChild(title);
-        card.appendChild(info);
-        card.appendChild(comingSoon);
+            const title =
+                document.createElement("h3");
 
-        container.appendChild(card);
+            title.textContent = name;
 
-        /* Existing full-screen image viewer. */
-        img.addEventListener("click", () => {
-            openImageViewer(img.src, name);
+            /*
+             * Existing product information UI is preserved.
+             */
+            const info =
+                document.createElement("div");
+
+            info.className =
+                "product-info";
+
+            info.innerHTML = `
+                <div class="product-description">
+                    <span class="detail-label">Description</span>
+                    <p>
+                        Handcrafted wooden painted panel featuring
+                        unique traditional artwork, natural character,
+                        and an individual handcrafted finish.
+                    </p>
+                </div>
+
+                <div class="product-detail-row">
+                    <span class="detail-label">Material:</span>
+                    <span class="detail-value">Reclaimed Wood</span>
+                </div>
+
+                <div class="product-detail-row">
+                    <span class="detail-label">Finish:</span>
+                    <span class="detail-value">Handcrafted / Painted</span>
+                </div>
+
+                <div class="product-detail-row">
+                    <span class="detail-label">Customization:</span>
+                    <span class="detail-value">Available on request</span>
+                </div>
+            `;
+
+            const comingSoon =
+                document.createElement("div");
+
+            comingSoon.className =
+                "coming-soon";
+
+            comingSoon.innerHTML =
+                "<span>Enquire for Price</span>";
+
+            card.appendChild(imageWrapper);
+            card.appendChild(title);
+            card.appendChild(info);
+            card.appendChild(comingSoon);
+
+            container.appendChild(card);
+
+            /*
+             * Existing full-screen image viewer.
+             */
+            img.addEventListener("click", () => {
+                openImageViewer(imageUrl, name);
+            });
         });
-    });
+
+    } catch (error) {
+
+        console.error(
+            "GitHub Painted Panel loading failed:",
+            error
+        );
+
+        container.innerHTML =
+            '<div class="no-products">' +
+            'Unable to load images from GitHub.' +
+            '</div>';
+    }
 }
 
 function openImageViewer(src, name) {
@@ -1463,6 +1522,7 @@ function openImageViewer(src, name) {
     const close = () => {
         viewer.remove();
         document.body.style.overflow = "";
+
         document.removeEventListener(
             "keydown",
             escapeHandler
@@ -1470,6 +1530,7 @@ function openImageViewer(src, name) {
     };
 
     const escapeHandler = (event) => {
+
         if (event.key === "Escape") {
             close();
         }
@@ -1480,6 +1541,7 @@ function openImageViewer(src, name) {
         .addEventListener("click", close);
 
     viewer.addEventListener("click", (event) => {
+
         if (event.target === viewer) {
             close();
         }
@@ -1490,6 +1552,9 @@ function openImageViewer(src, name) {
         escapeHandler
     );
 }
+
+loadPaintedPanelsFromGitHub();
+
 </script>
 
 </body>
