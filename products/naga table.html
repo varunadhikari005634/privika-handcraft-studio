@@ -1260,24 +1260,137 @@ body {
         </p>
 
     </section>
+    <!-- GITHUB-ONLY PRODUCT IMAGES -->
+    <!-- Images are loaded ONLY from:
+         products/item images/Naga Table/
+    -->
 
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
 
-    <!-- PRODUCTS FROM SUPABASE -->
+        const container =
+            document.getElementById("products-container");
 
-    <section class="gallery-section">
+        if (!container) return;
 
-        <div id="products-container" class="gallery-grid"></div>
+        const products = [
+            { name: "Naga Horn Table", file: "Naga Horn Table.jpg" },
+            { name: "Naga Hornbill Table", file: "Naga Hornbill Table.jpg" },
+            { name: "Naga Table 1", file: "Naga Table 1.jpg" },
+            { name: "Naga Table 2", file: "Naga Table 2.jpg" },
+            { name: "Naga Table 3", file: "Naga Table 3.jpg" }
+        ];
 
-    </section>
+        // Safety: ensure no duplicate image files are rendered.
+        const uniqueProducts = [];
+        const usedFiles = new Set();
 
+        products.forEach(product => {
+            if (!usedFiles.has(product.file)) {
+                usedFiles.add(product.file);
+                uniqueProducts.push(product);
+            }
+        });
 
-    <!-- SUPABASE -->
+        uniqueProducts.forEach(product => {
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+            const card = document.createElement("div");
+            card.className = "gallery-card";
 
-    <script src="../supabase.js"></script>
+            const imageUrl =
+                "https://raw.githubusercontent.com/varunadhikari005634/privika-handcraft-studio/main/products/item%20images/Naga%20Table/" +
+                product.file
+                    .split("/")
+                    .map(encodeURIComponent)
+                    .join("/");
 
-    <script src="load-products.js"></script>
+            card.innerHTML = `
+                <div class="image-wrapper">
+                    <img
+                        src="${imageUrl}"
+                        alt="${product.name}"
+                        loading="lazy"
+                    >
+                </div>
+
+                <h3>${product.name}</h3>
+            `;
+
+            const image = card.querySelector("img");
+
+            image.addEventListener("error", () => {
+                image.parentElement.innerHTML = `
+                    <div class="no-image">
+                        No Image Available
+                    </div>
+                `;
+            });
+
+            // Keep the existing full-screen image viewer behaviour.
+            image.addEventListener("click", () => {
+
+                const viewer =
+                    document.createElement("div");
+
+                viewer.className = "image-viewer";
+
+                viewer.innerHTML = `
+                    <button
+                        class="close-viewer"
+                        type="button"
+                        aria-label="Close image viewer">
+                        ×
+                    </button>
+
+                    <div class="viewer-content">
+                        <img
+                            src="${imageUrl}"
+                            alt="${product.name}"
+                        >
+                        <h2>${product.name}</h2>
+                    </div>
+                `;
+
+                document.body.appendChild(viewer);
+
+                const closeButton =
+                    viewer.querySelector(".close-viewer");
+
+                function closeViewer() {
+                    viewer.remove();
+                    document.removeEventListener(
+                        "keydown",
+                        closeWithEscape
+                    );
+                }
+
+                closeButton.addEventListener(
+                    "click",
+                    closeViewer
+                );
+
+                viewer.addEventListener("click", event => {
+                    if (event.target === viewer) {
+                        closeViewer();
+                    }
+                });
+
+                function closeWithEscape(event) {
+                    if (event.key === "Escape") {
+                        closeViewer();
+                    }
+                }
+
+                document.addEventListener(
+                    "keydown",
+                    closeWithEscape
+                );
+            });
+
+            container.appendChild(card);
+        });
+    });
+    </script>
 
 </body>
 
